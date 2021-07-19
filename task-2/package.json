@@ -1,0 +1,15 @@
+{
+  "name": "readdirandcrypt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "read_dir_and_crypt.js",
+  "scripts": {
+    "test": "node read_dir_and_crypt.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sha3": "^2.1.4"
+  }
+}
