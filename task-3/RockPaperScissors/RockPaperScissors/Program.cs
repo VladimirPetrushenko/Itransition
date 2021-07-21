@@ -13,7 +13,7 @@ namespace RockPaperScissors
                 return;
             }
             while (true)
-            {
+            { 
                 byte[] HMACkey = RandomHMACKey();
                 byte computer = ChoiceOfComputer(args.Length);
                 byte[] HMAC = HMACSHA256(HMACkey, computer);
