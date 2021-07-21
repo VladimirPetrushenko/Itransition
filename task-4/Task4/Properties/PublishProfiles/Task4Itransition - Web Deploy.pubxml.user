@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2SLqKJk85ke8rIpniD2IYwAAAAACAAAAAAAQZgAAAAEAACAAAADVZ9a+qfuzNLpfPQ0icGXg1jujCrBuPvFjnW5yXXFXGQAAAAAOgAAAAAIAACAAAAB7oCOw5j4Z4KM1he0aU6i7kvtddildmEaMvpqZV4eab4AAAABE7hrKqpaqlhNXxrdHRsxvtWoRavh8TH6X/wl90Bmlf8lvhzCLZSjsXly1of00jwDfSpsB9SJ51bylbg9MpmantLd4J60qq0qPeqd/FmD7mAXjeGEALWNHmAtwdp1NoJdgqerHfo6hx5nBV5G1ziXM+P4+MUdOtL3K6CwWdEWBXkAAAAAvIKDCLtZz7b0RteVI+XUvx/knhCNIECsbL41YF2EIishzS2Tv3Hqrf5uSFcJR44535exQvHoRHAxD3FPeKxuh</EncryptedPassword>
+    <History>True|2021-07-21T15:03:14.1931452Z;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:databasegroup.database.windows.net,1433%3bInitial Catalog=Task4Db%3bPersist Security Info=False%3bUser ID=UserAdministrator%3bPassword=Vova%40https://portal.azure.com/%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

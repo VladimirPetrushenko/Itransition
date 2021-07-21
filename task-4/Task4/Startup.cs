@@ -42,7 +42,6 @@ namespace Task4
                 opt.Password.RequireDigit = false;
                 opt.SignIn.RequireConfirmedEmail = false;
                 opt.User.RequireUniqueEmail = true;
-                opt.User.AllowedUserNameCharacters = ".123456789@abcdefghijklmnopqrstuvwxyz";
             }).AddEntityFrameworkStores<ApplicationContext>();
             services.AddControllersWithViews(opt=> 
             {
