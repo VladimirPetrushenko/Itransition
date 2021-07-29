@@ -45,8 +45,14 @@ namespace RockPaperScissors
         }
         private static byte[] HMACSHA256(byte[] HMACkey, byte add)
         {
+            var temp = new HMACSHA256(HMACkey);
             SHA256 mySHA256 = SHA256.Create();
-            string buffer = Convert.ToString(CreateStringFromByteArray(HMACkey)) + add;
+
+            string buffer = Convert.ToString(add);
+            var buffer2 = temp.ComputeHash(System.Text.Encoding.UTF8.GetBytes(buffer));
+            string s = Convert.ToBase64String(buffer2);
+            Console.WriteLine(Convert.ToBase64String(buffer2));
+            Console.WriteLine(BitConverter.ToString(buffer2));
             return mySHA256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(buffer));
         }
         private static void MainMenu(string[] args)
