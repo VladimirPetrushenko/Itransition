@@ -243,6 +243,7 @@ const clearCanvas = (canvas) => {
             canvas.remove(o);
         }
     })
+    hubConnection.invoke("Send", JSON.stringify(canvas));
 }
 
 const hubConnection = new signalR.HubConnectionBuilder()
