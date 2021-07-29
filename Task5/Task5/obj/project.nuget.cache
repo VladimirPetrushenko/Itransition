@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vdsrEqTwe3HAtgvkUBlYjsYuNpgyHfUPgika+2ibOhujQQ52cRqhdhn2voF8UYPe51h94iEUY9bWV7q/+6pP9A==",
+  "dgSpecHash": "4H6ajmrq2pzWSe++5JvfB/pdS/6BUXhLQn+hqDylrjMeX4J5Fg0DAnpu0IfAijsuOJWaCeT84gjVX2+SarbLbA==",
   "success": true,
-  "projectFilePath": "D:\\C#\\test\\WebApplication1\\WebApplication1\\Task5.csproj",
+  "projectFilePath": "D:\\RepositoryForGithub\\Itransition\\Task5\\Task5\\Task5.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\5.0.8\\microsoft.aspnetcore.connections.abstractions.5.0.8.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\5.0.8\\microsoft.aspnetcore.http.connections.client.5.0.8.nupkg.sha512",

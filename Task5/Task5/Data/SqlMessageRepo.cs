@@ -32,15 +32,9 @@ namespace Task5.Data
         public string GetAllMessages()
         {
             var m = String.Empty;
-            try
-            {
-                m = _context.Messages.FirstOrDefault().Value;
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
+            var check = _context.Messages.FirstOrDefault();
+            if(check!=null)
+                m = check.Value;
             return m;
         }
     }
