@@ -43,7 +43,7 @@ namespace Task4.Controllers
                 User user = await _userManager.FindByIdAsync(id);
                 if (user != null)
                 {
-                    var result = await _userManager.DeleteAsync(user);
+                    await _userManager.DeleteAsync(user);
                 }
             }
             return RedirectToAction("Index");

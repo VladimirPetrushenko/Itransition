@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tic Tac Toe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/gamefield.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/gamepopup.css">
+</head>
+<body>
+    <h1 style="text-align:center"><span>Tic Tac Toe</span></h1>
+    <h2 id="gameInformation" style="visibility:hidden"></h2>
+    <div>
+        <div id="start" class="row no-gutters g-0">
+            <input type="button" class="button col-12 mb-3 p-2" id="createNewGame" value="Create new Game!" />
+            <div>
+                <input type="text" class="form-control mb-3" id="searchByTags" placeholder="Search by tags">
+            </div>
+            <div class="col-12 mb-3" style="text-align:center; font-size: 25px">List of available games to connect</div>
+            <div id="listGames" class="row g-0"></div>
+        </div>
+        <div id="createGame" style="visibility: hidden">
+            <div clacc="row">
+                <div class="col-12">
+                    Please enter your game name!
+                </div>
+            </div>
+            <div clacc="row">
+                <div class="col-12">
+                    <input type="text" class="form-control" id="gameName" placeholder="Please enter your game name">
+                </div>
+            </div>
+            <div clacc="row">
+                <div class="col-12">
+                    Please enter your game tag:
+                </div>
+            </div>
+            <div clacc="row">
+                <div class="col-12">
+                    <input type="text" class="form-control" id="tagName" placeholder="Please enter your game tag">
+                </div>
+            </div>
+            <br />
+            <div clacc="row">
+                <input type="button" class="button col-12" id="sendNewGame" value="Create Game!" />
+            </div>
+        </div>
+        <div id="findOpponent" style="visibility: hidden">
+        </div>
+        <div id="root" style="visibility: hidden">
+            <p class="text-right text-info" id="opponent"></p>
+            <p class="text-right text-info currentPlayer">
+                <span><span id="curPlr">X</span> is walking now</span>
+            </p>
+            <div class="game">
+                <div class="game-container">
+                    <div id="grid" class="game-container-grid">
+                        <button class="btn-game" pos="1"></button>
+                        <button class="btn-game" pos="2"></button>
+                        <button class="btn-game" pos="3"></button>
+
+                        <button class="btn-game" pos="4"></button>
+                        <button class="btn-game" pos="5"></button>
+                        <button class="btn-game" pos="6"></button>
+
+                        <button class="btn-game" pos="7"></button>
+                        <button class="btn-game" pos="8"></button>
+                        <button class="btn-game" pos="9"></button>
+                    </div>
+                </div>
+            </div>
+            <div id="container">
+                <div id="overlay"></div>
+                <div class="game-popup">
+                    <div id="content">content</div>
+                    <button class="btn-ok" id="btn-close">Start menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sctipts/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="../js/hubConnection.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        function autocomplete(inp) {
+            var currentFocus;
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                this.parentNode.appendChild(a);
+                for (i = 0; i < tags.length; i++) {
+                    if (tags[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        b = document.createElement("DIV");
+                        b.innerHTML = "<strong>" + tags[i].substr(0, val.length) + "</strong>";
+                        b.innerHTML += tags[i].substr(val.length);
+                        b.innerHTML += "<input type='hidden' value='" + tags[i] + "'>";
+                        b.addEventListener("click", function (e) {
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    currentFocus++;
+                    addActive(x);
+                } else if (e.keyCode == 38) { 
+                    currentFocus--;
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                if (!x) return false;
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+        
+        autocomplete(document.getElementById('searchByTags'))
+    </script>
+</body>
+</html>
