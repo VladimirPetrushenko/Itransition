@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProjectForItransition.Models;
+﻿using System.Collections.Generic;
+using ProjectForItransition.Models.Collection;
+using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.ViewModels.Collection
 {

@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ProjectForItransition.Data;
-using ProjectForItransition.Models;
 using ProjectForItransition.Repository.Interface;
+using ProjectForItransition.Models.Collection;
 
 namespace ProjectForItransition.Repository.Data
 {

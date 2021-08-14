@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ProjectForItransition.Data;
-using ProjectForItransition.Models;
+using ProjectForItransition.Models.Item;
 using ProjectForItransition.Repository.Interface;
 
 namespace ProjectForItransition.Repository.Data

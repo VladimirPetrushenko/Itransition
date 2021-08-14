@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace ProjectForItransition.Models
+namespace ProjectForItransition.Models.Collection
 {
     public class NameField
     {
@@ -24,13 +23,5 @@ namespace ProjectForItransition.Models
             }
             return nameFields;
         }
-    }
-    public enum TypeField
-    {
-        Integer,
-        String,
-        Markdown,
-        DateTime,
-        Checkbox
     }
 }

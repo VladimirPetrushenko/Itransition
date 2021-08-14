@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjectForItransition.Models;
 using ProjectForItransition.Repository.Interface;
 using ProjectForItransition.ViewModels.Collection;
+using ProjectForItransition.Models.Collection;
 
 namespace ProjectForItransition.Controllers
 {

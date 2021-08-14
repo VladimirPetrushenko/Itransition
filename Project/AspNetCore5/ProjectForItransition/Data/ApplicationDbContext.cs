@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ProjectForItransition.Models;
+using ProjectForItransition.Models.Collection;
+using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.Data
 {

@@ -1,4 +1,4 @@
-﻿@model ProjectForItransition.Models.ContentCollection
+﻿@model ProjectForItransition.Models.Collection.ContentCollection
 @{
     ViewData["Title"] = "Update Collection";
 }
@@ -14,9 +14,9 @@
     <textarea name="Description" class="form-control" rows="10" value="@Model.Description"></textarea>
     <p>Topic</p>
     <select name="Topic">
-        @foreach (var item in Enum.GetValues(typeof(ProjectForItransition.Models.Topic)))
+        @foreach (var item in Enum.GetValues(typeof(Topic)))
         {
-            if ((ProjectForItransition.Models.Topic)item == Model.Topic)
+            if ((Topic)item == Model.Topic)
             {
                 <option value="@item" selected>@item</option>
             }
@@ -43,7 +43,7 @@
         var html = "<select name=\"types\">";
         var elements = new Array();
         var i = 0;
-        @foreach (var item in Enum.GetValues(typeof(ProjectForItransition.Models.TypeField)))
+        @foreach (var item in Enum.GetValues(typeof(TypeField)))
         {
             @: elements[i] = "@item";
             @: i++;

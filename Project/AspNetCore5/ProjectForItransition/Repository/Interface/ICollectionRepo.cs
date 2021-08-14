@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProjectForItransition.Models;
+﻿using System.Collections.Generic;
+using ProjectForItransition.Models.Collection;
 
 namespace ProjectForItransition.Repository.Interface
 {

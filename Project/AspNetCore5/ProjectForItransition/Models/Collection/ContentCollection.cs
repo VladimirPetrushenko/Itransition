@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ProjectForItransition.Models.Item;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ProjectForItransition.Models
+namespace ProjectForItransition.Models.Collection
 {
     public class ContentCollection
     {
@@ -24,13 +22,5 @@ namespace ProjectForItransition.Models
         {
             throw new NotImplementedException();
         }
-    }
-
-    public enum Topic
-    {
-        Alcohol,
-        Books,
-        Movie,
-        Food
     }
 }

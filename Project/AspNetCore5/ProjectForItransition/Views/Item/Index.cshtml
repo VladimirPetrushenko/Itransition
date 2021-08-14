@@ -20,7 +20,7 @@
         {
             <div class="col-12 h6">
                 @Model.Fields[i].Name -
-                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Integer)
+                @if (Model.Fields[i].Type == @TypeField.Integer)
                 {
                     if (Model.Item.IntegerElements.Count() > integer)
                     {
@@ -32,7 +32,7 @@
                         <span> field is not occupied </span>
                     }
                 }
-                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.String)
+                @if (Model.Fields[i].Type == @TypeField.String)
                 {
                     if (Model.Item.StringElements.Count() > strings)
                     {
@@ -44,7 +44,7 @@
                         <span> field is not occupied </span>
                     }
                 }
-                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Markdown)
+                @if (Model.Fields[i].Type == @TypeField.Markdown)
                 {
                     if (Model.Item.MarkdownElements.Count() > markdown)
                     {
@@ -58,7 +58,7 @@
                         <span> field is not occupied </span>
                     }
                 }
-                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.DateTime)
+                @if (Model.Fields[i].Type == @TypeField.DateTime)
                 {
                     if (Model.Item.DateTimeElements.Count() > datetime)
                     {
@@ -70,7 +70,7 @@
                         <span> field is not occupied </span>
                     }
                 }
-                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Checkbox)
+                @if (Model.Fields[i].Type == @TypeField.Checkbox)
                 {
                     if (Model.Item.CheckboxElements.Count() > checkbox)
                     {
