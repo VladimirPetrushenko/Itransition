@@ -1,0 +1,48 @@
+﻿@model ProjectForItransition.Models.ContentCollection
+
+@{
+    ViewData["Title"] = "Create Item";
+}
+
+<h1>Create Item</h1>
+
+<form method="post" asp-action="CreateItem" asp-controller="Item">
+    <input type="hidden" name="CollectionId" value="@Model.Id" />
+    <h2>Name Item</h2>
+    <input type="text" name="Name" class="form-control" />
+    <label>Tags</label>
+    <div id="createTag" class="form-control" name="Tags"> </div>
+    <p>Custom Field</p>
+    <div class="row">
+        @{
+            int box = 1;
+            @foreach (var NameField in Model.NameElements)
+            {
+
+                <div class="col-12">
+                    @NameField.Name -
+                    @switch (NameField.Type)
+                    {
+                        case TypeField.Integer:
+                            <input type="number" name="Integers" />
+                            break;
+                        case TypeField.String:
+                            <input type="text" name="Strings" />
+                            break;
+                        case TypeField.Markdown:
+                            <textarea name="Markdowns" class="form-control" rows="10"></textarea>
+                            break;
+                        case TypeField.DateTime:
+                            <input type="date" name="Datetimes" />
+                            break;
+                        case TypeField.Checkbox:
+                            <input name="Checkboxes" type="checkbox" value=@box>
+                            box++;
+                            break;
+                    }
+                </div>
+            }
+        }
+    </div>
+    <input type="submit" value="Create" />
+</form>

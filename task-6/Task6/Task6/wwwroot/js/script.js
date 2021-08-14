@@ -85,13 +85,9 @@ function game() {
     }
 
     document.getElementById("btn-close").removeEventListener('click', function (e) {
-        console.log(document.getElementById("container").style.visibility);
         document.getElementById("container").style.visibility = "hidden";
-        console.log(document.getElementById("root").style.visibility);
         document.getElementById("root").style.visibility = "hidden";
-        console.log("i am here");
         setTimeout(() => {
-            console.log("I am here")
             visibleElementHtml("start")
             currentPlayer.innerHTML = "X";
             hubConnection.invoke("Games", undefined);
@@ -102,18 +98,15 @@ function game() {
     });
 
     document.getElementById("btn-close").addEventListener('click', function (e) {
+        for (var i = 0; i < cell.length; i++) {
+            cell[i].innerHTML = '';
+        }
         document.getElementById("container").style.visibility = "hidden";
         document.getElementById("root").style.visibility = "hidden";
-        console.log(document.getElementById("container").style.visibility);
-        console.log(document.getElementById("root").style.visibility);
         setTimeout(() => {
             currentPlayer.innerHTML = "X";
             hubConnection.invoke("Games", undefined);
         }, 0.2);
-        for (var i = 0; i < cell.length; i++) {
-            cell[i].innerHTML = '';
-            console.log(i);
-        }
     });
 
     function restart(text) {

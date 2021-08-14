@@ -1,0 +1,83 @@
+﻿@model ProjectForItransition.ViewModels.Collection.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="row">
+    <div class="col-2 bg-white">
+        <div class="row">
+            @if (Model.Items != null)
+            {
+                foreach (var item in Model.Items)
+                {
+                    <div class="col-12">
+                        <form asp-action="Index" asp-controller="Item" method="get">
+                            <input type="hidden" name="collectionId" value="@item.Collection.Id" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <input type="submit" class="btn btn-link" value="@item.Name" />
+                        </form>
+                    </div>
+                    <div class="col-12">
+                        @if (item.Tags != null)
+                        {
+                            foreach (var tag in item.Tags.Select(x => x.Name))
+                            {
+                                <span>@tag </span>
+                            }
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">Didn't find any items</div>
+            }
+        </div>
+    </div>
+    <div class="col-7 bg-light">
+        <div class="row">
+            @foreach (var collection in Model.Collections)
+            {
+                <div class="col-sm-6">
+                    <div class="card">
+                        <img class="card-img-top" style="height:10rem;" src="..." alt="Image collection">
+                        <div class="card-body">
+                            <h5 class="card-title">@collection.Name</h5>
+                            <p class="card-text">@collection.Description</p>
+                            <p class="card-text">Topic - @collection.Topic</p>
+                            <p class="card-text">Amount items - @collection.Items.Count()</p>
+                            <form method="get" asp-action="ShowCollection" asp-controller="Collection">
+                                <input type="hidden" name="collectionId" value="@collection.Id" />
+                                <button class="btn btn-primary">Show this collection</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-3 bg-white"> <div id="container2" class="tagCloud"></div> </div>
+</div>
+<style>
+    .tagCloud {
+        border: 1px solid #ccc;
+    }
+</style>
+<script>
+    var some_other_words = new Array();
+    @foreach (var item in Model.Tags)
+    {
+        @:some_other_words.push({ text: "@item.Name", weight: @item.Count })
+    }
+    $(function () {
+
+        $("#container2").jQCloud(some_other_words, {
+            width: 250,
+            height: 800
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Create Collection";
+}
+<h1>Create Collection</h1>
+<form method="post" asp-action="CreateCollection" asp-controller="Collection">
+    <h2>Name Collection</h2>
+    <input type="text" name="Name" class="form-control" />
+    <p>Description</p>
+    <textarea name="Description" class="form-control" rows="10"></textarea>
+    <p>Topic</p>
+    <select name="Topic">
+        @foreach (var item in Enum.GetValues(typeof(ProjectForItransition.Models.Topic)))
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+
+    <div id="NameElements"></div>
+    <input type="button" onclick="appendElement(NameElements)" value="Add IntegerElement" />
+
+    <input type="submit" value="Create" />
+</form>
+
+<script>
+    function appendElement(element) {
+        element.innerHTML += "<input type=\"text\" name=\"names\" class=\"form-text\" />"
+            + getInputFieldForNameElement();
+    }
+
+    function getInputFieldForNameElement() {
+        var html = "<select name=\"types\">" +
+            "<option value=\"@ProjectForItransition.Models.TypeField.Integer\">@ProjectForItransition.Models.TypeField.Integer</option>" +
+            "<option value=\"@ProjectForItransition.Models.TypeField.Checkbox\">@ProjectForItransition.Models.TypeField.Checkbox</option>" +
+            "<option value=\"@ProjectForItransition.Models.TypeField.String\">@ProjectForItransition.Models.TypeField.String</option>" +
+            "<option value=\"@ProjectForItransition.Models.TypeField.DateTime\">@ProjectForItransition.Models.TypeField.DateTime</option>" +
+            "<option value=\"@ProjectForItransition.Models.TypeField.Markdown\">@ProjectForItransition.Models.TypeField.Markdown</option>" +
+            "</select> <br />";
+        return html;
+    }
+</script>

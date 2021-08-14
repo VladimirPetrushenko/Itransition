@@ -1,0 +1,92 @@
+﻿@model ProjectForItransition.ViewModels.Items.ShowItemModel
+
+<h1 class="text-center">Item - @Model.Item.Name</h1>
+
+<h4>
+    Tags -
+    @foreach (var tag in Model.Item.Tags)
+    {
+        <span>@tag.Name </span>
+    }
+</h4>
+<div class="row">
+    @{
+        int integer = 0;
+        int strings = 0;
+        int markdown = 0;
+        int checkbox = 0;
+        int datetime = 0;
+        for (int i = 0; i < Model.Fields.Count(); i++)
+        {
+            <div class="col-12 h6">
+                @Model.Fields[i].Name -
+                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Integer)
+                {
+                    if (Model.Item.IntegerElements.Count() > integer)
+                    {
+                        <span> @Model.Item.IntegerElements[integer].Value </span>
+                        integer++;
+                    }
+                    else
+                    {
+                        <span> field is not occupied </span>
+                    }
+                }
+                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.String)
+                {
+                    if (Model.Item.StringElements.Count() > strings)
+                    {
+                        <span> @Model.Item.StringElements[strings].Value </span>
+                        strings++;
+                    }
+                    else
+                    {
+                        <span> field is not occupied </span>
+                    }
+                }
+                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Markdown)
+                {
+                    if (Model.Item.MarkdownElements.Count() > markdown)
+                    {
+                        <div class="container bg-light">
+                            @Html.Raw(Markdown.ToHtml(Model.Item.MarkdownElements[markdown].Value))
+                        </div>
+                        markdown++;
+                    }
+                    else
+                    {
+                        <span> field is not occupied </span>
+                    }
+                }
+                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.DateTime)
+                {
+                    if (Model.Item.DateTimeElements.Count() > datetime)
+                    {
+                        <span> @Model.Item.DateTimeElements[datetime].Value </span>
+                        datetime++;
+                    }
+                    else
+                    {
+                        <span> field is not occupied </span>
+                    }
+                }
+                @if (Model.Fields[i].Type == @ProjectForItransition.Models.TypeField.Checkbox)
+                {
+                    if (Model.Item.CheckboxElements.Count() > checkbox)
+                    {
+                        <span> @Model.Item.CheckboxElements[checkbox].Value </span>
+                        checkbox++;
+                    }
+                    else
+                    {
+                        <span> field is not occupied </span>
+                    }
+                }
+            </div>
+        }
+    }
+    <form method="get" asp-action="ShowCollection" asp-controller="Collection">
+        <input type="hidden" name="collectionId" value="@Model.CollectionId" />
+        <button class="btn btn-primary">Back</button>
+    </form>
+</div>

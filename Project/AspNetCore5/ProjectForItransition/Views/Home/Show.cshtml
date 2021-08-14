@@ -1,0 +1,10 @@
+﻿@model ProjectForItransition.ViewModels.Roles.ShowViewModel
+
+<h2>Просмотр пользователя</h2>
+@if (User.IsInRole("admin")) 
+{ 
+    <p>ID - @Model.UserId</p>
+    <p>Email - @Model.UserEmail</p>
+    <p>UserName - @Model.UserName</p>
+    <p>Role - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</p>
+}

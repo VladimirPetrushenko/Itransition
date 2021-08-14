@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel
+
+<h2>Изменение ролей для пользователя @Model.UserEmail</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <div class="form-group">
+            <input type="checkbox" name="roles" value="@Model.UserId"
+                @(Model.UserRoles.Contains("Admin") ? "checked=\"checked\"" : "") /> Admin <br />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

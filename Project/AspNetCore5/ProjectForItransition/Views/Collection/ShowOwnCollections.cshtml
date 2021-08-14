@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProjectForItransition.Models.ContentCollection>
+
+<h1>Список коллекции</h1>
+<form method="get" asp-action="CreateCollection" asp-controller="Collection">
+    <button>Add Collection</button>
+</form>
+<div class="row">
+    @foreach (var collection in Model)
+    {
+        <div class="col-sm-3 m-2">
+            <div class="card" style="width: 18rem; height: 20rem; max-height: 20rem;">
+                <img class="card-img-top img-thumbnail" style="height:10rem;" src="..." alt="Image collection">
+                <div class="card-body">
+                    <h5 class="card-title">@collection.Name</h5>
+                    <div class="card-text">
+                        @if (collection.Description != null)
+                        {
+                            @Html.Raw(Markdown.ToHtml(collection.Description))
+                        }
+                    </div>
+                    <p class="card-text">Topic - @collection.Topic</p>
+                    <div>
+                        <form method="get" asp-action="ShowCollection" asp-controller="Collection">
+                            <input type="hidden" name="CollectionId" value="@collection.Id" />
+                            <button class="btn btn-primary">Show this collection</button>
+                        </form>
+                        <form method="get" asp-action="UpdateCollection" asp-controller="Collection">
+                            <input type="hidden" name="id" value="@collection.Id" />
+                            <button class="btn btn-primary">Update this collection</button>
+                        </form>
+                        <form method="post" asp-action="DeleteCollection" asp-controller="Collection">
+                            <input type="hidden" name="id" value="@collection.Id" />
+                            <button class="btn btn-danger">Delete this collection</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
