@@ -8,6 +8,9 @@ using ProjectForItransition.Models;
 using ProjectForItransition.Repository.Interface;
 using ProjectForItransition.ViewModels.Collection;
 using ProjectForItransition.Models.Collection;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 
 namespace ProjectForItransition.Controllers
 {
@@ -17,12 +20,17 @@ namespace ProjectForItransition.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ICollectionRepo _repository;
         private readonly ITagRepo _tagRepo;
+        private readonly Cloudinary _cloudinary;
 
-        public CollectionController(ICollectionRepo repository, UserManager<IdentityUser> userManager, ITagRepo tagRepo)
+        public CollectionController(ICollectionRepo repository, 
+            UserManager<IdentityUser> userManager, 
+            ITagRepo tagRepo,
+            Cloudinary cloudinary)
         {
             _userManager = userManager;
             _repository = repository;
             _tagRepo = tagRepo;
+            _cloudinary = cloudinary;
         }
         [AllowAnonymous]
         public IActionResult Index()
@@ -38,19 +46,16 @@ namespace ProjectForItransition.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCollection(ContentCollection model, string[] names, TypeField[] types)
+        public async Task<IActionResult> CreateCollection(ContentCollection collection, CreateCollectionViewModel model)
         {
-            if (model == null)
-                return View(model);
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            model.UserId = user.Id;
-            model.Name = User.Identity.Name;
-            model.NameElements = NameField.CreateListNameFieldWithNamesAndTypes(names, types); 
-            _repository.CreateCollection(model);
+            if (collection == null)
+                return View(collection);
+            await FillingCollection(collection, model);
+            _repository.CreateCollection(collection);
             _repository.SaveChange();
             return RedirectToAction("Index", "Collection");
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> ShowOwnCollections()
         {
@@ -62,25 +67,23 @@ namespace ProjectForItransition.Controllers
         [HttpGet]
         public IActionResult ShowCollection(int? collectionId, SortState sort)
         {
-            ViewBag.Tags = _tagRepo.GetAllDistinctTags();
+            var tags = _tagRepo.GetAllDistinctTags();
             if (collectionId == null)
                 throw new ArgumentException();
             var collection = _repository.GetCollectionById((int)collectionId);
-            SotrItemsAndChangeSortParm(sort, collection);
-            return View(collection);
+            return View(new ShowCollectionViewModel(collection, tags));
         }
 
         [HttpPost]
         public IActionResult ShowCollection(FilterItemsViewModel model)
         {
-            ViewBag.Tags = _tagRepo.GetAllDistinctTags();
+            var tags = _tagRepo.GetAllDistinctTags();
             if (model.CollectionId == null)
                 throw new ArgumentException();
             var collection = _repository.GetCollectionById((int)model.CollectionId);
-            FilterView(model.Name, model.TagsForFilter);
             model.FilterByNameAndTags(collection);
             SotrItemsAndChangeSortParm(model.sort, collection);
-            return View(collection);
+            return View(new ShowCollectionViewModel(collection, tags, model.NameForFilter, model.TagsForFilter));
         }
 
         [HttpGet]
@@ -93,17 +96,27 @@ namespace ProjectForItransition.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateCollection(ContentCollection model, string[] names, TypeField[] types)
+        public async Task<IActionResult> UpdateCollection(ContentCollection collection, CreateCollectionViewModel model)
         {
-            
-            var updateCollection = _repository.GetCollectionById(model.Id);
-            updateCollection.NameElements = NameField.CreateListNameFieldWithNamesAndTypes(names, types);
+            var updateCollection = _repository.GetCollectionById(collection.Id);
+            await FillingCollection(collection, model);
+            CollectionCopyToUpdateColection(collection, updateCollection);
             _repository.UpdateCollection(updateCollection);
             if (_repository.SaveChange())
             {
                 return RedirectToAction("Index", "Collection");
             }
             return View(model);
+        }
+
+        private static void CollectionCopyToUpdateColection(ContentCollection sourceCollection, ContentCollection updateCollection)
+        {
+            updateCollection.Name = sourceCollection.Name;
+            updateCollection.Description = sourceCollection.Description;
+            updateCollection.Topic = sourceCollection.Topic;
+            updateCollection.NameElements = sourceCollection.NameElements;
+            if (sourceCollection.Image != null)
+                updateCollection.Image = sourceCollection.Image;
         }
 
         [HttpPost]
@@ -118,11 +131,6 @@ namespace ProjectForItransition.Controllers
             return RedirectToAction("ShowOwnCollections", "Collection");
         }
 
-        private void FilterView(string name, string[] tags)
-        {
-            ViewBag.NameForFilter = name;
-            ViewBag.TagsForFilter = tags;
-        }
         private void SotrItemsAndChangeSortParm(SortState sort, ContentCollection collection)
         {
             SortItems(sort, collection);
@@ -154,6 +162,27 @@ namespace ProjectForItransition.Controllers
                 SortState.Checkbox_desc => collection.Items.OrderByDescending(x => x.CheckboxElements.FirstOrDefault()).ToList(),
                 _ => collection.Items,
             };
+        }
+
+        private async Task<string> UploadImageOnCloud(IFormFile image)
+        {
+            var result = await _cloudinary.UploadAsync(new ImageUploadParams
+            {
+                File = new FileDescription(image.FileName,
+                    image.OpenReadStream())
+            }).ConfigureAwait(false);
+
+            return result.PublicId;
+        }
+
+        private async Task FillingCollection(ContentCollection collection, CreateCollectionViewModel model)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if(model.ImageInput!=null)
+                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) };
+            collection.UserId = user.Id;
+            collection.Name = User.Identity.Name;
+            collection.NameElements = NameField.CreateListNameFieldWithNamesAndTypes(model.Names, model.Types);
         }
     }
 }

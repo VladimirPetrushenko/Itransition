@@ -47,8 +47,15 @@ using Markdig;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using CloudinaryDotNet;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a60964ded239c28b5457ec5575d7419887bc61f5", @"/Views/Roles/RoleList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c8452c12c1fadb3c80a423232ce90bdd7a9b335a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
     public class Views_Roles_RoleList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Delete", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -99,7 +106,7 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n            <td>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f55983", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f56191", async() => {
                 WriteLiteral("\r\n                    <button type=\"submit\" class=\"btn btn-sm btn-danger\">\r\n                        Удалить\r\n                    </button>\r\n                ");
             }
             );
@@ -142,7 +149,7 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("</table>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f59068", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f59276", async() => {
                 WriteLiteral("Добавить роль");
             }
             );
@@ -158,7 +165,7 @@ using Markdig;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f510230", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60964ded239c28b5457ec5575d7419887bc61f510438", async() => {
                 WriteLiteral("Список пользователей");
             }
             );
@@ -175,6 +182,8 @@ using Markdig;
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public Cloudinary Cloudinary { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

@@ -21,6 +21,7 @@ namespace ProjectForItransition.Data
         public DbSet<DateTimeOffsetElement> DateTimeOffsetElements { get; set; }
         public DbSet<CheckboxElement> CheckboxElements { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<ImageField> Images { get; set; }
 
     }
 }

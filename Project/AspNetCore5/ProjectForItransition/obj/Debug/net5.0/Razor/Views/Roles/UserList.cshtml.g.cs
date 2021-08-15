@@ -47,8 +47,15 @@ using Markdig;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using CloudinaryDotNet;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"64ee87c5f2fc50d6827c73a94d1404db47670998", @"/Views/Roles/UserList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c8452c12c1fadb3c80a423232ce90bdd7a9b335a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
     public class Views_Roles_UserList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-sm btn-primary"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -95,7 +102,7 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n            <td>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "64ee87c5f2fc50d6827c73a94d1404db476709985171", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "64ee87c5f2fc50d6827c73a94d1404db476709985379", async() => {
                 WriteLiteral("Права доступа");
             }
             );
@@ -137,6 +144,8 @@ using Markdig;
             WriteLiteral("</table>");
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public Cloudinary Cloudinary { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

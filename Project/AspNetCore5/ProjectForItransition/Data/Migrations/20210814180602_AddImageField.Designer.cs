@@ -10,8 +10,8 @@ using ProjectForItransition.Data;
 namespace ProjectForItransition.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210805115459_Collection_item")]
-    partial class Collection_item
+    [Migration("20210814180602_AddImageField")]
+    partial class AddImageField
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -217,27 +217,7 @@ namespace ProjectForItransition.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.CheckboxElement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Value")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("CheckboxElements");
-                });
-
-            modelBuilder.Entity("ProjectForItransition.Models.Collection", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.ContentCollection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,6 +227,9 @@ namespace ProjectForItransition.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
@@ -255,56 +238,78 @@ namespace ProjectForItransition.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Collections");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.DateTimeOffsetElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.ImageField", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("Value")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("SecureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("DateTimeOffsetElements");
+                    b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.IntegerElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.NameField", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ItemId")
+                    b.Property<int?>("ContentCollectionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Value")
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ContentCollectionId");
 
-                    b.ToTable("IntegerElements");
+                    b.ToTable("NameFields");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Item", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.CheckboxElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContentItemId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Value")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentItemId");
+
+                    b.ToTable("CheckboxElements");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.ContentItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -315,9 +320,6 @@ namespace ProjectForItransition.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tags")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -327,14 +329,54 @@ namespace ProjectForItransition.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.MarkdownElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.DateTimeOffsetElement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ItemId")
+                    b.Property<int?>("ContentItemId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("Value")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentItemId");
+
+                    b.ToTable("DateTimeOffsetElements");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.IntegerElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContentItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentItemId");
+
+                    b.ToTable("IntegerElements");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContentItemId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -342,40 +384,19 @@ namespace ProjectForItransition.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ContentItemId");
 
                     b.ToTable("MarkdownElements");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.NameField", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.StringElement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CollectionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CollectionId");
-
-                    b.ToTable("NameFields");
-                });
-
-            modelBuilder.Entity("ProjectForItransition.Models.StringElement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ItemId")
+                    b.Property<int?>("ContentItemId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -383,29 +404,29 @@ namespace ProjectForItransition.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ContentItemId");
 
                     b.ToTable("StringElements");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.VisibleElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CollectionId")
+                    b.Property<int?>("ContentItemId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Visible")
-                        .HasColumnType("bit");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("ContentItemId");
 
-                    b.ToTable("VisibleElements");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -459,81 +480,81 @@ namespace ProjectForItransition.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.CheckboxElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.ContentCollection", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Item", null)
-                        .WithMany("CheckboxElements")
-                        .HasForeignKey("ItemId");
-                });
-
-            modelBuilder.Entity("ProjectForItransition.Models.Collection", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("ProjectForItransition.Models.Collection.ImageField", "Image")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ImageId");
 
-                    b.Navigation("User");
+                    b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.DateTimeOffsetElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.NameField", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Item", null)
-                        .WithMany("DateTimeElements")
-                        .HasForeignKey("ItemId");
+                    b.HasOne("ProjectForItransition.Models.Collection.ContentCollection", null)
+                        .WithMany("NameElements")
+                        .HasForeignKey("ContentCollectionId");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.IntegerElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.CheckboxElement", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Item", null)
-                        .WithMany("IntegerElements")
-                        .HasForeignKey("ItemId");
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("CheckboxElements")
+                        .HasForeignKey("ContentItemId");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Item", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.ContentItem", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Collection", null)
+                    b.HasOne("ProjectForItransition.Models.Collection.ContentCollection", "Collection")
                         .WithMany("Items")
                         .HasForeignKey("CollectionId");
+
+                    b.Navigation("Collection");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.MarkdownElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.DateTimeOffsetElement", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Item", null)
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("DateTimeElements")
+                        .HasForeignKey("ContentItemId");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.IntegerElement", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("IntegerElements")
+                        .HasForeignKey("ContentItemId");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
                         .WithMany("MarkdownElements")
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("ContentItemId");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.NameField", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.StringElement", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Collection", null)
-                        .WithMany("NameElements")
-                        .HasForeignKey("CollectionId");
-                });
-
-            modelBuilder.Entity("ProjectForItransition.Models.StringElement", b =>
-                {
-                    b.HasOne("ProjectForItransition.Models.Item", null)
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
                         .WithMany("StringElements")
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("ContentItemId");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.VisibleElement", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Tag", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Collection", null)
-                        .WithMany("ElementVisibles")
-                        .HasForeignKey("CollectionId");
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("ContentItemId");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Collection", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Collection.ContentCollection", b =>
                 {
-                    b.Navigation("ElementVisibles");
-
                     b.Navigation("Items");
 
                     b.Navigation("NameElements");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Item", b =>
+            modelBuilder.Entity("ProjectForItransition.Models.Item.ContentItem", b =>
                 {
                     b.Navigation("CheckboxElements");
 
@@ -544,6 +565,8 @@ namespace ProjectForItransition.Data.Migrations
                     b.Navigation("MarkdownElements");
 
                     b.Navigation("StringElements");
+
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

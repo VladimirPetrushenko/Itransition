@@ -36,7 +36,7 @@ namespace ProjectForItransition.Controllers
 
         public IActionResult Index()
         {
-            var items = _itemRepo.GetAllItem().TakeLast(10);
+            var items = _itemRepo.GetAllItem().OrderByDescending(x => x.Id).TakeLast(10);
             var collections = _collectionRepo.GetAllCollections().OrderBy(x => x.Items.Count()).Take(4);
             var tagCloun = _tagRepo.GetAllTags().GroupBy(x => x).Select(x => new TagCloudViewModel{ Name = x.Key, Count = x.Count() }).ToList();
             return View(new IndexViewModel { Items = items, Collections = collections, Tags = tagCloun });

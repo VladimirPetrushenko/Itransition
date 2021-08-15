@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using ProjectForItransition.Repository.Interface;
 using ProjectForItransition.ViewModels.Items;
+using ProjectForItransition.ViewModels.Collection;
+using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.Controllers
 {
@@ -29,7 +31,6 @@ namespace ProjectForItransition.Controllers
 
         public IActionResult Index(int? collectionId, int itemId)
         {
-            ViewBag.Tags = TempData["tags"];
             if (collectionId == null)
                 return View();
             var collection = _collectionRepo.GetCollectionById((int)collectionId);
@@ -38,14 +39,24 @@ namespace ProjectForItransition.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Index(int? collectionId, int itemId, Like like)
+        {
+            if (collectionId == null)
+                return View();
+            var collection = _collectionRepo.GetCollectionById((int)collectionId);
+            var item = collection.Items.Where(item => item.Id == itemId).FirstOrDefault();
+            ShowItemModel model = new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
+            return View(model);
+        }
         [HttpGet]
         public IActionResult CreateItem(int? collectionId)
         {
-            ViewBag.Tags = _tagRepo.GetAllDistinctTags();
+            var tags = _tagRepo.GetAllDistinctTags();
             if (collectionId == null)
                 return RedirectToAction("Index", "Collection");
             var model = _collectionRepo.GetCollectionById((int)collectionId);
-            return View(model);
+            return View(new ShowCollectionViewModel(model, tags));
         }
 
         [HttpPost]
@@ -71,14 +82,12 @@ namespace ProjectForItransition.Controllers
         [HttpGet]
         public IActionResult UpdateItem(int? itemId, int? collectionId)
         {
-            ViewBag.Tags = _tagRepo.GetAllDistinctTags();
+            var tags = _tagRepo.GetAllDistinctTags();
             if (collectionId == null)
                 return View();
             var collection = _collectionRepo.GetCollectionById((int)collectionId);
-            var item = collection.Items.Where(item => item.Id == (int)itemId).FirstOrDefault();
-            ViewBag.UpdateTags = item.Tags.Select(x => x.Name).ToArray();
-            ShowItemModel model = new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
-            return View(model);
+            var item = _itemRepo.GetItemById((int)itemId);
+            return View(new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id, AllTags = tags });
         }
 
         [HttpPost]

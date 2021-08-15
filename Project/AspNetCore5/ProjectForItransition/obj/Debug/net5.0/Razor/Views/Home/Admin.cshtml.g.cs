@@ -47,8 +47,15 @@ using Markdig;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using CloudinaryDotNet;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c898fcf1eac24ff00f140d721a446653dd3eb3b3", @"/Views/Home/Admin.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c8452c12c1fadb3c80a423232ce90bdd7a9b335a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Admin : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -125,9 +132,9 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("                <tr scope=\"row\">\r\n                    \r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b38285", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b38493", async() => {
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b38575", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b38783", async() => {
 #nullable restore
 #line 26 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                    Write(user.UserId);
@@ -191,7 +198,7 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b313106", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b313314", async() => {
                 WriteLiteral("\r\n");
 #nullable restore
 #line 32 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
@@ -202,7 +209,7 @@ using Markdig;
 #line hidden
 #nullable disable
                 WriteLiteral("                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b313706", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b313914", async() => {
                     WriteLiteral("Block");
                 }
                 );
@@ -244,7 +251,7 @@ using Markdig;
 #line hidden
 #nullable disable
                 WriteLiteral("                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b316521", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b316729", async() => {
                     WriteLiteral("Unblock");
                 }
                 );
@@ -300,7 +307,7 @@ using Markdig;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </td>\r\n                        <td>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b320493", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b320701", async() => {
                 WriteLiteral("\r\n                                <button type=\"submit\" class=\"btn btn-danger\">Delete</button>\r\n                            ");
             }
             );
@@ -335,7 +342,7 @@ using Markdig;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </td>\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b323374", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b323582", async() => {
                 WriteLiteral("\r\n");
 #nullable restore
 #line 48 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
@@ -346,7 +353,7 @@ using Markdig;
 #line hidden
 #nullable disable
                 WriteLiteral("                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b323993", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b324201", async() => {
                     WriteLiteral("Change to User");
                 }
                 );
@@ -388,7 +395,7 @@ using Markdig;
 #line hidden
 #nullable disable
                 WriteLiteral("                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b326822", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c898fcf1eac24ff00f140d721a446653dd3eb3b327030", async() => {
                     WriteLiteral("Change to Admin");
                 }
                 );
@@ -461,6 +468,8 @@ using Markdig;
 #nullable disable
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public Cloudinary Cloudinary { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

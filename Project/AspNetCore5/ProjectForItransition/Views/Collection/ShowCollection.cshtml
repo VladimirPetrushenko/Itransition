@@ -1,40 +1,49 @@
-﻿@model ProjectForItransition.Models.Collection.ContentCollection
-@{ 
-    var integers = Model.NameElements.Where(x => x.Type == TypeField.Integer).ToList();
-    var dates = Model.NameElements.Where(x => x.Type == TypeField.DateTime).ToList();
-    var strings = Model.NameElements.Where(x => x.Type == TypeField.String).ToList();
-    var markdowns = Model.NameElements.Where(x => x.Type == TypeField.Markdown).ToList();
-    var checkboxes = Model.NameElements.Where(x => x.Type == TypeField.Checkbox).ToList();
+﻿@model ProjectForItransition.ViewModels.Collection.ShowCollectionViewModel
+@{
+    var integers = Model.Collection.NameElements.Where(x => x.Type == TypeField.Integer).ToList();
+    var dates = Model.Collection.NameElements.Where(x => x.Type == TypeField.DateTime).ToList();
+    var strings = Model.Collection.NameElements.Where(x => x.Type == TypeField.String).ToList();
+    var markdowns = Model.Collection.NameElements.Where(x => x.Type == TypeField.Markdown).ToList();
+    var checkboxes = Model.Collection.NameElements.Where(x => x.Type == TypeField.Checkbox).ToList();
     var i = 0;
 }
-<h1>Коллекция @Model.Name</h1>
+<h1>Коллекция @Model.Collection.Name</h1>
+
+@{
+    var url = Cloudinary.Api.UrlImgUp.Format("png")
+                    .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
+    @if (Model.Collection.Image != null)
+    {
+        @Html.Raw(url.BuildImageTag(Model.Collection.Image.PublicId, new StringDictionary("alt=Image collection")))
+    }
+}
 
 <div class="container">
-    @if (User.IsInRole("admin") || Model.UserName == User.Identity.Name)
+    @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
     {
         <form method="get" asp-action="CreateItem" asp-controller="Item">
-            <input type="hidden" value="@Model.Id" name="collectionId" />
+            <input type="hidden" value="@Model.Collection.Id" name="collectionId" />
             <button>Create new item</button>
         </form>
     }
-    <h5>Topic - @Model.Topic</h5>
+    <h5>Topic - @Model.Collection.Topic</h5>
     <div>
         <em>Description - </em>
-        @if (Model.Description != null)
+        @if (Model.Collection.Description != null)
         {
-            @Html.Raw(Markdown.ToHtml(Model.Description))
+            @Html.Raw(Markdown.ToHtml(Model.Collection.Description))
         }
     </div>
     <form method="post">
         <div id="filterTag" class="form-control" name="TagsForFilter"></div>
         <div class="form-inline m-1">
             <label class="mr-1">Name: </label>
-            <input type="hidden" value="@Model.Id" name="CollectionId" />
-            <input id="filterName" name="Name" value="@ViewBag.NameForFilter" class="form-control mr-3" />
+            <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
+            <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" class="form-control mr-3" />
             <input type="submit" value="Filter" class="btn btn-outline-dark text-right" />
         </div>
         <input type="hidden" id="sortType" name="sort" />
-        <input type="hidden" id="itemIdInput" name="itemId"  />
+        <input type="hidden" id="itemIdInput" name="itemId" />
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -80,7 +89,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Items)
+                @foreach (var item in Model.Collection.Items)
                 {
                     <tr>
                         <th scope="row">
@@ -225,4 +234,29 @@
     function changeInput(element, str) {
         element.value = str;
     }
+
+    var allTagsForShowCollection = new Array();
+    @if (Model.AllTags != null)
+    {
+        foreach (var item in Model.AllTags)
+        {
+            @:allTagsForShowCollection.push('@item');
+        }
+    }
+     var filterTags = new Array();
+    @if (Model.FilterTags != null)
+    {
+        foreach (var item in Model.FilterTags)
+        {
+            @:filterTags.push('@item');
+        }
+    }
+    $(function () {
+        console.log("i am here")
+        $('#filterTag').magicSuggest({
+            data: allTagsForShowCollection,
+            value: filterTags,
+            placeholder: 'Enter a tag to filter or select from the list',
+        });
+    });
 </script>

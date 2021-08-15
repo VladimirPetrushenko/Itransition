@@ -13,6 +13,7 @@ namespace ProjectForItransition.Models.Collection
         public string UserId { get; set; }
         public string UserName { get; set; }
         public string Description { get; set; }
+        public ImageField Image { get; set; }
         public Topic Topic { get; set; }
         public List<ContentItem> Items { get; set; } = new List<ContentItem>();
 

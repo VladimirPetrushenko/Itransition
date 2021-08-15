@@ -8,7 +8,7 @@ namespace ProjectForItransition.ViewModels.Collection
     public class FilterItemsViewModel
     {
         public int? CollectionId { get; set; }
-        public string Name { get; set; }
+        public string NameForFilter { get; set; }
         public string[] TagsForFilter { get; set; }
         public SortState sort { get; set; }
     }
@@ -17,8 +17,8 @@ namespace ProjectForItransition.ViewModels.Collection
     {
         public static void FilterByNameAndTags(this FilterItemsViewModel source, ContentCollection collection)
         {
-            if (!string.IsNullOrEmpty(source.Name))
-                collection.Items = collection.Items.Where(x => x.Name.ToLower().Contains(source.Name.ToLower())).ToList();
+            if (!string.IsNullOrEmpty(source.NameForFilter))
+                collection.Items = collection.Items.Where(x => x.Name.ToLower().Contains(source.NameForFilter.ToLower())).ToList();
             if (source.TagsForFilter != null)
             {
                 foreach (var tag in source.TagsForFilter.Select(x=>x.ToLower().Trim()))

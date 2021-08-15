@@ -38,7 +38,11 @@ namespace ProjectForItransition.Repository.Data
 
         public List<ContentCollection> GetAllCollections()
         {
-            return _context.Collections.Include(x => x.NameElements).Include(x=> x.Items).ToList();
+            return _context.Collections
+                            .Include(x => x.NameElements)
+                            .Include(x=>x.Image)
+                            .Include(x=> x.Items)
+                            .ToList();
         }
 
         public ContentCollection GetCollectionById(int id)

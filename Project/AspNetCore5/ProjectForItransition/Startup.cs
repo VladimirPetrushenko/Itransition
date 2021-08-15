@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using ProjectForItransition.Data;
 using ProjectForItransition.Repository.Data;
 using ProjectForItransition.Repository.Interface;
+using CloudinaryDotNet;
 
 namespace WebApplication1
 {
@@ -29,6 +30,17 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cloudName = Configuration["AccountSettings:CloudName"];
+            var apiKey = Configuration["AccountSettings:ApiKey"];
+            var apiSecret = Configuration["AccountSettings:ApiSecret"];
+
+            if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException("Please specify Cloudinary account details!");
+            }
+
+            services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,7 +55,6 @@ namespace WebApplication1
             services.AddScoped<ITagRepo, SqlTagRepo>();
 
             services.AddMvc();
-
             services.AddAuthentication().AddFacebook(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];

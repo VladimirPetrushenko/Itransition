@@ -48,55 +48,11 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script>
-        var allTags = new Array();
-        @if (ViewBag.Tags != null)
-        {
-            foreach (var item in ViewBag.Tags)
-            {
-                @:allTags.push('@item');
-            }
-        }
-        var updateTags = new Array();
-        @if (ViewBag.UpdateTags != null)
-        {
-            foreach (var item in ViewBag.UpdateTags)
-            {
-                @:updateTags.push('@item');
-            }
-        }
-        var filterTags = new Array();
-        @if (ViewBag.TagsForFilter != null)
-        {
-            foreach (var item in ViewBag.TagsForFilter)
-            {
-                @:filterTags.push('@item');
-            }
-        }
-        $(function () {
-
-            $('#createTag').magicSuggest({
-                data: allTags,
-            });
-
-            $('#updateTag').magicSuggest({
-                data: allTags,
-                value: updateTags,
-            });
-
-            $('#filterTag').magicSuggest({
-                data: allTags,
-                value: filterTags,
-                placeholder: 'Enter a tag to filter or select from the list',
-            });
-        });
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

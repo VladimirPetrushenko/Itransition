@@ -1,4 +1,4 @@
-﻿@model ProjectForItransition.Models.Collection.ContentCollection
+﻿@model ProjectForItransition.ViewModels.Collection.ShowCollectionViewModel
 
 @{
     ViewData["Title"] = "Create Item";
@@ -7,7 +7,7 @@
 <h1>Create Item</h1>
 
 <form method="post" asp-action="CreateItem" asp-controller="Item">
-    <input type="hidden" name="CollectionId" value="@Model.Id" />
+    <input type="hidden" name="CollectionId" value="@Model.Collection.Id" />
     <h2>Name Item</h2>
     <input type="text" name="Name" class="form-control" />
     <label>Tags</label>
@@ -16,7 +16,7 @@
     <div class="row">
         @{
             int box = 1;
-            @foreach (var NameField in Model.NameElements)
+            @foreach (var NameField in Model.Collection.NameElements)
             {
 
                 <div class="col-12">
@@ -46,3 +46,18 @@
     </div>
     <input type="submit" value="Create" />
 </form>
+<script>
+    var allTags = new Array();
+    @if (Model.AllTags != null)
+    {
+        foreach (var item in Model.AllTags)
+        {
+            @:allTags.push('@item');
+        }
+    }
+    $(function () {
+        $('#createTag').magicSuggest({
+            data: allTags,
+        });
+    });
+</script>

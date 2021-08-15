@@ -2,11 +2,23 @@
     ViewData["Title"] = "Create Collection";
 }
 
-<h1>Create Collection</h1>
-<form method="post" asp-action="CreateCollection" asp-controller="Collection">
-    <h2>Name Collection</h2>
-    <input type="text" name="Name" class="form-control" />
-    <p>Description</p>
+<form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-9">
+            <h1>Create Collection</h1>
+            <h2>Name Collection</h2>
+            <input type="text" name="Name" class="form-control" />
+        </div>
+        <div class="col-3">
+            <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+                <div id="drop" class="text-center">
+                    Drop your image here
+                </div>
+            </div>
+            <input id="fileUpload" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
+        </div>
+    </div>
+    <label>Description</label>
     <textarea name="Description" class="form-control" rows="10"></textarea>
     <p>Topic</p>
     <select name="Topic">
@@ -15,7 +27,9 @@
             <option value="@item">@item</option>
         }
     </select>
-
+    
+    <div id="preview"></div>
+    
     <div id="NameElements"></div>
     <input type="button" onclick="appendElement(NameElements)" value="Add IntegerElement" />
 
@@ -24,12 +38,12 @@
 
 <script>
     function appendElement(element) {
-        element.innerHTML += "<input type=\"text\" name=\"names\" class=\"form-text\" />"
+        element.innerHTML += "<input type=\"text\" name=\"Names\" class=\"form-text\" />"
             + getInputFieldForNameElement();
     }
 
     function getInputFieldForNameElement() {
-        var html = "<select name=\"types\">" +
+        var html = "<select name=\"Types\">" +
             "<option value=\"@TypeField.Integer\">@TypeField.Integer</option>" +
             "<option value=\"@TypeField.Checkbox\">@TypeField.Checkbox</option>" +
             "<option value=\"@TypeField.String\">@TypeField.String</option>" +

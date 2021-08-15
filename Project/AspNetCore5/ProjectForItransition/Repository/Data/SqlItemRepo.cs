@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ProjectForItransition.Data;
 using ProjectForItransition.Models.Item;
 using ProjectForItransition.Repository.Interface;
@@ -30,19 +31,19 @@ namespace ProjectForItransition.Repository.Data
 
         public List<ContentItem> GetAllItem()
         {
-            _context.Tags.ToList();
-            return _context.Items.ToList();
+            return _context.Items.Include(x=> x.Tags).ToList();
         }
 
         public ContentItem GetItemById(int itemId)
         {
-            _context.IntegerElements.ToList();
-            _context.StringElements.ToList();
-            _context.MarkdownElements.ToList();
-            _context.CheckboxElements.ToList();
-            _context.DateTimeOffsetElements.ToList();
-            _context.Tags.ToList();
-            return _context.Items.Where(x => x.Id == itemId).FirstOrDefault();
+            return _context.Items
+                .Where(x => x.Id == itemId)
+                .Include(x => x.IntegerElements)
+                .Include(x => x.StringElements)
+                .Include(x => x.MarkdownElements)
+                .Include(x => x.CheckboxElements)
+                .Include(x => x.DateTimeElements)
+                .Include(x => x.Tags).FirstOrDefault();
         }
 
         public bool SaveChange()

@@ -9,5 +9,6 @@ namespace ProjectForItransition.ViewModels.Items
         public ContentItem Item { get; set; }
         public List<NameField> Fields { get; set; }
         public int CollectionId { get; set; }
+        public string[] AllTags { get; set; }
     }
 }

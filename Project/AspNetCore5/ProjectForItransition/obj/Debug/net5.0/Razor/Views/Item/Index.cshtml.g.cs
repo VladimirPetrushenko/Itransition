@@ -47,8 +47,15 @@ using Markdig;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using CloudinaryDotNet;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dd3acef66f4b6d039464845a2b9dfffb723ca9aa", @"/Views/Item/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c8452c12c1fadb3c80a423232ce90bdd7a9b335a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
     public class Views_Item_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProjectForItransition.ViewModels.Items.ShowItemModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "get", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -336,7 +343,7 @@ using Markdig;
 #line hidden
 #nullable disable
             WriteLiteral("    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd3acef66f4b6d039464845a2b9dfffb723ca9aa13837", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd3acef66f4b6d039464845a2b9dfffb723ca9aa14045", async() => {
                 WriteLiteral("\r\n        <input type=\"hidden\" name=\"collectionId\"");
                 BeginWriteAttribute("value", " value=\"", 3197, "\"", 3224, 1);
 #nullable restore
@@ -370,6 +377,8 @@ WriteAttributeValue("", 3205, Model.CollectionId, 3205, 19, false);
             WriteLiteral("\r\n</div>");
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public Cloudinary Cloudinary { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
