@@ -97,3 +97,6 @@ html, body {
     background: #77bafa !important;
     color: black !important;
 }
+.tagCloud {
+    border: 1px solid #ccc;
+}

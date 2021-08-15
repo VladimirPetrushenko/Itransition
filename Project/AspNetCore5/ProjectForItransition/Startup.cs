@@ -1,20 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using ProjectForItransition.Data;
 using ProjectForItransition.Repository.Data;
 using ProjectForItransition.Repository.Interface;
 using CloudinaryDotNet;
+using ProjectForItransition.Repository;
 
 namespace WebApplication1
 {
@@ -53,6 +49,7 @@ namespace WebApplication1
             services.AddScoped<ICollectionRepo, SqlCollectionRepo>();
             services.AddScoped<IItemRepo, SqlItemRepo>();
             services.AddScoped<ITagRepo, SqlTagRepo>();
+            services.AddScoped<ILikeRepo, SqlLikeRepo>();
 
             services.AddMvc();
             services.AddAuthentication().AddFacebook(options =>

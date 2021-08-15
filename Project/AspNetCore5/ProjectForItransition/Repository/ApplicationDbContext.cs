@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjectForItransition.Models.Collection;
 using ProjectForItransition.Models.Item;
 
-namespace ProjectForItransition.Data
+namespace ProjectForItransition.Repository
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -22,6 +22,6 @@ namespace ProjectForItransition.Data
         public DbSet<CheckboxElement> CheckboxElements { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ImageField> Images { get; set; }
-
+        public DbSet<Like> Likes { get; set; }
     }
 }

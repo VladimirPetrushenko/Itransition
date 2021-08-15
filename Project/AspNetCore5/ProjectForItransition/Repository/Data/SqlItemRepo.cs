@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ProjectForItransition.Data;
 using ProjectForItransition.Models.Item;
 using ProjectForItransition.Repository.Interface;
 
@@ -43,7 +42,11 @@ namespace ProjectForItransition.Repository.Data
                 .Include(x => x.MarkdownElements)
                 .Include(x => x.CheckboxElements)
                 .Include(x => x.DateTimeElements)
-                .Include(x => x.Tags).FirstOrDefault();
+                .Include(x => x.Tags)
+                .Include(x => x.Collection)
+                .Include(x => x.Likes)
+                .Include(x => x.Comments)
+                .FirstOrDefault();
         }
 
         public bool SaveChange()

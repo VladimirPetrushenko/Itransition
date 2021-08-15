@@ -7,6 +7,7 @@ using ProjectForItransition.Repository.Interface;
 using ProjectForItransition.ViewModels.Items;
 using ProjectForItransition.ViewModels.Collection;
 using ProjectForItransition.Models.Item;
+using System.Collections.Generic;
 
 namespace ProjectForItransition.Controllers
 {
@@ -17,16 +18,19 @@ namespace ProjectForItransition.Controllers
         private readonly ICollectionRepo _collectionRepo;
         private readonly IItemRepo _itemRepo;
         private readonly ITagRepo _tagRepo;
+        private readonly ILikeRepo _likeRepo;
 
         public ItemController(ICollectionRepo collectionRepo, 
             UserManager<IdentityUser> userManager, 
             IItemRepo itemRepo,
-            ITagRepo tagRepo)
+            ITagRepo tagRepo,
+            ILikeRepo likeRepo)
         {
             _userManager = userManager;
             _collectionRepo = collectionRepo;
             _itemRepo = itemRepo;
             _tagRepo = tagRepo;
+            _likeRepo = likeRepo;
         }
 
         public IActionResult Index(int? collectionId, int itemId)
@@ -34,21 +38,45 @@ namespace ProjectForItransition.Controllers
             if (collectionId == null)
                 return View();
             var collection = _collectionRepo.GetCollectionById((int)collectionId);
-            var item = collection.Items.Where(item => item.Id == itemId).FirstOrDefault();
+            var item = _itemRepo.GetItemById(itemId);
             ShowItemModel model = new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Index(int? collectionId, int itemId, Like like)
+        public IActionResult Index(int? collectionId, int itemId, Like like, string comment)
         {
             if (collectionId == null)
                 return View();
             var collection = _collectionRepo.GetCollectionById((int)collectionId);
-            var item = collection.Items.Where(item => item.Id == itemId).FirstOrDefault();
+            var item = _itemRepo.GetItemById(itemId);
+            CheckLikes(like, item);
+            if (comment != null)
+            {
+                item.Comments.Add(new Comment { Date = DateTime.Now, UserName = like.UserName, Value = comment });
+            }
+                
+            _itemRepo.UpdateItem(item);
+            _itemRepo.SaveChange();
             ShowItemModel model = new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
             return View(model);
         }
+
+        private void CheckLikes(Like like, ContentItem item)
+        {
+            if (item.Likes != null)
+            {
+                if (item.Likes.Where(x => x.UserName == like.UserName).Count() == 0)
+                {
+                    item.Likes.Add(like);
+                }
+                else
+                {
+                    _likeRepo.RemoveLike(item.Likes.Where(x => x.UserName == like.UserName).First());
+                }
+            }
+        }
+
         [HttpGet]
         public IActionResult CreateItem(int? collectionId)
         {

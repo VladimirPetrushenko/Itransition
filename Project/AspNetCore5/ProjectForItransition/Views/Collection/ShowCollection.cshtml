@@ -83,9 +83,12 @@
                             <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.CheckboxSortParm')">Checkbox fields</button>
                         </th>
                     }
-                    <th scope="col" class="col-1">
-                        Possibilities
-                    </th>
+                    @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
+                    {
+                        <th scope="col" class="col-1">
+                            Possibilities
+                        </th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -124,7 +127,7 @@
                                     </div>
                                 }
                             </td>
-                        }
+                                    }
                         @if (dates.Count() > 0)
                         {
                             <td>
@@ -145,7 +148,7 @@
                                     </div>
                                 }
                             </td>
-                        }
+                                    }
                         @if (strings.Count() > 0)
                         {
                             <td>
@@ -166,7 +169,7 @@
                                     </div>
                                 }
                             </td>
-                        }
+                                    }
                         @if (markdowns.Count() > 0)
                         {
                             <td>
@@ -187,7 +190,7 @@
                                     </div>
                                 }
                             </td>
-                        }
+                                    }
                         @if (checkboxes.Count() > 0)
                         {
                             <td>
@@ -216,14 +219,17 @@
                                 }
                             </td>
                         }
-                        <td>
-                            <button class="btn btn-primary btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="UpdateItem" asp-controller="Item" formmethod="get">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="DeleteItem" asp-controller="Item" formmethod="get">
-                                <i class="fas fa-ban"></i>
-                            </button>
-                        </td>
+                        @if(User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
+                        {
+                            <td >
+                                <button class="btn btn-primary btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="UpdateItem" asp-controller="Item" formmethod="get">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="DeleteItem" asp-controller="Item" formmethod="get">
+                                    <i class="fas fa-ban"></i>
+                                </button>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>
@@ -232,14 +238,14 @@
 </div>
 <script>
     function changeInput(element, str) {
-        element.value = str;
-    }
+                                        element.value = str;
+                                    }
 
-    var allTagsForShowCollection = new Array();
-    @if (Model.AllTags != null)
+                                    var allTagsForShowCollection = new Array();
+                                    @if (Model.AllTags != null)
     {
-        foreach (var item in Model.AllTags)
-        {
+                                        foreach (var item in Model.AllTags)
+                                        {
             @:allTagsForShowCollection.push('@item');
         }
     }

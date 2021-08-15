@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProjectForItransition.Data;
+using ProjectForItransition.Repository;
 
-namespace ProjectForItransition.Data.Migrations
+namespace ProjectForItransition.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210814180602_AddImageField")]
-    partial class AddImageField
+    [Migration("20210815154838_AddDateFieltInComment")]
+    partial class AddDateFieltInComment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,7 +257,7 @@ namespace ProjectForItransition.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("SecureUrl")
+                    b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -307,6 +307,32 @@ namespace ProjectForItransition.Data.Migrations
                     b.HasIndex("ContentItemId");
 
                     b.ToTable("CheckboxElements");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContentItemId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentItemId");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("ProjectForItransition.Models.Item.ContentItem", b =>
@@ -367,6 +393,26 @@ namespace ProjectForItransition.Data.Migrations
                     b.HasIndex("ContentItemId");
 
                     b.ToTable("IntegerElements");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
@@ -503,6 +549,13 @@ namespace ProjectForItransition.Data.Migrations
                         .HasForeignKey("ContentItemId");
                 });
 
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Comment", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ContentItemId");
+                });
+
             modelBuilder.Entity("ProjectForItransition.Models.Item.ContentItem", b =>
                 {
                     b.HasOne("ProjectForItransition.Models.Collection.ContentCollection", "Collection")
@@ -524,6 +577,15 @@ namespace ProjectForItransition.Data.Migrations
                     b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
                         .WithMany("IntegerElements")
                         .HasForeignKey("ContentItemId");
+                });
+
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", "Item")
+                        .WithMany("Likes")
+                        .HasForeignKey("ItemId");
+
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
@@ -558,9 +620,13 @@ namespace ProjectForItransition.Data.Migrations
                 {
                     b.Navigation("CheckboxElements");
 
+                    b.Navigation("Comments");
+
                     b.Navigation("DateTimeElements");
 
                     b.Navigation("IntegerElements");
+
+                    b.Navigation("Likes");
 
                     b.Navigation("MarkdownElements");
 

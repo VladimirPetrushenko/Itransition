@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProjectForItransition.Data;
+using ProjectForItransition.Repository;
 
-namespace ProjectForItransition.Data.Migrations
+namespace ProjectForItransition.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210814190420_RenamePropInImageFieldClass")]
-    partial class RenamePropInImageFieldClass
+    [Migration("20210815113037_Likes")]
+    partial class Likes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -369,6 +369,29 @@ namespace ProjectForItransition.Data.Migrations
                     b.ToTable("IntegerElements");
                 });
 
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContentItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentItemId");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
                 {
                     b.Property<int>("Id")
@@ -526,6 +549,13 @@ namespace ProjectForItransition.Data.Migrations
                         .HasForeignKey("ContentItemId");
                 });
 
+            modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany("Likes")
+                        .HasForeignKey("ContentItemId");
+                });
+
             modelBuilder.Entity("ProjectForItransition.Models.Item.MarkdownElement", b =>
                 {
                     b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
@@ -561,6 +591,8 @@ namespace ProjectForItransition.Data.Migrations
                     b.Navigation("DateTimeElements");
 
                     b.Navigation("IntegerElements");
+
+                    b.Navigation("Likes");
 
                     b.Navigation("MarkdownElements");
 
