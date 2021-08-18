@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using ProjectForItransition.Models.Item;
 using ProjectForItransition.Repository.Interface;
 
 namespace ProjectForItransition.Repository.Data
@@ -10,6 +12,16 @@ namespace ProjectForItransition.Repository.Data
         public SqlTagRepo(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<ContentItem> FreeTextOnNameTags(string search)
+        {
+            var tags = _context.Tags
+                .Where(x => EF.Functions.FreeText(x.Name, search))
+                .Include(x => x.Item).ToList();
+            List<ContentItem> items = new List<ContentItem>();
+            tags.ForEach(x => items.Add(x.Item));
+            return items.Distinct();
         }
 
         public string[] GetAllDistinctTags()

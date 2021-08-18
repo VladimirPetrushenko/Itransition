@@ -28,6 +28,47 @@ namespace ProjectForItransition.Repository.Data
             _context.Items.Remove(item);
         }
 
+        public IEnumerable<ContentItem> FreeTextOnComment(string search)
+        {
+            _context.Tags.ToList();
+            var comments = _context.Comment
+                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Include(x => x.Item).ToList();
+            List<ContentItem> items = new List<ContentItem>();
+            comments.ForEach(x => items.Add(x.Item));
+            return items;
+        }
+
+        public IEnumerable<ContentItem> FreeTextOnMarkdown(string search)
+        {
+            _context.Tags.ToList();
+            var markdowns = _context.MarkdownElements
+                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Include(x => x.Item).ToList();
+            List<ContentItem> items = new List<ContentItem>();
+            markdowns.ForEach(x => items.Add(x.Item));
+            return items;
+        }
+
+        public IEnumerable<ContentItem> FreeTextOnNameItem(string search)
+        {
+            var items = _context.Items
+                .Where(x => EF.Functions.FreeText(x.Name, search))
+                .Include(x => x.Tags).ToList();
+            return items;
+        }
+
+        public IEnumerable<ContentItem> FreeTextOnString(string search)
+        {
+            _context.Tags.ToList();
+            var strings = _context.StringElements
+                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Include(x => x.Item).ToList();
+            List<ContentItem> items = new List<ContentItem>();
+            strings.ForEach(x => items.Add(x.Item));
+            return items;
+        }
+
         public List<ContentItem> GetAllItem()
         {
             return _context.Items.Include(x=> x.Tags).ToList();

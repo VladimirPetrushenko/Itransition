@@ -81,8 +81,7 @@
     @foreach (var item in Model.Tags)
     {
         @:html.innerHTML = "@item.Name";
-        @:items.push({ text: html.innerHTML, weight: @item.Count })
-        @:html += "@item.Name";
+        @:items.push({ text: html.innerHTML, weight: @item.Count, link: './Search/Index/?tag=' + html.innerHTML })
     }
     html.delete
     $(function () {

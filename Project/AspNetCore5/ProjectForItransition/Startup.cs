@@ -11,6 +11,8 @@ using ProjectForItransition.Repository.Data;
 using ProjectForItransition.Repository.Interface;
 using CloudinaryDotNet;
 using ProjectForItransition.Repository;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace WebApplication1
 {
@@ -77,6 +79,20 @@ namespace WebApplication1
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en"),
+                new CultureInfo("ru"),
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("ru"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

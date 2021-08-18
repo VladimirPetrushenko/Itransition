@@ -23,5 +23,6 @@ namespace ProjectForItransition.Repository
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ImageField> Images { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Comment> Comment { get; set; }
     }
 }

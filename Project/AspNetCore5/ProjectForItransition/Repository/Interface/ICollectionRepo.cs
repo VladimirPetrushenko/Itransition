@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ProjectForItransition.Models.Collection;
+using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.Repository.Interface
 {
@@ -12,6 +13,7 @@ namespace ProjectForItransition.Repository.Interface
         void UpdateCollection(ContentCollection collection);
         void DeleteCollection(ContentCollection collection);
         List<ContentCollection> GetAllUserCollections(string userId);
-        List<ContentCollection> FreeTextOnDescription(string search);
+        IEnumerable<ContentItem> FreeTextOnDescription(string search);
+        IEnumerable<ContentItem> FreeTextOnNameCollection(string search);
     }
 }

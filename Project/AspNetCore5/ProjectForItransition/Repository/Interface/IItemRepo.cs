@@ -11,5 +11,9 @@ namespace ProjectForItransition.Repository.Interface
         void CreateItem(ContentItem item, int collectionId);
         void UpdateItem(ContentItem item);
         void DeleteItem(ContentItem item);
+        IEnumerable<ContentItem> FreeTextOnNameItem(string search);
+        IEnumerable<ContentItem> FreeTextOnComment(string search);
+        IEnumerable<ContentItem> FreeTextOnMarkdown(string search);
+        IEnumerable<ContentItem> FreeTextOnString(string search);
     }
 }

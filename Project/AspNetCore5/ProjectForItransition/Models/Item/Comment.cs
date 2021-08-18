@@ -8,6 +8,7 @@ namespace ProjectForItransition.Models.Item
 {
     public class Comment
     {
+        [Key]
         public int Id { get; set; }
         public string UserName { get; set; }
         public DateTime Date { get; set; }
