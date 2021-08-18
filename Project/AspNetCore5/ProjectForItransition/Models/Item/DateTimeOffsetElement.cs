@@ -7,6 +7,7 @@ namespace ProjectForItransition.Models.Item
     {
         public int Id { get; set; }
         public DateTimeOffset Value { get; set; }
+        public ContentItem Item { get; set; }
         public static List<DateTimeOffsetElement> CreateListDateTimeOffsetElementWithValue(DateTimeOffset[] values)
         {
             List<DateTimeOffsetElement> dates = new List<DateTimeOffsetElement>();

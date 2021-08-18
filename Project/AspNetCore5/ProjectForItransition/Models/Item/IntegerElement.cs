@@ -7,6 +7,7 @@ namespace ProjectForItransition.Models.Item
     {
         public int Id { get; set; }
         public int Value { get; set; }
+        public ContentItem Item { get; set; }
         public static List<IntegerElement> CreateListIntegerElementWithValue(int[] values)
         {
             List<IntegerElement> integers = new List<IntegerElement>();

@@ -76,5 +76,13 @@ namespace ProjectForItransition.Repository.Data
             }
             return _context.Collections.Include(x => x.NameElements).Include(x => x.Items).Where(x => x.UserId == userId).ToList();
         }
+
+        public List<ContentCollection> FreeTextOnDescription(string search)
+        {
+            return _context.Collections
+                .Where(x => EF.Functions.FreeText(x.Description, search))
+                .Include(x => x.Items)
+                .ToList();
+        }
     }
 }

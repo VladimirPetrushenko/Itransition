@@ -1,11 +1,13 @@
 ﻿using ProjectForItransition.Models.Collection;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectForItransition.Models.Item
 {
     public class ContentItem
     {
         public int Id { get; set; }
+        [MaxLength(800)]
         public string Name { get; set; }
         public List<Tag> Tags { get; set; }
         public List<IntegerElement> IntegerElements { get; set; } = new List<IntegerElement>();

@@ -12,5 +12,6 @@ namespace ProjectForItransition.Repository.Interface
         void UpdateCollection(ContentCollection collection);
         void DeleteCollection(ContentCollection collection);
         List<ContentCollection> GetAllUserCollections(string userId);
+        List<ContentCollection> FreeTextOnDescription(string search);
     }
 }

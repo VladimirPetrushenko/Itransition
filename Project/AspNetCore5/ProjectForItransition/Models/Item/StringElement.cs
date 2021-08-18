@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectForItransition.Models.Item
 {
     public class StringElement : IComparable
     {
         public int Id { get; set; }
+        [MaxLength(800)]
         public string Value { get; set; }
+        public ContentItem Item { get; set; }
         public static List<StringElement> CreateListStringElementWithValue(string[] values)
         {
             List<StringElement> strings = new List<StringElement>();

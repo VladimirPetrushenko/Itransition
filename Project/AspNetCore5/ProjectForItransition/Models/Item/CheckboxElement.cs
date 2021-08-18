@@ -8,6 +8,7 @@ namespace ProjectForItransition.Models.Item
     {
         public int Id { get; set; }
         public bool Value { get; set; }
+        public ContentItem Item { get; set; }
         public static List<CheckboxElement> CreateListCheckboxElementWithValue(bool[] values)
         {
             List<CheckboxElement> checkboxes = new List<CheckboxElement>();

@@ -183,3 +183,4 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.pdb
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.genruntimeconfig.cache
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Shared\_UploadScripts.cshtml.g.cs
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Search\Index.cshtml.g.cs

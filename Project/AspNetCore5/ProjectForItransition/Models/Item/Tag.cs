@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace ProjectForItransition.Models.Item
@@ -7,7 +8,9 @@ namespace ProjectForItransition.Models.Item
     public class Tag : IComparable
     {
         public int Id { get; set; }
+        [MaxLength(800)]
         public string Name { get; set; }
+        public ContentItem Item { get; set; }
 
         public static List<Tag> CreateTagsListFromString(string values)
         {

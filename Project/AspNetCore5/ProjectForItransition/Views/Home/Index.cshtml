@@ -75,14 +75,17 @@
     </div>
     <div class="col-3 bg-white"> <div id="container2" class="tagCloud"></div> </div>
 </div>
-<script>
+<script charset="utf-8">
     var items = new Array();
+    var html = document.createElement('div');
     @foreach (var item in Model.Tags)
     {
-        @:items.push({ text: "@item.Name", weight: @item.Count })
+        @:html.innerHTML = "@item.Name";
+        @:items.push({ text: html.innerHTML, weight: @item.Count })
+        @:html += "@item.Name";
     }
+    html.delete
     $(function () {
-
         $("#container2").jQCloud(items, {
             width: 250,
             height: 800

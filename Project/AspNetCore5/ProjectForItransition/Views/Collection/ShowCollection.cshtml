@@ -19,13 +19,11 @@
 }
 
 <div class="container">
-    @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
-    {
+    
         <form method="get" asp-action="CreateItem" asp-controller="Item">
             <input type="hidden" value="@Model.Collection.Id" name="collectionId" />
             <button>Create new item</button>
         </form>
-    }
     <h5>Topic - @Model.Collection.Topic</h5>
     <div>
         <em>Description - </em>
