@@ -54,8 +54,15 @@ using CloudinaryDotNet;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e568210d4e7022ce5bcf25d74a9c69cc6447291f", @"/Views/Search/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9759dca879eb168ea12831d93ec16c2c5c7e46c", @"/Views/_ViewImports.cshtml")]
     public class Views_Search_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProjectForItransition.Models.Item.ContentItem>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "get", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -102,7 +109,7 @@ using CloudinaryDotNet;
 #line hidden
 #nullable disable
             WriteLiteral("                <tr>\r\n                    <th scope=\"row\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e568210d4e7022ce5bcf25d74a9c69cc6447291f6207", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e568210d4e7022ce5bcf25d74a9c69cc6447291f6436", async() => {
                 WriteLiteral("\r\n                            <input type=\"hidden\" id=\"itemIdInput\" name=\"itemId\"");
                 BeginWriteAttribute("value", " value=\"", 775, "\"", 791, 1);
 #nullable restore

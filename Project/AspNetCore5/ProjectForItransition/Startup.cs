@@ -13,6 +13,7 @@ using CloudinaryDotNet;
 using ProjectForItransition.Repository;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace WebApplication1
 {
@@ -53,7 +54,24 @@ namespace WebApplication1
             services.AddScoped<ITagRepo, SqlTagRepo>();
             services.AddScoped<ILikeRepo, SqlLikeRepo>();
 
-            services.AddMvc();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddDataAnnotationsLocalization()
+                .AddViewLocalization();
+
+            services.Configure<RequestLocalizationOptions>(optints =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("ru"),
+                    new CultureInfo("en"),
+                };
+                optints.DefaultRequestCulture = new RequestCulture("ru");
+                optints.SupportedCultures = supportedCultures;
+                optints.SupportedUICultures = supportedCultures;
+            });
+
             services.AddAuthentication().AddFacebook(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -80,18 +98,8 @@ namespace WebApplication1
                 app.UseHsts();
             }
 
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en"),
-                new CultureInfo("ru"),
-            };
-
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("ru"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

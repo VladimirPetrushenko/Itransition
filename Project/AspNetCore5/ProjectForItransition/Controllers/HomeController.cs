@@ -146,7 +146,8 @@ namespace ProjectForItransition.Controllers
                     await _userManager.RemoveFromRoleAsync(user, "admin");
                 else
                     await _userManager.AddToRoleAsync(user, "admin");
-
+                if (User.Identity.Name == user.UserName)
+                    await _signInManager.SignInAsync(user, true);
             }
             return RedirectToAction("Admin");
         }

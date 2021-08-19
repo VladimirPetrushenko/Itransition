@@ -45,16 +45,16 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-        <form asp-action="Index" asp-controller="Search" method="get">
-            <div class="row">
-                <div class="col-11">
-                    <input type="text" class="form-control" name="searchText" value="" />
+            <form asp-action="Index" asp-controller="Search" method="get">
+                <div class="row mb-3">
+                    <div class="col-11 p-0">
+                        <input type="text" class="form-control" name="searchText" value="" />
+                    </div>
+                    <div class="col-1 pl-1">
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                    </div>
                 </div>
-                <div class="col-1">
-                    <input type="submit" class="btn btn-primary" value="Search" />
-                </div>
-            </div>
-        </form>
+            </form>
             @RenderBody()
         </main>
     </div>

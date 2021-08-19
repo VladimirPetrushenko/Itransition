@@ -13,11 +13,15 @@ namespace ProjectForItransition.Controllers
     {
         RoleManager<IdentityRole> _roleManager;
         UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public RolesController(RoleManager<IdentityRole> roleManager, 
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult RoleList()
@@ -77,6 +81,7 @@ namespace ProjectForItransition.Controllers
                     UserId = user.Id,
                     UserEmail = user.Email,
                     UserRoles = userRoles,
+                    AllRoles = allRoles,
                 };
                 return View(model);
             }
@@ -95,6 +100,9 @@ namespace ProjectForItransition.Controllers
 
                 await _userManager.AddToRolesAsync(user, addRoles);
                 await _userManager.RemoveFromRolesAsync(user, removeRoles);
+
+                if(User.Identity.Name == user.UserName)
+                    await _signInManager.SignInAsync(user, true);
 
                 return RedirectToAction("UserList");
             }

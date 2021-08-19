@@ -54,8 +54,15 @@ using CloudinaryDotNet;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a0d9c6395fc883aa08f0012b468a3e2c4a9a5288", @"/Views/Collection/ShowOwnCollections.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9759dca879eb168ea12831d93ec16c2c5c7e46c", @"/Views/_ViewImports.cshtml")]
     public class Views_Collection_ShowOwnCollections : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProjectForItransition.Models.Collection.ContentCollection>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "get", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -91,7 +98,7 @@ using CloudinaryDotNet;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<h1>Список коллекции</h1>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a52886486", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a52886715", async() => {
                 WriteLiteral("\r\n    <button>Add Collection</button>\r\n");
             }
             );
@@ -216,7 +223,7 @@ using CloudinaryDotNet;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                        <div>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528813045", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528813274", async() => {
                 WriteLiteral("\r\n                                <input type=\"hidden\" name=\"CollectionId\"");
                 BeginWriteAttribute("value", " value=\"", 1865, "\"", 1887, 1);
 #nullable restore
@@ -248,7 +255,7 @@ WriteAttributeValue("", 1873, collection.Id, 1873, 14, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528815538", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528815767", async() => {
                 WriteLiteral("\r\n                                <input type=\"hidden\" name=\"id\"");
                 BeginWriteAttribute("value", " value=\"", 2194, "\"", 2216, 1);
 #nullable restore
@@ -280,7 +287,7 @@ WriteAttributeValue("", 2202, collection.Id, 2202, 14, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528818023", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0d9c6395fc883aa08f0012b468a3e2c4a9a528818252", async() => {
                 WriteLiteral("\r\n                                <input type=\"hidden\" name=\"id\"");
                 BeginWriteAttribute("value", " value=\"", 2526, "\"", 2548, 1);
 #nullable restore

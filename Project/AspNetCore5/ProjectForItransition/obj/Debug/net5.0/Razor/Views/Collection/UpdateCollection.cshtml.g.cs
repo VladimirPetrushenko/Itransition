@@ -54,8 +54,15 @@ using CloudinaryDotNet;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"207574ff075acb1d9c324777a360ea2ddf5b504f", @"/Views/Collection/UpdateCollection.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1778b3da9aa775079327aacac47da5be3e27ec4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9759dca879eb168ea12831d93ec16c2c5c7e46c", @"/Views/_ViewImports.cshtml")]
     public class Views_Collection_UpdateCollection : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProjectForItransition.Models.Collection.ContentCollection>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -96,7 +103,7 @@ using CloudinaryDotNet;
 #line default
 #line hidden
 #nullable disable
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f5915", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f6144", async() => {
                 WriteLiteral("\r\n    <input type=\"hidden\" name=\"Id\"");
                 BeginWriteAttribute("value", " value=\"", 263, "\"", 280, 1);
 #nullable restore
@@ -211,7 +218,7 @@ WriteAttributeValue("", 550, Model.Name, 550, 11, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f11434", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f11663", async() => {
 #nullable restore
 #line 42 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Collection\UpdateCollection.cshtml"
                                           Write(item);
@@ -255,7 +262,7 @@ WriteAttributeValue("", 550, Model.Name, 550, 11, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f13977", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "207574ff075acb1d9c324777a360ea2ddf5b504f14206", async() => {
 #nullable restore
 #line 46 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Collection\UpdateCollection.cshtml"
                                  Write(item);
