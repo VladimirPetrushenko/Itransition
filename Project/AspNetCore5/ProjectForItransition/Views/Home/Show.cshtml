@@ -1,10 +1,19 @@
 ﻿@model ProjectForItransition.ViewModels.Roles.ShowViewModel
 
-<h2>Просмотр пользователя</h2>
-@if (User.IsInRole("admin")) 
-{ 
-    <p>ID - @Model.UserId</p>
-    <p>Email - @Model.UserEmail</p>
-    <p>UserName - @Model.UserName</p>
-    <p>Role - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</p>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
 }
+
+<ul>@Localizer["UserData"]</ul>
+@if (User.IsInRole("admin"))
+{
+    <li>@Localizer["ID"] - @Model.UserId</li>
+    <li>@Localizer["Email"] - @Model.UserEmail</li>
+    <li>@Localizer["UserName"] - @Model.UserName</li>
+    <li>@Localizer["Role"] - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</li>
+}
+<form asp-action="Admin" asp-controller="Home" method="post">
+    <input type="submit" class="btn btn-primary" value="@Localizer["Back"]">
+</form>

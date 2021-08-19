@@ -26,12 +26,12 @@ namespace ProjectForItransition.Repository.Data
 
         public string[] GetAllDistinctTags()
         {
-            return _context.Tags.Select(x => x.Name).Distinct().ToArray();
+            return _context.Tags.Where(x => x.Item != null).Select(x => x.Name).Distinct().ToArray();
         }
 
         public string[] GetAllTags()
         {
-            return _context.Tags.Select(x => x.Name).ToArray();
+            return _context.Tags.Where(x => x.Item != null).Select(x => x.Name).ToArray();
         }
     }
 }

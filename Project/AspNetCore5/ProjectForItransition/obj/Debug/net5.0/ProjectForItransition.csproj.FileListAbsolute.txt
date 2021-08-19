@@ -159,7 +159,6 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Collection\UpdateCollection.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Home\Admin.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Home\Show.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Item\CreateItem.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Item\Index.cshtml.g.cs
@@ -191,3 +190,15 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.csproj.GenerateResource.cache
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\en\ProjectForItransition.resources.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ru\ProjectForItransition.resources.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Home.Admin.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Home.Admin.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Home.Show.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Home.Show.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.Index.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.Index.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.CreateCollection.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.CreateCollection.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowCollection.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowCollection.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowOwnCollections.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowOwnCollections.ru.resources

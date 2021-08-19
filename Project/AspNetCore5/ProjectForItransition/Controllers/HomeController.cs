@@ -57,7 +57,8 @@ namespace ProjectForItransition.Controllers
         public async Task<IActionResult> Admin()
         {
             List<ChangeRoleViewModel> models = new List<ChangeRoleViewModel>();
-            foreach (var user in _userManager.Users)
+            var users = _userManager.Users.ToList();
+            foreach (var user in users)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
                 models.Add( new ChangeRoleViewModel

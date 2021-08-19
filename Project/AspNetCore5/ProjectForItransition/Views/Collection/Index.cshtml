@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<ProjectForItransition.Models.Collection.ContentCollection>
 
-<h1>Список коллекции</h1>
+@inject IViewLocalizer Localizer
 
-<div class="m-2">
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="list">
     <div class="row">
         @foreach (var collection in Model)
         {
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="card">
                     @{
                         var url = Cloudinary.Api.UrlImgUp.Format("png")
@@ -26,7 +30,7 @@
                         <p class="card-text">Topic - @collection.Topic</p>
                         <form method="get" asp-action="ShowCollection" asp-controller="Collection">
                             <input type="hidden" name="collectionId" value="@collection.Id" />
-                            <button class="btn btn-primary">Show this collection</button>
+                            <button class="btn btn-primary">@Localizer["ShowCollection"]</button>
                         </form>
                     </div>
                 </div>

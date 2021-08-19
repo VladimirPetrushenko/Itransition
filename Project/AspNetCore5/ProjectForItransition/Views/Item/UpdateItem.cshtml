@@ -108,11 +108,14 @@
 </form>
 <script>
     var allTagsForUpdateItem = new Array();
+    var htmlUpdate = document.createElement('div');
+
     @if (Model.AllTags != null)
     {
         foreach (var item in Model.AllTags)
         {
-            @:allTagsForUpdateItem.push('@item');
+            @:htmlUpdate.innerHTML = "@item";
+            @:allTagsForUpdateItem.push(htmlUpdate.innerHTML);
         }
     }
     var updateTags = new Array();
@@ -120,7 +123,8 @@
     {
         foreach (var item in Model.Item.Tags.Select(x => x.Name).ToArray())
         {
-            @:updateTags.push('@item');
+            @:htmlUpdate.innerHTML = "@item";
+            @:updateTags.push(htmlUpdate.innerHTML);
         }
     }
     $(function () {

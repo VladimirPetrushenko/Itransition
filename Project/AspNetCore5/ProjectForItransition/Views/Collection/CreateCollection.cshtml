@@ -1,55 +1,69 @@
-﻿@{
-    ViewData["Title"] = "Create Collection";
+﻿@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
 }
 
 <form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-9">
-            <h1>Create Collection</h1>
-            <h2>Name Collection</h2>
-            <input type="text" name="Name" class="form-control" />
+            <div class="row">
+                <h1 class="text-center col-12 mb-4">@Localizer["CreateCollection"]</h1>
+                <div class="form-group col-12 row">
+                    <label class="col-4">@Localizer["NameCollection"]: </label>
+                    <input type="text" name="Name" class="form-control col-8" />
+                </div>
+                <br />
+            </div>
+            <div class="row"> 
+                <label class="col-4">@Localizer["Topic"]: </label>
+                <div class="col-3">
+                    <select name="Topic" class="custom-select">
+                        @foreach (var item in Enum.GetValues(typeof(Topic)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="col-3">
             <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
                 <div id="drop" class="text-center">
-                    Drop your image here
+                    @Localizer["Drop"]
                 </div>
             </div>
             <input id="fileUpload" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
         </div>
     </div>
-    <label>Description</label>
+    <label>@Localizer["Description"]</label>
     <textarea name="Description" class="form-control" rows="10"></textarea>
-    <p>Topic</p>
-    <select name="Topic">
-        @foreach (var item in Enum.GetValues(typeof(Topic)))
-        {
-            <option value="@item">@item</option>
-        }
-    </select>
-    
-    <div id="preview"></div>
-    
-    <div id="NameElements"></div>
-    <input type="button" onclick="appendElement(NameElements)" value="Add IntegerElement" />
 
-    <input type="submit" value="Create" />
+    <div id="preview"></div>
+
+    <div id="NameElements"></div>
+
+    <br />
+    <input type="button" class="btn btn-primary" onclick="appendElement(NameElements)" value="@Localizer["Element"]" />
+
+    <input type="submit" class="btn btn-primary" value="@Localizer["Create"]" />
 </form>
 
 <script>
     function appendElement(element) {
-        element.innerHTML += "<input type=\"text\" name=\"Names\" class=\"form-text\" />"
+        element.innerHTML += "<div class=\"row mt-2\"><label class=\"col-3  mt-2\">@Localizer["FieldName"]: </label> <input type=\"text\" name=\"Names\" class=\"form-text col-3\" />"
             + getInputFieldForNameElement();
     }
 
     function getInputFieldForNameElement() {
-        var html = "<select name=\"Types\">" +
+        var html = "<label class=\"col-3 mt-2\">@Localizer["FieldType"]: </label>" +
+            "<select name =\"Types\" class=\"custom-select col-3\" style=\"margin-left: -15px\">" +
             "<option value=\"@TypeField.Integer\">@TypeField.Integer</option>" +
             "<option value=\"@TypeField.Checkbox\">@TypeField.Checkbox</option>" +
             "<option value=\"@TypeField.String\">@TypeField.String</option>" +
             "<option value=\"@TypeField.DateTime\">@TypeField.DateTime</option>" +
             "<option value=\"@TypeField.Markdown\">@TypeField.Markdown</option>" +
-            "</select> <br />";
+            "</select> </div>";
         return html;
     }
 </script>

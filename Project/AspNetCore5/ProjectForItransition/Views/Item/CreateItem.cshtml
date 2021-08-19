@@ -48,11 +48,13 @@
 </form>
 <script>
     var allTags = new Array();
+    var htmlItem = document.createElement('div');
     @if (Model.AllTags != null)
     {
         foreach (var item in Model.AllTags)
         {
-            @:allTags.push('@item');
+            @:htmlItem.innerHTML = "@item";
+            @:allTags.push(htmlItem.innerHTML);
         }
     }
     $(function () {

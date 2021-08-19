@@ -56,6 +56,7 @@ namespace ProjectForItransition.Repository.Data
             return _context.Collections
                 .Include(x => x.NameElements)
                 .Include(x => x.Items)
+                .Include(x => x.Image)
                 .FirstOrDefault(x => x.Id == id);
         }
 

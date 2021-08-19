@@ -1,5 +1,10 @@
 ﻿@model ProjectForItransition.ViewModels.Collection.ShowCollectionViewModel
+
+@inject IViewLocalizer Localizer
+
 @{
+    ViewData["Title"] = Localizer["Title"];
+
     var integers = Model.Collection.NameElements.Where(x => x.Type == TypeField.Integer).ToList();
     var dates = Model.Collection.NameElements.Where(x => x.Type == TypeField.DateTime).ToList();
     var strings = Model.Collection.NameElements.Where(x => x.Type == TypeField.String).ToList();
@@ -7,247 +12,261 @@
     var checkboxes = Model.Collection.NameElements.Where(x => x.Type == TypeField.Checkbox).ToList();
     var i = 0;
 }
-<h1>Коллекция @Model.Collection.Name</h1>
 
-@{
-    var url = Cloudinary.Api.UrlImgUp.Format("png")
-                    .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
-    @if (Model.Collection.Image != null)
-    {
-        @Html.Raw(url.BuildImageTag(Model.Collection.Image.PublicId, new StringDictionary("alt=Image collection")))
-    }
-}
-
-<div class="container">
-    
-        <form method="get" asp-action="CreateItem" asp-controller="Item">
-            <input type="hidden" value="@Model.Collection.Id" name="collectionId" />
-            <button>Create new item</button>
-        </form>
-    <h5>Topic - @Model.Collection.Topic</h5>
-    <div>
-        <em>Description - </em>
-        @if (Model.Collection.Description != null)
-        {
-            @Html.Raw(Markdown.ToHtml(Model.Collection.Description))
-        }
+<div class="row">
+    <div class="text-center col-12 row m-3">
+        <h1 class="col-11 text-center">
+            @Localizer["Collection"] - @Model.Collection.Name
+        </h1>
     </div>
-    <form method="post">
-        <div id="filterTag" class="form-control" name="TagsForFilter"></div>
-        <div class="form-inline m-1">
-            <label class="mr-1">Name: </label>
-            <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
-            <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" class="form-control mr-3" />
-            <input type="submit" value="Filter" class="btn btn-outline-dark text-right" />
-        </div>
-        <input type="hidden" id="sortType" name="sort" />
-        <input type="hidden" id="itemIdInput" name="itemId" />
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col" class="col-2">
-                        <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.NameSortParm')">Name Item</button>
-                    </th>
-                    <th scope="col">
-                        <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.TagSortParm')">Tags</button>
-                    </th>
-                    @if (integers.Count() > 0)
-                    {
-                        <th scope="col">
-                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.IntegerSortParm')">Integer fields</button>
-                        </th>
-                    }
-                    @if (dates.Count() > 0)
-                    {
-                        <th scope="col">
-                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.DateSortParm')">Date fields</button>
-                        </th>
-                    }
-                    @if (strings.Count() > 0)
-                    {
-                        <th scope="col">
-                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.StringSortParm')">String fields</button>
-                        </th>
-                    }
-                    @if (markdowns.Count() > 0)
-                    {
-                        <th scope="col">
-                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.MarkdownSortParm')">Markdown fields</button>
-                        </th>
-                    }
-                    @if (checkboxes.Count() > 0)
-                    {
-                        <th scope="col">
-                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.CheckboxSortParm')">Checkbox fields</button>
-                        </th>
-                    }
-                    @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
-                    {
-                        <th scope="col" class="col-1">
-                            Possibilities
-                        </th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Collection.Items)
+    <div class="col-12 row">
+        <div class="col-8">
+            <h5>@Localizer["Topic"] - @Model.Collection.Topic</h5>
+            <div>
+                <div>@Localizer["Description"] - </div>
+                @if (Model.Collection.Description != null)
                 {
+                    @Html.Raw(Markdown.ToHtml(Model.Collection.Description))
+                }
+            </div>
+        </div>
+        <div class="col-4">
+            @{
+                var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                .Transform(new Transformation().Width(300).Height(200));
+                @if (Model.Collection.Image != null)
+                {
+                    @Html.Raw(url.BuildImageTag(Model.Collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= col-12")))
+                }
+            }
+        </div>
+    </div>
+    <div class="col-12 row">
+        <form method="post" class="col-12 row mt-3">
+            <div id="filterTag" class="form-control col-12" name="TagsForFilter"></div>
+            <div class="col-12 row mt-2 ml-0 p-0">
+                <div class="form-inline col-8 p-0">
+                    <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
+                    <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" placeholder="@Localizer["NameFilter"]" class="form-control col-9" />
+                    <div class="col-3">
+                        <input type="submit" value="@Localizer["Filter"]" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-4 text-right p-0">
+                    <button class="btn btn-primary" asp-action="CreateItem" asp-controller="Item" formmethod="get">@Localizer["CreateItem"]</button>
+                </div>
+            </div>
+            <input type="hidden" id="sortType" name="sort" />
+            <input type="hidden" id="itemIdInput" name="itemId" />
+            <table class="table table-bordered mt-3">
+                <thead class="thead-dark">
                     <tr>
-                        <th scope="row">
-                            <button class="btn btn-link" onclick="changeInput(itemIdInput,@item.Id)" asp-action="Index" asp-controller="Item" formmethod="get">@item.Name</button>
+                        <th scope="col" class="col-2">
+                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.NameSortParm')">@Localizer["ItemName"]</button>
                         </th>
-                        <td>
-                            @if (item.Tags != null)
-                            {
-                                @foreach (var tag in item.Tags)
-                                {
-                                    <span>@tag.Name </span>
-                                }
-                            }
-                        </td>
+                        <th scope="col">
+                            <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.TagSortParm')">@Localizer["Tags"]</button>
+                        </th>
                         @if (integers.Count() > 0)
                         {
-                            <td>
-                                @{i = 0;}
-                                @foreach (var name in integers)
-                                {
-                                    <div>
-                                        @name.Name -
-                                        @if (item.IntegerElements.Count() > i)
-                                        {
-                                            <span> @item.IntegerElements[i].Value</span>
-                                            i++;
-                                        }
-                                        else
-                                        {
-                                            <span> not found in this item</span>
-                                        }
-                                    </div>
-                                }
-                            </td>
-                                    }
+                            <th scope="col">
+                                <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.IntegerSortParm')">@Localizer["Integer"]</button>
+                            </th>
+                        }
                         @if (dates.Count() > 0)
                         {
-                            <td>
-                                @{i = 0;}
-                                @foreach (var name in dates)
-                                {
-                                    <div>
-                                        @name.Name -
-                                        @if (item.DateTimeElements.Count() > i)
-                                        {
-                                            <span> @item.DateTimeElements[i].Value</span>
-                                            i++;
-                                        }
-                                        else
-                                        {
-                                            <span> not found in this item</span>
-                                        }
-                                    </div>
-                                }
-                            </td>
-                                    }
+                            <th scope="col">
+                                <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.DateSortParm')">@Localizer["Date"]</button>
+                            </th>
+                        }
                         @if (strings.Count() > 0)
                         {
-                            <td>
-                                @{i = 0;}
-                                @foreach (var name in strings)
-                                {
-                                    <div>
-                                        @name.Name -
-                                        @if (item.StringElements.Count() > i)
-                                        {
-                                            <span> @item.StringElements[i].Value</span>
-                                            i++;
-                                        }
-                                        else
-                                        {
-                                            <span> not found in this item</span>
-                                        }
-                                    </div>
-                                }
-                            </td>
-                                    }
+                            <th scope="col">
+                                <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.StringSortParm')">@Localizer["String"]</button>
+                            </th>
+                        }
                         @if (markdowns.Count() > 0)
                         {
-                            <td>
-                                @{i = 0;}
-                                @foreach (var name in markdowns)
-                                {
-                                    <div>
-                                        @name.Name -
-                                        @if (item.MarkdownElements.Count() > i)
-                                        {
-                                            <span> @item.MarkdownElements[i].Value</span>
-                                            i++;
-                                        }
-                                        else
-                                        {
-                                            <span> not found in this item</span>
-                                        }
-                                    </div>
-                                }
-                            </td>
-                                    }
+                            <th scope="col">
+                                <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.MarkdownSortParm')">@Localizer["Markdown"]</button>
+                            </th>
+                        }
                         @if (checkboxes.Count() > 0)
                         {
+                            <th scope="col">
+                                <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.CheckboxSortParm')">@Localizer["Checkbox"]</button>
+                            </th>
+                        }
+                        @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
+                        {
+                            <th scope="col" class="col-1">
+                                <div class="btn text-white">@Localizer["Possibilities"]</div>
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Collection.Items)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <button class="btn btn-link" onclick="changeInput(itemIdInput,@item.Id)" asp-action="Index" asp-controller="Item" formmethod="get">@item.Name</button>
+                            </th>
                             <td>
-                                @{i = 0;}
-                                @foreach (var name in checkboxes)
+                                @if (item.Tags != null)
                                 {
-                                    <div>
-                                        @name.Name -
-                                        @if (item.CheckboxElements.Count() > i)
-                                        {
-                                            if (@item.CheckboxElements[i].Value)
+                                    @foreach (var tag in item.Tags)
+                                    {
+                                        <span>@tag.Name </span>
+                                    }
+                                }
+                            </td>
+                            @if (integers.Count() > 0)
+                            {
+                                <td>
+                                    @{i = 0;}
+                                    @foreach (var name in integers)
+                                    {
+                                        <div>
+                                            @name.Name -
+                                            @if (item.IntegerElements.Count() > i)
                                             {
-                                                <input name="checkboxes" type="checkbox" checked disabled />
+                                                <span> @item.IntegerElements[i].Value</span>
+                                                i++;
                                             }
                                             else
                                             {
-                                                <input name="checkboxes" type="checkbox" disabled />
+                                                <span> @Localizer["NotFound"]</span>
                                             }
-                                            i++;
-                                        }
-                                        else
-                                        {
-                                            <span> not found in this item</span>
-                                        }
-                                    </div>
-                                }
-                            </td>
-                        }
-                        @if(User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
-                        {
-                            <td >
-                                <button class="btn btn-primary btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="UpdateItem" asp-controller="Item" formmethod="get">
-                                    <i class="far fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="DeleteItem" asp-controller="Item" formmethod="get">
-                                    <i class="fas fa-ban"></i>
-                                </button>
-                            </td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </form>
+                                        </div>
+                                    }
+                                </td>
+                            }
+                            @if (dates.Count() > 0)
+                            {
+                                <td>
+                                    @{i = 0;}
+                                    @foreach (var name in dates)
+                                    {
+                                        <div>
+                                            @name.Name -
+                                            @if (item.DateTimeElements.Count() > i)
+                                            {
+                                                <span> @item.DateTimeElements[i].Value</span>
+                                                i++;
+                                            }
+                                            else
+                                            {
+                                                <span> @Localizer["NotFound"]</span>
+                                            }
+                                        </div>
+                                    }
+                                </td>
+                            }
+                            @if (strings.Count() > 0)
+                            {
+                                <td>
+                                    @{i = 0;}
+                                    @foreach (var name in strings)
+                                    {
+                                        <div>
+                                            @name.Name -
+                                            @if (item.StringElements.Count() > i)
+                                            {
+                                                <span> @item.StringElements[i].Value</span>
+                                                i++;
+                                            }
+                                            else
+                                            {
+                                                <span> @Localizer["NotFound"]</span>
+                                            }
+                                        </div>
+                                    }
+                                </td>
+                            }
+                            @if (markdowns.Count() > 0)
+                            {
+                                <td>
+                                    @{i = 0;}
+                                    @foreach (var name in markdowns)
+                                    {
+                                        <div>
+                                            @name.Name -
+                                            @if (item.MarkdownElements.Count() > i)
+                                            {
+                                                <span> @item.MarkdownElements[i].Value</span>
+                                                i++;
+                                            }
+                                            else
+                                            {
+                                                <span> @Localizer["NotFound"]</span>
+                                            }
+                                        </div>
+                                    }
+                                </td>
+                            }
+                            @if (checkboxes.Count() > 0)
+                            {
+                                <td>
+                                    @{i = 0;}
+                                    @foreach (var name in checkboxes)
+                                    {
+                                        <div>
+                                            @name.Name -
+                                            @if (item.CheckboxElements.Count() > i)
+                                            {
+                                                if (@item.CheckboxElements[i].Value)
+                                                {
+                                                    <input name="checkboxes" type="checkbox" checked disabled />
+                                                }
+                                                else
+                                                {
+                                                    <input name="checkboxes" type="checkbox" disabled />
+                                                }
+                                                i++;
+                                            }
+                                            else
+                                            {
+                                                <span> @Localizer["NotFound"]</span>
+                                            }
+                                        </div>
+                                    }
+                                </td>
+                            }
+                            @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
+                            {
+                                <td>
+                                    <button class="btn btn-primary btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="UpdateItem" asp-controller="Item" formmethod="get">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-circle w-100 m-1" onclick="changeInput(itemIdInput,@item.Id)" asp-action="DeleteItem" asp-controller="Item" formmethod="get">
+                                        <i class="fas fa-ban"></i> 
+                                    </button>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
 </div>
+
 <script>
     function changeInput(element, str) {
-                                        element.value = str;
-                                    }
+        element.value = str;
+    }
 
-                                    var allTagsForShowCollection = new Array();
-                                    @if (Model.AllTags != null)
+    var allTagsForShowCollection = new Array();
+    @if (Model.AllTags != null)
     {
-                                        foreach (var item in Model.AllTags)
-                                        {
+        foreach (var item in Model.AllTags)
+        {
             @:allTagsForShowCollection.push('@item');
         }
     }
-     var filterTags = new Array();
+
+    var filterTags = new Array();
     @if (Model.FilterTags != null)
     {
         foreach (var item in Model.FilterTags)
@@ -255,12 +274,12 @@
             @:filterTags.push('@item');
         }
     }
+
     $(function () {
-        console.log("i am here")
         $('#filterTag').magicSuggest({
             data: allTagsForShowCollection,
             value: filterTags,
-            placeholder: 'Enter a tag to filter or select from the list',
+            placeholder: '@Localizer["TagFilter"]',
         });
     });
 </script>

@@ -1,60 +1,64 @@
 ﻿@model IEnumerable<ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel>
+
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Localizer["Title"];
 }
 
 @if (User.IsInRole("admin"))
 {
     <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-dark text-center">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Email</th>
-                <th scope="col" class="col-2">Block</th>
-                <th scope="col" class="col-1">Delete</th>
-                <th scope="col" class="col-2">Change Role</th>
+                <th scope="col">@Localizer["ID"]</th>
+                <th scope="col">@Localizer["Email"]</th>
+                <th scope="col" class="col-2">@Localizer["BlockHead"]</th>
+                <th scope="col" class="col-1">@Localizer["Delete"]</th>
+                <th scope="col" class="col-2">@Localizer["ChangeHead"]</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
                 <tr scope="row">
-                    
-                        <td>
-                            <form method="post">
-                                <button class="btn" asp-action="Show" asp-controller="Home" asp-route-id="@user.UserId">@user.UserId</button>
-                            </form>
-                        </td>
-                        <td>@user.UserEmail</td>
-                        <td>
-                            <form method="post">
-                                @if (user.IsEnable)
-                                {
-                                    <button class="btn btn-block btn-primary" asp-action="Block" asp-route-id="@user.UserId">Block</button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-block btn-primary" asp-action="Unblock" asp-route-id="@user.UserId">Unblock</button>
-                                }
-                            </form>
-                        </td>
-                        <td><form asp-action="Delete" asp-route-id="@user.UserId" method="post">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form method="post">
-                                @if (user.UserRoles.Contains("admin"))
-                                {
-                                    <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">Change to User</button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">Change to Admin</button>
-                                }
-                            </form>
-                        </td>
-                    
+
+                    <td>
+                        <form method="post">
+                            <button class="btn btn-link" asp-action="Show" asp-controller="Home" asp-route-id="@user.UserId">@user.UserId</button>
+                        </form>
+                    </td>
+                    <td>@user.UserEmail</td>
+                    <td>
+                        <form method="post">
+                            @if (user.IsEnable)
+                            {
+                                <button class="btn btn-block btn-primary" asp-action="Block" asp-route-id="@user.UserId">@Localizer["Block"]</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-block btn-primary" asp-action="Unblock" asp-route-id="@user.UserId">@Localizer["Unblock"]</button>
+                            }
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@user.UserId" method="post">
+                            <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post">
+                            @if (user.UserRoles.Contains("admin"))
+                            {
+                                <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeUser"]</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeAdmin"]</button>
+                            }
+                        </form>
+                    </td>
+
                 </tr>
             }
         </tbody>

@@ -181,7 +181,7 @@ namespace ProjectForItransition.Controllers
             if(model.ImageInput!=null)
                 collection.Image = new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) };
             collection.UserId = user.Id;
-            collection.Name = User.Identity.Name;
+            collection.UserName = User.Identity.Name;
             collection.NameElements = NameField.CreateListNameFieldWithNamesAndTypes(model.Names, model.Types);
         }
     }
