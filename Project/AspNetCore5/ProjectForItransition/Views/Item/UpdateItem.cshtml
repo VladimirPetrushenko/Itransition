@@ -1,111 +1,128 @@
 ﻿@model ProjectForItransition.ViewModels.Items.ShowItemModel
 
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Update Item";
+    ViewData["Title"] = Localizer["Title"];
 }
 
-<h1>Update Item</h1>
-<form method="post" asp-action="UpdateItem" asp-controller="Item">
-    <input type="hidden" name="itemId" value="@Model.Item.Id" />
-    <input type="hidden" name="CollectionId" value="@Model.CollectionId" />
-    <h2>Name Item</h2>
-    <input type="text" name="Name" class="form-control" value="@Model.Item.Name" />
-    @{
-        string tags = string.Empty;
-        foreach (var tag in Model.Item.Tags)
-        {
-            tags += tag.Name + " ";
-        }
-
-    }
-    <label>Tags</label>
-    <div id="updateTag" class="form-control" name="Tags"></div>
-    <p>Custom Field</p>
-
-    <div class="row">
-        @{
-            int integer = 0;
-            int strings = 0;
-            int markdown = 0;
-            int checkbox = 0;
-            int datetime = 0;
-            int box = 1;
-            @foreach (var NameField in Model.Fields)
-            {
-                <div class="col-12 mb-2">
-                    @NameField.Name -
-                    @switch (NameField.Type)
-                    {
-                        case TypeField.Integer:
-                            if (Model.Item.IntegerElements.Count() > integer)
-                            {
-                                <input type="number" name="integers" value="@Model.Item.IntegerElements[integer].Value" />
-                            }
-                            else
-                            {
-                                <input type="number" name="integers" />
-                            }
-                            integer++;
-                            break;
-                        case TypeField.String:
-                            if (Model.Item.StringElements.Count() > strings)
-                            {
-                                <input type="text" class="form-control" name="strings" value="@Model.Item.StringElements[strings].Value" />
-                            }
-                            else
-                            {
-                                <input type="text" name="strings" />
-                            }
-                            strings++;
-                            break;
-                        case TypeField.Markdown:
-                            if (Model.Item.MarkdownElements.Count() > markdown)
-                            {
-                                <textarea name="markdowns" class="form-control" rows="10"> @Model.Item.MarkdownElements[markdown].Value </textarea>
-                            }
-                            else
-                            {
-                                <input type="text" name="markdowns" />
-                            }
-                            markdown++;
-                            break;
-                        case TypeField.DateTime:
-                            if (Model.Item.DateTimeElements.Count() > datetime)
-                            {
-                                <input type="date" name="datetimes" value="@Model.Item.DateTimeElements[datetime].Value" />
-                            }
-                            else
-                            {
-                                <input type="date" name="datetimes" />
-                            }
-                            datetime++;
-                            break;
-                        case TypeField.Checkbox:
-                            if (Model.Item.CheckboxElements.Count() > checkbox)
-                            {
-                                if (Model.Item.CheckboxElements[checkbox].Value)
+<div class="row col-12">
+    <div class="row mt-4">
+        <h1 class="text-center col-12 mb-4">@Localizer["UpdateItem"]</h1>
+        <div class="col-12">
+            <form method="post" asp-action="UpdateItem" asp-controller="Item">
+                <input type="hidden" name="itemId" value="@Model.Item.Id" />
+                <input type="hidden" name="CollectionId" value="@Model.CollectionId" />
+                <div class="row mb-3">
+                    <label class="col-4 mt-1">@Localizer["NameItem"]: </label>
+                    <div class="col-8">
+                        <input type="text" name="Name" class="form-control" value="@Model.Item.Name" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 mt-1">@Localizer["Tags"]: </label>
+                    <div class="col-8">
+                        <div id="updateTag" class="form-control" name="Tags"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <label class="mb-3 mt-3 h6">@Localizer["CustomField"]</label>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @{
+                        int integer = 0;
+                        int strings = 0;
+                        int markdown = 0;
+                        int checkbox = 0;
+                        int datetime = 0;
+                        int box = 1;
+                        @foreach (var NameField in Model.Fields)
+                        {
+                            <div class="col-4 mt-1 mb-2">
+                                @NameField.Name -
+                            </div>
+                            <div class="col-8  mb-2">
+                                @switch (NameField.Type)
                                 {
-                                    <input name="checkboxes" type="checkbox" value=@box checked />
+                                    case TypeField.Integer:
+                                        if (Model.Item.IntegerElements.Count() > integer)
+                                        {
+                                            <input type="number" name="integers" class="form-control" value="@Model.Item.IntegerElements[integer].Value" />
+                                        }
+                                        else
+                                        {
+                                            <input type="number" class="form-control" name="integers" />
+                                        }
+                                        integer++;
+                                        break;
+                                    case TypeField.String:
+                                        if (Model.Item.StringElements.Count() > strings)
+                                        {
+                                            <input type="text" class="form-control" name="strings" value="@Model.Item.StringElements[strings].Value" />
+                                        }
+                                        else
+                                        {
+                                            <input type="text" class="form-control" name="strings" />
+                                        }
+                                        strings++;
+                                        break;
+                                    case TypeField.Markdown:
+                                        if (Model.Item.MarkdownElements.Count() > markdown)
+                                        {
+                                            <textarea name="markdowns" class="form-control" rows="10"> @Model.Item.MarkdownElements[markdown].Value </textarea>
+                                        }
+                                        else
+                                        {
+                                            <textarea class="form-control" name="markdowns" rows="10" />
+                                        }
+                                        markdown++;
+                                        break;
+                                    case TypeField.DateTime:
+                                        if (Model.Item.DateTimeElements.Count() > datetime)
+                                        {
+                                            <input type="date" name="datetimes" class="form-control" value="@Model.Item.DateTimeElements[datetime].Value" />
+                                        }
+                                        else
+                                        {
+                                            <input type="date" name="datetimes" class="form-control" />
+                                        }
+                                        datetime++;
+                                        break;
+                                    case TypeField.Checkbox:
+                                        if (Model.Item.CheckboxElements.Count() > checkbox)
+                                        {
+                                            if (Model.Item.CheckboxElements[checkbox].Value)
+                                            {
+                                                <input name="checkboxes" type="checkbox" class="form-control" value=@box checked />
+                                            }
+                                            else
+                                            {
+                                                <input name="checkboxes" type="checkbox" class="form-control" value=@box />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input name="checkboxes" type="checkbox" class="form-control" value=@box>
+                                        }
+                                        checkbox++;
+                                        box++;
+                                        break;
                                 }
-                                else
-                                {
-                                    <input name="checkboxes" type="checkbox" value=@box />
-                                }
-                            }
-                            else
-                            {
-                                <input name="checkboxes" type="checkbox" value=@box>
-                            }
-                            checkbox++;
-                            box++;
-                            break;
+                            </div>
+                        }
                     }
                 </div>
-            }
-        }
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <input type="submit" class="btn btn-success" value="@Localizer["Update"]" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <input type="submit" value="Update" />
-</form>
+</div>
 <script>
     var allTagsForUpdateItem = new Array();
     var htmlUpdate = document.createElement('div');

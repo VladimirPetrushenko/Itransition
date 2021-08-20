@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Amount" xml:space="preserve">
-    <value>Количество элементов</value>
+  <data name="Description" xml:space="preserve">
+    <value>Collection description</value>
   </data>
-  <data name="LastItems" xml:space="preserve">
-    <value>Последние добавленные элементы</value>
+  <data name="Drop" xml:space="preserve">
+    <value>Drop your image here</value>
   </data>
-  <data name="NoItems" xml:space="preserve">
-    <value>Элементы не найдены</value>
+  <data name="Element" xml:space="preserve">
+    <value>Add custom field</value>
   </data>
-  <data name="ShowCollection" xml:space="preserve">
-    <value>Показать коллекцию</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>Enter field name</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Select field type</value>
+  </data>
+  <data name="NameCollection" xml:space="preserve">
+    <value>Collection name</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Домашняя страница</value>
+    <value>Update collection</value>
   </data>
   <data name="Topic" xml:space="preserve">
-    <value>Тема коллекции</value>
+    <value>Collection theme</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update a collection</value>
+  </data>
+  <data name="UpdateCollection" xml:space="preserve">
+    <value>Update сollection</value>
   </data>
 </root>

@@ -76,7 +76,11 @@ namespace ProjectForItransition.Repository.Data
             {
                 throw new ArgumentException();
             }
-            return _context.Collections.Include(x => x.NameElements).Include(x => x.Items).Where(x => x.UserId == userId).ToList();
+            return _context.Collections.Include(x => x.NameElements)
+                .Where(x => x.UserId == userId)
+                .Include(x => x.Items)
+                .Include(x => x.Image)
+                .ToList();
         }
 
         public IEnumerable<ContentItem> FreeTextOnDescription(string search)

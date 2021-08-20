@@ -3,52 +3,55 @@
 @{
     ViewData["Title"] = Localizer["Title"];
 }
-
-<form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
-    <div class="row mt-4">
-        <div class="col-9">
-            <div class="row">
-                <h1 class="text-center col-12 mb-4">@Localizer["CreateCollection"]</h1>
-                <div class="form-group col-12 row">
-                    <label class="col-4">@Localizer["NameCollection"]: </label>
-                    <input type="text" name="Name" class="form-control col-8" />
+<div class="row col-12">
+    <form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
+        <div class="row mt-4">
+            <div class="col-9">
+                <div class="row">
+                    <h1 class="text-center col-12 mb-4">@Localizer["CreateCollection"]</h1>
+                    <div class="form-group col-12 row">
+                        <label class="col-4 mt-1">@Localizer["NameCollection"]: </label>
+                        <input type="text" name="Name" class="form-control col-8" />
+                    </div>
+                    <br />
                 </div>
-                <br />
+                <div class="row">
+                    <label class="col-4">@Localizer["Topic"]: </label>
+                    <div class="col-3">
+                        <select name="Topic" class="custom-select">
+                            @foreach (var item in Enum.GetValues(typeof(Topic)))
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="row"> 
-                <label class="col-4">@Localizer["Topic"]: </label>
-                <div class="col-3">
-                    <select name="Topic" class="custom-select">
-                        @foreach (var item in Enum.GetValues(typeof(Topic)))
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
+            <div class="col-3">
+                <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+                    <div id="drop" class="text-center">
+                        @Localizer["Drop"]
+                    </div>
                 </div>
+                <input id="fileUpload" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
             </div>
         </div>
-        <div class="col-3">
-            <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
-                <div id="drop" class="text-center">
-                    @Localizer["Drop"]
-                </div>
+        <label>@Localizer["Description"]</label>
+        <textarea name="Description" class="form-control" rows="10"></textarea>
+
+        <div id="NameElements"></div>
+
+        <br />
+        <div class="row">
+            <div class="col-5 text-left">
+                <input type="button" class="btn btn-primary" onclick="appendElement(NameElements)" value="@Localizer["Element"]" />
             </div>
-            <input id="fileUpload" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
+            <div class="col-7 text-right">
+                <input type="submit" class="btn btn-success" value="@Localizer["Create"]" />
+            </div>
         </div>
-    </div>
-    <label>@Localizer["Description"]</label>
-    <textarea name="Description" class="form-control" rows="10"></textarea>
-
-    <div id="preview"></div>
-
-    <div id="NameElements"></div>
-
-    <br />
-    <input type="button" class="btn btn-primary" onclick="appendElement(NameElements)" value="@Localizer["Element"]" />
-
-    <input type="submit" class="btn btn-primary" value="@Localizer["Create"]" />
-</form>
-
+    </form>
+</div>
 <script>
     function appendElement(element) {
         element.innerHTML += "<div class=\"row mt-2\"><label class=\"col-3  mt-2\">@Localizer["FieldName"]: </label> <input type=\"text\" name=\"Names\" class=\"form-text col-3\" />"

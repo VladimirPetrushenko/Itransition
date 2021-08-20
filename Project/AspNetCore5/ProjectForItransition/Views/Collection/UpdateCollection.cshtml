@@ -1,28 +1,55 @@
 ﻿@model ProjectForItransition.Models.Collection.ContentCollection
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Update Collection";
+    ViewData["Title"] = Localizer["Title"];
 }
+
 <form method="post" asp-action="UpdateCollection" asp-controller="Collection" enctype="multipart/form-data">
     <input type="hidden" name="Id" value="@Model.Id" />
     <input type="hidden" name="Items" value="@Model.Items" />
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-9">
-            <h1>Update Collection</h1>
-            <h2>Name Collection</h2>
-            <input type="text" name="Name" class="form-control" value="@Model.Name" />
+            <div class="row">
+                <h1 class="text-center col-12 mb-4">@Localizer["UpdateCollection"]</h1>
+                <div class="form-group col-12 row">
+                    <label class="col-4 mt-1">@Localizer["NameCollection"]: </label>
+                    <input type="text" name="Name" class="form-control col-8" value="@Model.Name" />
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-4">@Localizer["Topic"]: </label>
+                <div class="col-3">
+                    <select name="Topic">
+                        @foreach (var item in Enum.GetValues(typeof(Topic)))
+                        {
+                            if ((Topic)item == Model.Topic)
+                            {
+                                <option value="@item" selected>@item</option>
+                            }
+                            else
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="col-3">
             <div id="dropZoneUpdate" ondrop="dropHandler(event, fileUploadUpdate)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
                 <div id="dropUpdate" class="text-center">
                     @{
-                        var url = Cloudinary.Api.UrlImgUp.Format("png")
-                                        .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
                         @if (Model.Image != null)
                         {
+                            var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                       .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north"));
                             @Html.Raw(url.BuildImageTag(Model.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
                         }
                         else
                         {
+                            var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                          .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
                             @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
                         }
                     }
@@ -31,27 +58,19 @@
             <input id="fileUploadUpdate" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
         </div>
     </div>
-    <p>Description</p>
+    <label>@Localizer["Description"]</label>
     <textarea name="Description" class="form-control" rows="10">@Model.Description</textarea>
-    <p>Topic</p>
-    <select name="Topic">
-        @foreach (var item in Enum.GetValues(typeof(Topic)))
-        {
-            if ((Topic)item == Model.Topic)
-            {
-                <option value="@item" selected>@item</option>
-            }
-            else
-            {
-                <option value="@item">@item</option>
-            }
-        }
-    </select>
 
     <div id="NameElements"></div>
-
-    <input type="button" onclick="appendElement('NameElements', '')" value="Add IntegerElement" />
-    <input type="submit" value="Update" />
+    <br />
+    <div class="row">
+        <div class="col-5 text-left">
+            <input type="button" class="btn btn-primary" onclick="appendElement('NameElements', '')" value="@Localizer["Element"]" />
+        </div>
+        <div class="col-7 text-right">
+            <input type="submit" class="btn btn-success" value="@Localizer["Update"]" />
+        </div>
+    </div>
 </form>
 
 <script>
@@ -61,12 +80,14 @@
     }
 
     function appendElement(element, name, type) {
-        document.getElementById(element).innerHTML += "<input type=\"text\" name=\"names\" class=\"form-text\" value=\"" + name + "\" /> "
-            + getInputFieldForNameElement(type);
+        document.getElementById(element).innerHTML += "<div class=\"row mt-2\"><label class=\"col-3  mt-2\">@Localizer["FieldName"]: </label>" +
+            "<input type=\"text\" name=\"names\" class=\"form-text col-3\" value=\"" + name + "\" /> " +
+            getInputFieldForNameElement(type);
     }
 
     function getInputFieldForNameElement(type) {
-        var html = "<select name=\"types\">";
+        var html = "<label class=\"col-3 mt-2\">@Localizer["FieldType"]: </label>" +
+            "<select name=\"types\" class=\"custom-select col-3\" style=\"margin-left: -15px\">";
         var elements = new Array();
         var i = 0;
         @foreach (var item in Enum.GetValues(typeof(TypeField)))
@@ -80,7 +101,7 @@
                 html += "selected"
             html += " >" + elements[i] + "</option>";
         }
-        html += "</select> <br />";
+        html += "</select></div>";
         return html;
     }
 </script>

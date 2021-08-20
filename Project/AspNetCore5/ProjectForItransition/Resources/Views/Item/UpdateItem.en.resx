@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Amount" xml:space="preserve">
-    <value>Количество элементов</value>
+  <data name="CustomField" xml:space="preserve">
+    <value>Fields required for filling</value>
   </data>
-  <data name="LastItems" xml:space="preserve">
-    <value>Последние добавленные элементы</value>
+  <data name="NameItem" xml:space="preserve">
+    <value>Enter the name of the item</value>
   </data>
-  <data name="NoItems" xml:space="preserve">
-    <value>Элементы не найдены</value>
-  </data>
-  <data name="ShowCollection" xml:space="preserve">
-    <value>Показать коллекцию</value>
+  <data name="Tags" xml:space="preserve">
+    <value>Enter a tag or select from the list</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Домашняя страница</value>
+    <value>Item update</value>
   </data>
-  <data name="Topic" xml:space="preserve">
-    <value>Тема коллекции</value>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateItem" xml:space="preserve">
+    <value>Update item</value>
   </data>
 </root>

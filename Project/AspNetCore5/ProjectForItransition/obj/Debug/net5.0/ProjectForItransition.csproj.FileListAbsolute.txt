@@ -202,3 +202,11 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowCollection.ru.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowOwnCollections.en.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.ShowOwnCollections.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.UpdateCollection.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Collection.UpdateCollection.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.Index.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.Index.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.CreateItem.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.CreateItem.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.UpdateItem.en.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.Item.UpdateItem.ru.resources

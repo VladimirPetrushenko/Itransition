@@ -117,22 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Amount" xml:space="preserve">
-    <value>Количество элементов</value>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
   </data>
-  <data name="LastItems" xml:space="preserve">
-    <value>Последние добавленные элементы</value>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарии</value>
   </data>
-  <data name="NoItems" xml:space="preserve">
-    <value>Элементы не найдены</value>
+  <data name="CommentPlaceholder" xml:space="preserve">
+    <value>Оставьте Ваш комментарий</value>
   </data>
-  <data name="ShowCollection" xml:space="preserve">
-    <value>Показать коллекцию</value>
+  <data name="CustomField" xml:space="preserve">
+    <value>Поля коллекции</value>
+  </data>
+  <data name="NameItem" xml:space="preserve">
+    <value>Имя элемента</value>
+  </data>
+  <data name="NoFound" xml:space="preserve">
+    <value>Поле не заполнено</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Список тегов</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Домашняя страница</value>
-  </data>
-  <data name="Topic" xml:space="preserve">
-    <value>Тема коллекции</value>
+    <value>Просмотр элемента</value>
   </data>
 </root>

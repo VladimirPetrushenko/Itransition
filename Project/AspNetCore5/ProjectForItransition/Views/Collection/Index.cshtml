@@ -6,28 +6,30 @@
     ViewData["Title"] = Localizer["Title"];
 }
 
-<div class="list">
-    <div class="row">
-        @foreach (var collection in Model)
-        {
-            <div class="col-sm-12">
-                <div class="card">
-                    @{
+<div class="row mt-4">
+    @foreach (var collection in Model)
+    {
+        <div class="col-sm-4 card-group">
+            <div class="card">
+                @{
+                    @if (collection.Image != null)
+                    {
                         var url = Cloudinary.Api.UrlImgUp.Format("png")
-                                        .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
-                        @if (collection.Image != null)
-                        {
-                            @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
-                        }
-                        else
-                        {
-                            @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
-                        }
+                                    .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north"));
+                        @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
                     }
-                    <div class="card-body">
-                        <h5 class="card-title">@collection.Name</h5>
-                        <p class="card-text">@collection.Description</p>
-                        <p class="card-text">Topic - @collection.Topic</p>
+                    else
+                    {
+                        var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                       .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north").Effect("sepia").Chain());
+                        @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
+                    }
+                }
+                <div class="card-body pb-5">
+                    <h5 class="card-title">@collection.Name</h5>
+                    <div class="card-subtitle">@Localizer["Topic"] - @collection.Topic</div>
+                    <div class="card-text">@collection.Description</div>
+                    <div class="card-text card-bottom btn-group mr-1">
                         <form method="get" asp-action="ShowCollection" asp-controller="Collection">
                             <input type="hidden" name="collectionId" value="@collection.Id" />
                             <button class="btn btn-primary">@Localizer["ShowCollection"]</button>
@@ -35,6 +37,6 @@
                     </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>

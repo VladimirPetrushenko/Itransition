@@ -87,11 +87,11 @@ namespace ProjectForItransition.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateCollection(int? id)
+        public IActionResult UpdateCollection(int? collectionId)
         {
-            if (id == null)
+            if (collectionId == null)
                 throw new ArgumentException();
-            var collection = _repository.GetCollectionById((int)id);
+            var collection = _repository.GetCollectionById((int)collectionId);
             return View(collection);
         }
 
@@ -120,11 +120,11 @@ namespace ProjectForItransition.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteCollection(int? id)
+        public IActionResult DeleteCollection(int? collectionId)
         {
-            if (id == null)
+            if (collectionId == null)
                 throw new ArgumentException();
-            var collection = _repository.GetCollectionById((int)id);
+            var collection = _repository.GetCollectionById((int)collectionId);
             _repository.DeleteCollection(collection);
             _repository.SaveChange();
 
