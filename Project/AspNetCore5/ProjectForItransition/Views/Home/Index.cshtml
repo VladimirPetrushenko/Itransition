@@ -7,11 +7,11 @@
 }
 
 <div class="row col-12 pr-0">
-    <div class="col-4 border">
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div id="container2" class="col-sm-10"></div> 
-            <div class="col-sm-1"></div>
+    <div class="col-lg-4 border mb-2">
+        <div class="row mt-2 mb-2">
+            <div class="col-2"></div>
+            <div id="container2" class="col-9"></div> 
+            <div class="col-1"></div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -25,10 +25,11 @@
                         <form asp-action="Index" asp-controller="Item" method="get">
                             <input type="hidden" name="collectionId" value="@item.Collection.Id" />
                             <input type="hidden" name="itemId" value="@item.Id" />
-                            <input type="submit" class="btn btn-link" value="@item.Name" />
+                            <button class="btn btn-link"><div class="h4 m-0">@item.Name</div></button>
                         </form>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-4">
+                        @Localizer["Tags"] - 
                         @if (item.Tags != null)
                         {
                             foreach (var tag in item.Tags.Select(x => x.Name))
@@ -46,11 +47,11 @@
             }
         </div>
     </div>
-    <div class="col-8">
+    <div class="col-lg-8">
         <div class="row">
             @foreach (var collection in Model.Collections)
             {
-                <div class="col-sm-6 mb-3 card-group">
+                <div class="col-sm-6 mb-3 pl-1 pr-1 card-group">
                     <div class="card">
                         @{
                             @if (collection.Image != null)

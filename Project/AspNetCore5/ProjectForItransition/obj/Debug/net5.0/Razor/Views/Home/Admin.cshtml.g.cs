@@ -9,7 +9,6 @@ namespace AspNetCore
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
@@ -61,8 +60,22 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2db5bbf0bcc51e09df337842a1cd8a99a07874ac", @"/Views/Home/Admin.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9759dca879eb168ea12831d93ec16c2c5c7e46c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12c5e679cfc7b8bd71c160ab083035edd5b3dbee", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Admin : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -169,9 +182,9 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
             WriteLiteral("                <tr scope=\"row\">\r\n\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac10167", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac10567", async() => {
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac10454", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac10854", async() => {
 #nullable restore
 #line 28 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                         Write(user.UserId);
@@ -235,7 +248,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac14972", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac15372", async() => {
                 WriteLiteral("\r\n");
 #nullable restore
 #line 34 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
@@ -246,7 +259,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
                 WriteLiteral("                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac15560", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac15960", async() => {
 #nullable restore
 #line 36 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                     Write(Localizer["Block"]);
@@ -294,7 +307,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
                 WriteLiteral("                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac18637", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac19037", async() => {
 #nullable restore
 #line 40 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                       Write(Localizer["Unblock"]);
@@ -356,7 +369,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac22901", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac23301", async() => {
                 WriteLiteral("\r\n                            <button type=\"submit\" class=\"btn btn-danger\">");
 #nullable restore
 #line 46 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
@@ -399,7 +412,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac26066", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac26466", async() => {
                 WriteLiteral("\r\n");
 #nullable restore
 #line 51 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
@@ -410,7 +423,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
                 WriteLiteral("                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac26673", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac27073", async() => {
 #nullable restore
 #line 53 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                          Write(Localizer["ChangeUser"]);
@@ -458,7 +471,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
                 WriteLiteral("                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac29765", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2db5bbf0bcc51e09df337842a1cd8a99a07874ac30165", async() => {
 #nullable restore
 #line 57 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Home\Admin.cshtml"
                                                                                                                          Write(Localizer["ChangeAdmin"]);

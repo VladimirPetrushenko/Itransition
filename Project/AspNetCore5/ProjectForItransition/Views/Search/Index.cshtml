@@ -1,40 +1,62 @@
 ﻿@model IEnumerable<ProjectForItransition.Models.Item.ContentItem>
 
-<h1>Search list</h1>
+@inject IViewLocalizer Localizer
 
-<div class="container">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="col-2">
-                    <div class="">Name Item</div>
-                </th>
-                <th scope="col">
-                    <div class="">Tags</div>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">
-                        <form method="get" asp-action="Index" asp-controller="Item">
-                            <input type="hidden" id="itemIdInput" name="itemId" value="@item.Id"/>
-                            <button class="btn btn-link">@item.Name</button>
-                        </form>
-                    </th>
-                    <td>
-                        @if (item.Tags != null)
-                        {
-                            @foreach (var tag in item.Tags)
-                            {
-                                <span>@tag.Name </span>
-                            }
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="row">
+    @if (Model.Count() > 0)
+    {
+        <div class="text-center col-12 row m-3">
+            <h1 class="col-11 text-center">
+                @Localizer["Search"]
+            </h1>
+        </div>
+        <div class="container">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="col-2">
+                            <div class="">@Localizer["ItemName"]</div>
+                        </th>
+                        <th scope="col">
+                            <div class="">@Localizer["Tags"]</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <form method="get" asp-action="Index" asp-controller="Item">
+                                    <input type="hidden" id="itemIdInput" name="itemId" value="@item.Id" />
+                                    <button class="btn btn-link">@item.Name</button>
+                                </form>
+                            </th>
+                            <td>
+                                @if (item.Tags != null)
+                                {
+                                    @foreach (var tag in item.Tags)
+                                    {
+                                        <span>@tag.Name </span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="text-center col-12 row m-3">
+            <h1 class="col-11 text-center">
+                @Localizer["Nothing"]
+            </h1>
+        </div>
+    }
 </div>

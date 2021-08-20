@@ -6,13 +6,22 @@
     ViewData["Title"] = Localizer["Title"];
 }
 
-<h1 class="text-center m-3">@Localizer["Header"]</h1>
-
+<div class="row pt-3">
+    <h1 class="text-center col-sm-9">@Localizer["Header"]</h1>
+    <div class="col-sm-3 p-2 align-self-center">
+        <form method="get" class="text-center" asp-action="CreateCollection" asp-controller="Collection">
+            <h5 class="card-title">
+                <button class="btn btn-success">@Localizer["CreateCollection"]</button>
+            </h5>
+        </form>
+    </div>
+</div>
+        
 <div class="mt-2">
     <div class="row">
         @foreach (var collection in Model)
         {
-            <div class="col-sm-4 card-group">
+            <div class="col-sm-6 col-md-4 mb-2 card-group center">
                 <div class="card">
                     @{
                         @if (collection.Image != null)
@@ -66,12 +75,5 @@
                 </div>
             </div>
         }
-        <div class="col-sm-4 align-self-center">
-            <form method="get" class="text-center" asp-action="CreateCollection" asp-controller="Collection">
-                <h5 class="card-title">
-                    <button class="btn btn-success">@Localizer["CreateCollection"]</button>
-                </h5>
-            </form>
-        </div>
     </div>
 </div>

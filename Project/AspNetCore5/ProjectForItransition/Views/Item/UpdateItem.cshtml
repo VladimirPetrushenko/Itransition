@@ -14,8 +14,8 @@
                 <input type="hidden" name="itemId" value="@Model.Item.Id" />
                 <input type="hidden" name="CollectionId" value="@Model.CollectionId" />
                 <div class="row mb-3">
-                    <label class="col-4 mt-1">@Localizer["NameItem"]: </label>
-                    <div class="col-8">
+                    <label class="col-5 col-sm-4 mt-1">@Localizer["NameItem"]: </label>
+                    <div class="col-7 col-sm-8">
                         <input type="text" name="Name" class="form-control" value="@Model.Item.Name" />
                     </div>
                 </div>
@@ -40,10 +40,10 @@
                         int box = 1;
                         @foreach (var NameField in Model.Fields)
                         {
-                            <div class="col-4 mt-1 mb-2">
+                            <div class="col-sm-4 text-center text-sm-left mt-1 mb-2">
                                 @NameField.Name -
                             </div>
-                            <div class="col-8  mb-2">
+                            <div class="col-sm-8  mb-2">
                                 @switch (NameField.Type)
                                 {
                                     case TypeField.Integer:

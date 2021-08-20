@@ -20,7 +20,7 @@
         </h1>
     </div>
     <div class="col-12 row">
-        <div class="col-8 p-0">
+        <div class="col-md-8 p-0 mb-3">
             <h5>@Localizer["Topic"] - @Model.Collection.Topic</h5>
             <div>
                 <div class="h6 mt-3">@Localizer["Description"] - </div>
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-md-4 mb-3 text-right">
             @{
                 var url = Cloudinary.Api.UrlImgUp.Format("png")
                                 .Transform(new Transformation().Width(300).Height(200));
@@ -47,14 +47,14 @@
         <form method="post" class="col-12 row mt-3">
             <div id="filterTag" class="form-control col-12" name="TagsForFilter"></div>
             <div class="col-12 row mt-2 ml-0 p-0">
-                <div class="form-inline col-8 p-0">
+                <div class="form-inline col-md-8 p-0 mb-2">
                     <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
                     <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" placeholder="@Localizer["NameFilter"]" class="form-control col-9" />
                     <div class="col-3">
                         <input type="submit" value="@Localizer["Filter"]" class="btn btn-primary" />
                     </div>
                 </div>
-                <div class="col-4 text-right p-0">
+                <div class="col-md-4 text-md-right text-center p-0 mb-2" id="CreateItemButton">
                     <button class="btn btn-primary" asp-action="CreateItem" asp-controller="Item" formmethod="get">@Localizer["CreateItem"]</button>
                 </div>
             </div>

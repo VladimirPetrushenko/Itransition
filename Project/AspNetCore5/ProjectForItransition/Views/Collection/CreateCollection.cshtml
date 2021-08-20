@@ -6,18 +6,18 @@
 <div class="row col-12">
     <form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
         <div class="row mt-4">
-            <div class="col-9">
+            <div class="col-md-9 mb-3">
                 <div class="row">
                     <h1 class="text-center col-12 mb-4">@Localizer["CreateCollection"]</h1>
                     <div class="form-group col-12 row">
-                        <label class="col-4 mt-1">@Localizer["NameCollection"]: </label>
-                        <input type="text" name="Name" class="form-control col-8" />
+                        <label class="col-5 col-sm-4 mt-1">@Localizer["NameCollection"]: </label>
+                        <input type="text" name="Name" class="form-control col-7 col-sm-8" />
                     </div>
                     <br />
                 </div>
                 <div class="row">
-                    <label class="col-4">@Localizer["Topic"]: </label>
-                    <div class="col-3">
+                    <label class="col-5 col-sm-4">@Localizer["Topic"]: </label>
+                    <div class="col-5 col-sm-3">
                         <select name="Topic" class="custom-select">
                             @foreach (var item in Enum.GetValues(typeof(Topic)))
                             {
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 mb-3">
                 <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
                     <div id="drop" class="text-center">
                         @Localizer["Drop"]
@@ -38,9 +38,7 @@
         </div>
         <label>@Localizer["Description"]</label>
         <textarea name="Description" class="form-control" rows="10"></textarea>
-
         <div id="NameElements"></div>
-
         <br />
         <div class="row">
             <div class="col-5 text-left">
@@ -54,19 +52,21 @@
 </div>
 <script>
     function appendElement(element) {
-        element.innerHTML += "<div class=\"row mt-2\"><label class=\"col-3  mt-2\">@Localizer["FieldName"]: </label> <input type=\"text\" name=\"Names\" class=\"form-text col-3\" />"
-            + getInputFieldForNameElement();
+        element.innerHTML += "<div class=\"row mt-2\"><label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
+            "<div class=\"col-6 col-md-3 pl-0\"><input type=\"text\" name=\"names\" class=\"form-control col-12\" /></div> " +
+            getInputFieldForNameElement();
     }
 
     function getInputFieldForNameElement() {
-        var html = "<label class=\"col-3 mt-2\">@Localizer["FieldType"]: </label>" +
-            "<select name =\"Types\" class=\"custom-select col-3\" style=\"margin-left: -15px\">" +
+        var html = "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldType"]: </label>" +
+            "<div class=\"col-6 col-md-3 pr-0\">" +
+            "<select name =\"Types\" class=\"custom-select\" style=\"margin-left: -15px\">" +
             "<option value=\"@TypeField.Integer\">@TypeField.Integer</option>" +
             "<option value=\"@TypeField.Checkbox\">@TypeField.Checkbox</option>" +
             "<option value=\"@TypeField.String\">@TypeField.String</option>" +
             "<option value=\"@TypeField.DateTime\">@TypeField.DateTime</option>" +
             "<option value=\"@TypeField.Markdown\">@TypeField.Markdown</option>" +
-            "</select> </div>";
+            "</select></div></div>";
         return html;
     }
 </script>

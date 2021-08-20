@@ -6,14 +6,20 @@
     ViewData["Title"] = Localizer["Title"];
 }
 
-<ul>@Localizer["UserData"]</ul>
-@if (User.IsInRole("admin"))
-{
-    <li>@Localizer["ID"] - @Model.UserId</li>
-    <li>@Localizer["Email"] - @Model.UserEmail</li>
-    <li>@Localizer["UserName"] - @Model.UserName</li>
-    <li>@Localizer["Role"] - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</li>
-}
-<form asp-action="Admin" asp-controller="Home" method="post">
-    <input type="submit" class="btn btn-primary" value="@Localizer["Back"]">
-</form>
+<div class="row">
+    <h2 class="col-12 text-center mb-4 mt-4">@Localizer["UserData"]</h2>
+    @if (User.IsInRole("admin"))
+    {
+        <ul>
+            <li>@Localizer["ID"] - @Model.UserId</li>
+            <li>@Localizer["Email"] - @Model.UserEmail</li>
+            <li>@Localizer["UserName"] - @Model.UserName</li>
+            <li>@Localizer["Role"] - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</li>
+        </ul>
+    }
+    <div class="col-12 text-left m-3">
+        <form asp-action="Admin" asp-controller="Home" method="post">
+            <input type="submit" class="btn btn-primary" value="@Localizer["Back"]">
+        </form>
+    </div>
+</div>

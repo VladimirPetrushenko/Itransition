@@ -9,7 +9,6 @@ namespace AspNetCore
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
@@ -61,8 +60,22 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9079b70dfb20f43dcf96079ce5e7294ad4c924e5", @"/Views/Item/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9759dca879eb168ea12831d93ec16c2c5c7e46c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12c5e679cfc7b8bd71c160ab083035edd5b3dbee", @"/Views/_ViewImports.cshtml")]
     public class Views_Item_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProjectForItransition.ViewModels.Items.ShowItemModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-primary float-right"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -125,7 +138,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                </h1>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e57960", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e58360", async() => {
                 WriteLiteral("\r\n                    <div class=\"card-title h5\">\r\n                        ");
 #nullable restore
 #line 20 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Item\Index.cshtml"
@@ -507,7 +520,7 @@ WriteAttributeValue("", 5648, User.Identity.Name, 5648, 19, false);
 #line hidden
 #nullable disable
                 WriteLiteral("</label>\r\n                        </div>\r\n                        <div class=\"col-10 pr-5 text-right\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e526815", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e527215", async() => {
                     WriteLiteral("\r\n                                ");
 #nullable restore
 #line 130 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Item\Index.cshtml"
@@ -555,7 +568,7 @@ WriteAttributeValue("", 5648, User.Identity.Name, 5648, 19, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<br />\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e530517", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9079b70dfb20f43dcf96079ce5e7294ad4c924e530917", async() => {
                 WriteLiteral("\r\n    <div class=\"row\">\r\n        <input type=\"hidden\" name=\"collectionId\"");
                 BeginWriteAttribute("value", " value=\"", 9683, "\"", 9710, 1);
 #nullable restore
