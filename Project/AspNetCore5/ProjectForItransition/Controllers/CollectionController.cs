@@ -53,7 +53,7 @@ namespace ProjectForItransition.Controllers
             await FillingCollection(collection, model);
             _repository.CreateCollection(collection);
             _repository.SaveChange();
-            return RedirectToAction("Index", "Collection");
+            return RedirectToAction("ShowOwnCollections", "Collection");
         }
         
         [HttpGet]
@@ -64,6 +64,7 @@ namespace ProjectForItransition.Controllers
             return View(collections);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ShowCollection(int? collectionId, SortState sort)
         {
@@ -73,7 +74,7 @@ namespace ProjectForItransition.Controllers
             var collection = _repository.GetCollectionById((int)collectionId);
             return View(new ShowCollectionViewModel(collection, tags));
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult ShowCollection(FilterItemsViewModel model)
         {
@@ -142,6 +143,7 @@ namespace ProjectForItransition.Controllers
             ViewBag.MarkdownSortParm = sort == SortState.Markdown ? SortState.Markdown_desc : SortState.Markdown;
             ViewBag.CheckboxSortParm = sort == SortState.Checkbox ? SortState.Checkbox_desc : SortState.Checkbox;
         }
+
         private static void SortItems(SortState sort, ContentCollection collection)
         {
             collection.Items = sort switch

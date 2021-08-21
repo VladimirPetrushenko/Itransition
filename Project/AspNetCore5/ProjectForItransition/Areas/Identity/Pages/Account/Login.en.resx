@@ -117,64 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Checkbox" xml:space="preserve">
-    <value>Булевые поля</value>
-  </data>
-  <data name="Collection" xml:space="preserve">
-    <value>Название коллекции</value>
-  </data>
-  <data name="CreateItem" xml:space="preserve">
-    <value>Создать новый элемент</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Поля с датой</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Описание коллекции</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Фильтр</value>
-  </data>
-  <data name="ImageNotFound" xml:space="preserve">
-    <value>Изображение коллекции не было найдено</value>
-  </data>
-  <data name="Integer" xml:space="preserve">
-    <value>Целочисленное поля</value>
-  </data>
-  <data name="ItemName" xml:space="preserve">
-    <value>Название элемента</value>
-  </data>
-  <data name="Markdown" xml:space="preserve">
-    <value>Markdown поля</value>
-  </data>
-  <data name="NameFilter" xml:space="preserve">
-    <value>Введите название или тег</value>
-  </data>
-  <data name="NotFound" xml:space="preserve">
-    <value>Не найдено в этом элементе</value>
-  </data>
-  <data name="NotFoundItem" xml:space="preserve">
-    <value>Элементы в этой коллекции ещё не созданы</value>
-  </data>
-  <data name="Nothing" xml:space="preserve">
-    <value>Создайте свой первый элемент коллекции</value>
-  </data>
-  <data name="Possibilities" xml:space="preserve">
-    <value>Возможности</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>Строковые поля</value>
-  </data>
-  <data name="TagFilter" xml:space="preserve">
-    <value>Введите тег для фильтрации или выберите из списка</value>
-  </data>
-  <data name="Tags" xml:space="preserve">
-    <value>Список тегов</value>
-  </data>
   <data name="Title" xml:space="preserve">
-    <value>Просмотр коллекции</value>
-  </data>
-  <data name="Topic" xml:space="preserve">
-    <value>Тема коллекции</value>
+    <value>Log in</value>
   </data>
 </root>

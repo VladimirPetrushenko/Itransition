@@ -33,10 +33,11 @@
                             <th scope="row">
                                 <form method="get" asp-action="Index" asp-controller="Item">
                                     <input type="hidden" id="itemIdInput" name="itemId" value="@item.Id" />
+                                    <input type="hidden" id="itemIdInput" name="collectionId" value="@item.Collection.Id" />
                                     <button class="btn btn-link">@item.Name</button>
                                 </form>
                             </th>
-                            <td>
+                            <td class="align-middle">
                                 @if (item.Tags != null)
                                 {
                                     @foreach (var tag in item.Tags)

@@ -135,6 +135,9 @@
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
+  <data name="ImageNotFound" xml:space="preserve">
+    <value>No collection image was found</value>
+  </data>
   <data name="Integer" xml:space="preserve">
     <value>Integer fields</value>
   </data>
@@ -149,6 +152,12 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found in this item</value>
+  </data>
+  <data name="NotFoundItem" xml:space="preserve">
+    <value>Items in this collection have not been created yet</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Create your first collection item</value>
   </data>
   <data name="Possibilities" xml:space="preserve">
     <value>Possibilities</value>

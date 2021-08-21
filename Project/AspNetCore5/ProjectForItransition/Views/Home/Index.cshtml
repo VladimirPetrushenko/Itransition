@@ -21,11 +21,11 @@
             {
                 foreach (var item in Model.Items)
                 {
-                    <div class="col-12">
-                        <form asp-action="Index" asp-controller="Item" method="get">
+                    <div class="col-12 left">
+                        <form asp-action="Index" asp-controller="Item" class="float-left" method="get">
                             <input type="hidden" name="collectionId" value="@item.Collection.Id" />
                             <input type="hidden" name="itemId" value="@item.Id" />
-                            <button class="btn btn-link"><div class="h4 m-0">@item.Name</div></button>
+                            <button class="btn btn-link"><div class="h4 text-left m-0">@item.Name</div></button>
                         </form>
                     </div>
                     <div class="col-12 mb-4">
@@ -38,7 +38,6 @@
                             }
                         }
                     </div>
-                    <hr />
                 }
             }
             else

@@ -33,7 +33,9 @@ namespace ProjectForItransition.Repository.Data
             _context.Tags.ToList();
             var comments = _context.Comment
                 .Where(x => EF.Functions.FreeText(x.Value, search))
-                .Include(x => x.Item).ToList();
+                .Include(x => x.Item)
+                .Include(x => x.Item.Collection)
+                .ToList();
             List<ContentItem> items = new List<ContentItem>();
             comments.ForEach(x => items.Add(x.Item));
             return items;
@@ -44,7 +46,9 @@ namespace ProjectForItransition.Repository.Data
             _context.Tags.ToList();
             var markdowns = _context.MarkdownElements
                 .Where(x => EF.Functions.FreeText(x.Value, search))
-                .Include(x => x.Item).ToList();
+                .Include(x => x.Item)
+                .Include(x => x.Item.Collection)
+                .ToList();
             List<ContentItem> items = new List<ContentItem>();
             markdowns.ForEach(x => items.Add(x.Item));
             return items;
@@ -54,7 +58,9 @@ namespace ProjectForItransition.Repository.Data
         {
             var items = _context.Items
                 .Where(x => EF.Functions.FreeText(x.Name, search))
-                .Include(x => x.Tags).ToList();
+                .Include(x => x.Collection)
+                .Include(x => x.Tags)
+                .ToList();
             return items;
         }
 
@@ -63,7 +69,9 @@ namespace ProjectForItransition.Repository.Data
             _context.Tags.ToList();
             var strings = _context.StringElements
                 .Where(x => EF.Functions.FreeText(x.Value, search))
-                .Include(x => x.Item).ToList();
+                .Include(x => x.Item)
+                .Include(x => x.Item.Collection)
+                .ToList();
             List<ContentItem> items = new List<ContentItem>();
             strings.ForEach(x => items.Add(x.Item));
             return items;
@@ -71,7 +79,10 @@ namespace ProjectForItransition.Repository.Data
 
         public List<ContentItem> GetAllItem()
         {
-            return _context.Items.Include(x=> x.Tags).ToList();
+            return _context.Items
+                .Include(x => x.Collection)
+                .Include(x => x.Tags)
+                .ToList();
         }
 
         public ContentItem GetItemById(int itemId)

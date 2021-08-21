@@ -32,11 +32,11 @@ namespace ProjectForItransition.Controllers
             _tagRepo = tagRepo;
             _likeRepo = likeRepo;
         }
-
+        [AllowAnonymous]
         public IActionResult Index(int? collectionId, int itemId)
         {
             if (collectionId == null)
-                return View();
+                return NotFound();
             var collection = _collectionRepo.GetCollectionById((int)collectionId);
             var item = _itemRepo.GetItemById(itemId);
             ShowItemModel model = new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
