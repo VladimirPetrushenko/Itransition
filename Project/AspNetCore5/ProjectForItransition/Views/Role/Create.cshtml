@@ -1,0 +1,23 @@
+﻿@model string
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="row">
+    <h1 class="col-12 text-center m-2">@Localizer["CreateRole"]</h1>
+    <div class="col-12 m-2">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+    <div class="col-12">
+        <form asp-action="Create" class="row" method="post">
+            <label for="name" class="col-4">@Localizer["NewRole"]</label>
+            <input name="name" class="form-control col-6" />
+            <div class="col-2 text-center">
+                <input type="submit" class="btn btn-success" value="@Localizer["Create"]" />
+            </div>
+        </form>
+    </div>
+</div>

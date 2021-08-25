@@ -13,7 +13,7 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
-using WebApplication1;
+using ProjectForItransition;
 
 #line default
 #line hidden
@@ -75,7 +75,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"285660b341eb4b3cc9b502b734c33e10b46fac7c", @"/Views/Shared/_LoginPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12c5e679cfc7b8bd71c160ab083035edd5b3dbee", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e877d87c05e6a72ab198887dab741ca4e6e676f4", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__LoginPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("nav-link text-dark"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -128,7 +128,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("            <li class=\"nav-item\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c9799", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c9805", async() => {
 #nullable restore
 #line 9 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
                                                                                               Write(Localizer["Admin"]);
@@ -163,7 +163,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("        <li class=\"nav-item\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c12017", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c12023", async() => {
 #nullable restore
 #line 13 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
                                                                                                 Write(Localizer["ListCollection"]);
@@ -190,7 +190,7 @@ using Microsoft.AspNetCore.Mvc;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        </li>\r\n        <li class=\"nav-item\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c14010", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c14016", async() => {
 #nullable restore
 #line 16 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
                                                                                             Write(Localizer["YourCollections"]);
@@ -226,7 +226,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("                <li class=\"nav-item active\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c16382", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c16388", async() => {
                 WriteLiteral("\r\n                        ");
 #nullable restore
 #line 25 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
@@ -254,7 +254,7 @@ using Microsoft.AspNetCore.Mvc;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c18310", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c18316", async() => {
                 WriteLiteral("\r\n                        <button type=\"submit\" class=\"nav-link btn btn-link text-dark\">");
 #nullable restore
 #line 30 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
@@ -308,7 +308,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("                <li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c21990", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c21996", async() => {
 #nullable restore
 #line 37 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
                                                                                               Write(Localizer["Register"]);
@@ -333,7 +333,7 @@ using Microsoft.AspNetCore.Mvc;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item active\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c23800", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "285660b341eb4b3cc9b502b734c33e10b46fac7c23806", async() => {
 #nullable restore
 #line 40 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Shared\_LoginPartial.cshtml"
                                                                                            Write(Localizer["Login"]);

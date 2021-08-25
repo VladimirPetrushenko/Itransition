@@ -11,6 +11,8 @@ using ProjectForItransition.Models.Collection;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.Controllers
 {
@@ -32,6 +34,7 @@ namespace ProjectForItransition.Controllers
             _tagRepo = tagRepo;
             _cloudinary = cloudinary;
         }
+        
         [AllowAnonymous]
         public IActionResult Index()
         {
@@ -39,23 +42,6 @@ namespace ProjectForItransition.Controllers
             return View(collections);
         }
 
-        [HttpGet]
-        public IActionResult CreateCollection()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateCollection(ContentCollection collection, CreateCollectionViewModel model)
-        {
-            if (collection == null)
-                return View(collection);
-            await FillingCollection(collection, model);
-            _repository.CreateCollection(collection);
-            _repository.SaveChange();
-            return RedirectToAction("ShowOwnCollections", "Collection");
-        }
-        
         [HttpGet]
         public async Task<IActionResult> ShowOwnCollections()
         {
@@ -66,70 +52,100 @@ namespace ProjectForItransition.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult ShowCollection(int? collectionId, SortState sort)
+        public IActionResult ShowCollection(int? collectionId)
         {
             var tags = _tagRepo.GetAllDistinctTags();
-            if (collectionId == null)
-                throw new ArgumentException();
             var collection = _repository.GetCollectionById((int)collectionId);
             return View(new ShowCollectionViewModel(collection, tags));
         }
+        
         [AllowAnonymous]
         [HttpPost]
         public IActionResult ShowCollection(FilterItemsViewModel model)
         {
             var tags = _tagRepo.GetAllDistinctTags();
-            if (model.CollectionId == null)
-                throw new ArgumentException();
             var collection = _repository.GetCollectionById((int)model.CollectionId);
             model.FilterByNameAndTags(collection);
-            SotrItemsAndChangeSortParm(model.sort, collection);
+            SotrItemsAndChangeSortParm(model.Sort, collection);
             return View(new ShowCollectionViewModel(collection, tags, model.NameForFilter, model.TagsForFilter));
         }
 
         [HttpGet]
-        public IActionResult UpdateCollection(int? collectionId)
+        public IActionResult CreateCollection(string userName)
         {
-            if (collectionId == null)
-                throw new ArgumentException();
-            var collection = _repository.GetCollectionById((int)collectionId);
-            return View(collection);
+            return View(new CreateCollectionViewModel { UserName = userName });
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCollection(ContentCollection collection, CreateCollectionViewModel model)
+        public async Task<IActionResult> CreateCollection(CreateCollectionViewModel model)
         {
-            var updateCollection = _repository.GetCollectionById(collection.Id);
-            await FillingCollection(collection, model);
-            CollectionCopyToUpdateColection(collection, updateCollection);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateCollection(await CreateCollectionFromViemModel(model));
+                _repository.SaveChange();
+                return RedirectToAction("ShowOwnCollections", "Collection");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult UpdateCollection(int collectionId)
+        {
+            return View(new UpdateCollectionViewModel { Collection = _repository.GetCollectionById(collectionId) });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCollection(UpdateCollectionViewModel model)
+        {
+            var updateCollection = _repository.GetCollectionById(model.CollectionId);
+            await CopyToWithoutUser(model, updateCollection);
             _repository.UpdateCollection(updateCollection);
             if (_repository.SaveChange())
             {
-                return RedirectToAction("Index", "Collection");
+                return RedirectToAction("ShowOwnCollections", "Collection");
             }
             return View(model);
-        }
-
-        private static void CollectionCopyToUpdateColection(ContentCollection sourceCollection, ContentCollection updateCollection)
-        {
-            updateCollection.Name = sourceCollection.Name;
-            updateCollection.Description = sourceCollection.Description;
-            updateCollection.Topic = sourceCollection.Topic;
-            updateCollection.NameElements = sourceCollection.NameElements;
-            if (sourceCollection.Image != null)
-                updateCollection.Image = sourceCollection.Image;
         }
 
         [HttpPost]
         public IActionResult DeleteCollection(int? collectionId)
         {
-            if (collectionId == null)
-                throw new ArgumentException();
             var collection = _repository.GetCollectionById((int)collectionId);
             _repository.DeleteCollection(collection);
             _repository.SaveChange();
 
             return RedirectToAction("ShowOwnCollections", "Collection");
+        }
+        
+        private async Task<ContentCollection> CreateCollectionFromViemModel(CreateCollectionViewModel model)
+        {
+            var collection = new ContentCollection();
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            collection.Name = model.Name;
+            collection.UserId = user.Id;
+            collection.UserName = user.UserName;
+            collection.Description = model.Description;
+            if (model.ImageInput != null)
+                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) };
+            collection.Topic = model.Topic;
+            collection.NameElements = model.NameFields == null ?  new List<NameField>()
+                    : NameField.CreateListNameFieldWithNamesAndTypes(model.NameFields, model.Types);
+            collection.Items = new List<ContentItem>();
+            return collection;
+        }
+        
+        private async Task CopyToWithoutUser(UpdateCollectionViewModel source, ContentCollection collection)
+        {
+            collection.Name = source.Name;
+            collection.Description = source.Description;
+            if (source.ImageInput != null)
+                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(source.ImageInput) };
+            collection.Topic = source.Topic;
+            collection.NameElements = source.NameFields == null ? new List<NameField>()
+                    : NameField.CreateListNameFieldWithNamesAndTypes(source.NameFields, source.Types);
         }
 
         private void SotrItemsAndChangeSortParm(SortState sort, ContentCollection collection)
@@ -177,14 +193,5 @@ namespace ProjectForItransition.Controllers
             return result.PublicId;
         }
 
-        private async Task FillingCollection(ContentCollection collection, CreateCollectionViewModel model)
-        {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            if(model.ImageInput!=null)
-                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) };
-            collection.UserId = user.Id;
-            collection.UserName = User.Identity.Name;
-            collection.NameElements = NameField.CreateListNameFieldWithNamesAndTypes(model.Names, model.Types);
-        }
     }
 }

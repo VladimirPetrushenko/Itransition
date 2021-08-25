@@ -13,7 +13,7 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
-using WebApplication1;
+using ProjectForItransition;
 
 #line default
 #line hidden
@@ -75,7 +75,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6fed04c8d38d33e86a38774253fed0efbd370c5c", @"/Views/Roles/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12c5e679cfc7b8bd71c160ab083035edd5b3dbee", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e877d87c05e6a72ab198887dab741ca4e6e676f4", @"/Views/_ViewImports.cshtml")]
     public class Views_Roles_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "UserList", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -144,7 +144,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("</h4>\r\n    <div class=\"col-12 m-3\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fed04c8d38d33e86a38774253fed0efbd370c5c7850", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fed04c8d38d33e86a38774253fed0efbd370c5c7856", async() => {
                 WriteLiteral("\r\n            <input type=\"hidden\" name=\"userId\"");
                 BeginWriteAttribute("value", " value=\"", 495, "\"", 516, 1);
 #nullable restore
@@ -199,7 +199,7 @@ WriteAttributeValue("", 748, role.Name, 748, 10, false);
 #line hidden
 #nullable disable
                 WriteLiteral("            <div class=\"col-6 text-left mt-3\">\r\n                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fed04c8d38d33e86a38774253fed0efbd370c5c10424", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fed04c8d38d33e86a38774253fed0efbd370c5c10430", async() => {
 #nullable restore
 #line 25 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Roles\Edit.cshtml"
                                                             Write(Localizer["Back"]);

@@ -17,47 +17,42 @@ namespace ProjectForItransition.Repository.Data
         }
         public void CreateCollection(ContentCollection collection)
         {
-            CheckCollectionForNull(collection);
-
-            _context.Add(collection);
+             _context.Add(collection);
         }
 
-        private static void CheckCollectionForNull(ContentCollection collection)
-        {
-            if (collection == null)
-            {
-                throw new ArgumentException(nameof(collection));
-            }
-        }
 
         public void DeleteCollection(ContentCollection collection)
         {
-            CheckCollectionForNull(collection);
             _context.Collections.Remove(collection);
         }
 
         public List<ContentCollection> GetAllCollections()
         {
             return _context.Collections
-                            .Include(x => x.NameElements)
-                            .Include(x=>x.Image)
-                            .Include(x=> x.Items)
-                            .ToList();
+                    .Include(x => x.NameElements)
+                    .Include(x=>x.Image)
+                    .Include(x=> x.Items)
+                    .ToList();
         }
 
         public ContentCollection GetCollectionById(int id)
         {
-            _context.IntegerElements.ToList();
-            _context.StringElements.ToList();
-            _context.MarkdownElements.ToList();
-            _context.CheckboxElements.ToList();
-            _context.DateTimeOffsetElements.ToList();
-            _context.Tags.ToList();
+            LoadItemCustomFields();
+            LoadTags();
             return _context.Collections
                 .Include(x => x.NameElements)
                 .Include(x => x.Items)
                 .Include(x => x.Image)
                 .FirstOrDefault(x => x.Id == id);
+        }
+
+        private void LoadItemCustomFields()
+        {
+            _ = _context.IntegerElements.ToList();
+            _ = _context.StringElements.ToList();
+            _ = _context.MarkdownElements.ToList();
+            _ = _context.CheckboxElements.ToList();
+            _ = _context.DateTimeOffsetElements.ToList();
         }
 
         public bool SaveChange()
@@ -72,10 +67,6 @@ namespace ProjectForItransition.Repository.Data
 
         public List<ContentCollection> GetAllUserCollections(string userId)
         {
-            if (userId == null)
-            {
-                throw new ArgumentException();
-            }
             return _context.Collections.Include(x => x.NameElements)
                 .Where(x => x.UserId == userId)
                 .Include(x => x.Items)
@@ -85,24 +76,29 @@ namespace ProjectForItransition.Repository.Data
 
         public IEnumerable<ContentItem> FreeTextOnDescription(string search)
         {
-            _context.Tags.ToList();
+            LoadTags();
             var collection = _context.Collections
                 .Where(x => EF.Functions.FreeText(x.Description, search))
                 .Include(x => x.Items).ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             collection.ForEach(x => { items.AddRange(x.Items.ToList()); });
             return items;
         }
 
         public IEnumerable<ContentItem> FreeTextOnNameCollection(string search)
         {
-            _context.Tags.ToList();
+            LoadTags();
             var collection = _context.Collections
                 .Where(x => EF.Functions.FreeText(x.Name, search))
                 .Include(x => x.Items).ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             collection.ForEach(x => { items.AddRange(x.Items.ToList()); });
             return items;
+        }
+
+        private void LoadTags()
+        {
+            _ = _context.Tags.ToList();
         }
     }
 }

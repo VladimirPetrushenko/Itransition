@@ -1,11 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using ProjectForItransition.Models.Collection;
 using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.ViewModels.Items
 {
     public class CreateItemViewModel
     {
-        public int? CollectionId { get; set; }
+        public int CollectionId { get; set; }
+        public ContentCollection Collection { get; set; }
+        public string[] AllTags { get; set; }
+        [Required]
         public string Name { get; set; }
         public string[] Tags { get; set; }
         public int[] Checkboxes { get; set; }
@@ -19,14 +24,16 @@ namespace ProjectForItransition.ViewModels.Items
     {
         public static ContentItem CreateContentItem(this CreateItemViewModel model)
         {
-            ContentItem item = new ContentItem();
-            item.Name = model.Name;
-            item.Tags = Tag.CreateTagsListFromArrayString(model.Tags);
-            item.CheckboxElements = CheckboxElement.CreateListCheckboxElementFromIntArray(model.Checkboxes);
-            item.DateTimeElements = DateTimeOffsetElement.CreateListDateTimeOffsetElementWithValue(model.Datetimes);
-            item.StringElements = StringElement.CreateListStringElementWithValue(model.Strings);
-            item.MarkdownElements = MarkdownElement.CreateListMarkdownElementWithValue(model.Markdowns);
-            item.IntegerElements = IntegerElement.CreateListIntegerElementWithValue(model.Integers);
+            ContentItem item = new()
+            {
+                Name = model.Name,
+                Tags = Tag.CreateTagsListFromArrayString(model.Tags),
+                CheckboxElements = CheckboxElement.CreateListCheckboxElementFromIntArray(model.Checkboxes),
+                DateTimeElements = DateTimeOffsetElement.CreateListDateTimeOffsetElementWithValue(model.Datetimes),
+                StringElements = StringElement.CreateListStringElementWithValue(model.Strings),
+                MarkdownElements = MarkdownElement.CreateListMarkdownElementWithValue(model.Markdowns),
+                IntegerElements = IntegerElement.CreateListIntegerElementWithValue(model.Integers)
+            };
             return item;
         }
     }

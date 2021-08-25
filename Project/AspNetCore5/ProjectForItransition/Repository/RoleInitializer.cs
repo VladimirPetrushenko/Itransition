@@ -8,7 +8,7 @@ namespace ProjectForItransition.Repository
 {
     public class RoleInitializer
     {
-        public static async Task InitializeAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task InitializeAsync(RoleManager<IdentityRole> roleManager)
         {
             if (await roleManager.FindByNameAsync("admin") == null)
             {

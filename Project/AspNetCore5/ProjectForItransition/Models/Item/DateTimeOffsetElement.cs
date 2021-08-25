@@ -10,19 +10,18 @@ namespace ProjectForItransition.Models.Item
         public ContentItem Item { get; set; }
         public static List<DateTimeOffsetElement> CreateListDateTimeOffsetElementWithValue(DateTimeOffset[] values)
         {
-            List<DateTimeOffsetElement> dates = new List<DateTimeOffsetElement>();
+            List<DateTimeOffsetElement> dateTimeOffsetElements = new ();
             if (values == null)
-                return dates;
+                return dateTimeOffsetElements;
             foreach (var item in values)
             {
-                dates.Add(new DateTimeOffsetElement { Value = item });
+                dateTimeOffsetElements.Add(new DateTimeOffsetElement { Value = item });
             }
-            return dates;
+            return dateTimeOffsetElements;
         }
         public int CompareTo(object obj)
         {
-            DateTimeOffsetElement date = obj as DateTimeOffsetElement;
-            if (date == null)
+            if (obj is not DateTimeOffsetElement date)
                 throw new Exception("Can't compare two objects");
             return this.Value.CompareTo(date.Value);
         }

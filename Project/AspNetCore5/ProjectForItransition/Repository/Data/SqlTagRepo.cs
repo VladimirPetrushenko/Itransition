@@ -17,11 +17,11 @@ namespace ProjectForItransition.Repository.Data
         public IEnumerable<ContentItem> FreeTextOnNameTags(string search)
         {
             var tags = _context.Tags
-                .Where(x => EF.Functions.FreeText(x.Name, search))
+                .Where(x => EF.Functions.FreeText(x.Name, search) && x.Item != null)
                 .Include(x => x.Item)
                 .Include(x => x.Item.Collection)
                 .ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             tags.ForEach(x => items.Add(x.Item));
             return items.Distinct();
         }

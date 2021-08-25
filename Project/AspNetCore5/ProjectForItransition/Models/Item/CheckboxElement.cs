@@ -11,26 +11,25 @@ namespace ProjectForItransition.Models.Item
         public ContentItem Item { get; set; }
         public static List<CheckboxElement> CreateListCheckboxElementWithValue(bool[] values)
         {
-            List<CheckboxElement> checkboxes = new List<CheckboxElement>();
+            List<CheckboxElement> checkboxElements = new();
             if (values == null)
-                return checkboxes;
+                return checkboxElements;
             foreach (var item in values)
             {
-                checkboxes.Add(new CheckboxElement { Value = item });
+                checkboxElements.Add(new CheckboxElement { Value = item });
             }
-            return checkboxes;
+            return checkboxElements;
         }
         public int CompareTo(object obj)
         {
-            CheckboxElement box = obj as CheckboxElement;
-            if (box == null)
+            if (obj is not CheckboxElement box)
                 throw new Exception("Can't compare two objects");
             return this.Value.CompareTo(box.Value);
         }
         public static List<CheckboxElement> CreateListCheckboxElementFromIntArray(int[] checkboxes)
         {
             if (checkboxes == null)
-                return CreateListCheckboxElementWithValue(new bool[0]);
+                return CreateListCheckboxElementWithValue(Array.Empty<bool>());
             bool[] box = new bool[checkboxes.Max()];
             foreach (var index in checkboxes)
                 box[index - 1] = true;

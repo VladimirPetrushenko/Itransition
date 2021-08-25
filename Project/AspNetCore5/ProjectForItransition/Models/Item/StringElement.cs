@@ -12,7 +12,7 @@ namespace ProjectForItransition.Models.Item
         public ContentItem Item { get; set; }
         public static List<StringElement> CreateListStringElementWithValue(string[] values)
         {
-            List<StringElement> strings = new List<StringElement>();
+            List<StringElement> strings = new();
             if (values == null)
                 return strings;
             foreach (var item in values)
@@ -23,8 +23,7 @@ namespace ProjectForItransition.Models.Item
         }
         public int CompareTo(object obj)
         {
-            StringElement str = obj as StringElement;
-            if (str == null)
+            if (obj is not StringElement str)
                 throw new Exception("Can't compare two objects");
             return this.Value.CompareTo(str.Value);
         }

@@ -82,7 +82,7 @@
                                     case TypeField.DateTime:
                                         if (Model.Item.DateTimeElements.Count() > datetime)
                                         {
-                                            <input type="date" name="datetimes" class="form-control" value="@Model.Item.DateTimeElements[datetime].Value" />
+                                            <input type="date" name="datetimes" class="form-control" value="@Model.Item.DateTimeElements[datetime].Value.Date.ToString("yyyy-MM-dd")" />
                                         }
                                         else
                                         {
@@ -124,8 +124,8 @@
     </div>
 </div>
 <script>
-    var allTagsForUpdateItem = new Array();
-    var htmlUpdate = document.createElement('div');
+    let allTagsForUpdateItem = new Array();
+    let htmlUpdate = document.createElement('div');
 
     @if (Model.AllTags != null)
     {
@@ -135,7 +135,7 @@
             @:allTagsForUpdateItem.push(htmlUpdate.innerHTML);
         }
     }
-    var updateTags = new Array();
+    let updateTags = new Array();
     @if (Model.Item.Tags != null)
     {
         foreach (var item in Model.Item.Tags.Select(x => x.Name).ToArray())

@@ -10,7 +10,7 @@ namespace ProjectForItransition.ViewModels.Collection
         public int? CollectionId { get; set; }
         public string NameForFilter { get; set; }
         public string[] TagsForFilter { get; set; }
-        public SortState sort { get; set; }
+        public SortState Sort { get; set; }
     }
 
     public static class FilterByNameAndTagsExtinsion

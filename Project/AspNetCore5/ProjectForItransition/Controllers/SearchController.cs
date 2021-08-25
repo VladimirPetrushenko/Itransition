@@ -14,9 +14,7 @@ namespace ProjectForItransition.Controllers
         private readonly IItemRepo _itemRepo;
         private readonly ITagRepo _tagRepo;
 
-        public SearchController(ICollectionRepo collectionRepo,
-            IItemRepo itemRepo,
-            ITagRepo tagRepo)
+        public SearchController(ICollectionRepo collectionRepo, IItemRepo itemRepo, ITagRepo tagRepo)
         {
             _collectionRepo = collectionRepo;
             _itemRepo = itemRepo;
@@ -34,7 +32,7 @@ namespace ProjectForItransition.Controllers
 
         private IEnumerable<ContentItem> SearchItems(string search)
         {
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             items.AddRange(_collectionRepo.FreeTextOnDescription(search));
             items.AddRange(_collectionRepo.FreeTextOnNameCollection(search));
             items.AddRange(_itemRepo.FreeTextOnNameItem(search));

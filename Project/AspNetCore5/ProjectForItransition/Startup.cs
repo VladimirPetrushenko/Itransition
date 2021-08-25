@@ -15,7 +15,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 
-namespace WebApplication1
+namespace ProjectForItransition
 {
     public class Startup
     {
@@ -37,6 +37,8 @@ namespace WebApplication1
             {
                 throw new ArgumentException("Please specify Cloudinary account details!");
             }
+
+            services.AddSignalR();
 
             services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
 
@@ -72,6 +74,7 @@ namespace WebApplication1
                 optints.SupportedUICultures = supportedCultures;
             });
 
+
             services.AddAuthentication().AddFacebook(options =>
             {
                 options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -98,6 +101,7 @@ namespace WebApplication1
                 app.UseHsts();
             }
 
+
             var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(locOptions.Value);
 
@@ -115,6 +119,7 @@ namespace WebApplication1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ItemHub>("/Item/Index");
             });
         }
     }

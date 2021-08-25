@@ -19,10 +19,5 @@ namespace ProjectForItransition.Models.Collection
         public List<ContentItem> Items { get; set; } = new List<ContentItem>();
 
         public List<NameField> NameElements { get; set; } = new List<NameField>();
-
-        internal ContentCollection where(Func<object, object> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -10,8 +10,8 @@
     var strings = Model.Collection.NameElements.Where(x => x.Type == TypeField.String).ToList();
     var markdowns = Model.Collection.NameElements.Where(x => x.Type == TypeField.Markdown).ToList();
     var checkboxes = Model.Collection.NameElements.Where(x => x.Type == TypeField.Checkbox).ToList();
-    var i = 0;
     var countItem = Model.Collection.Items.Count();
+    var i = 0;
 }
 
 <div class="row p-2">
@@ -193,7 +193,7 @@
                                                 @name.Name -
                                                 @if (item.DateTimeElements.Count() > i)
                                                 {
-                                                    <span> @item.DateTimeElements[i].Value</span>
+                                                    <span> @item.DateTimeElements[i].Value.Date.ToShortDateString()</span>
                                                     i++;
                                                 }
                                                 else
@@ -308,7 +308,7 @@
         element.value = str;
     }
 
-    var allTagsForShowCollection = new Array();
+    let allTagsForShowCollection = new Array();
     @if (Model.AllTags != null)
     {
         foreach (var item in Model.AllTags)
@@ -317,7 +317,7 @@
         }
     }
 
-    var filterTags = new Array();
+    let filterTags = new Array();
     @if (Model.FilterTags != null)
     {
         foreach (var item in Model.FilterTags)
@@ -330,6 +330,9 @@
         $('#filterTag').magicSuggest({
             data: allTagsForShowCollection,
             value: filterTags,
+            cls: 'vrm',
+            infoMsgCls: 'vrms',
+            invalidCls: 'vrmsq',
             placeholder: '@Localizer["TagFilter"]',
         });
     });

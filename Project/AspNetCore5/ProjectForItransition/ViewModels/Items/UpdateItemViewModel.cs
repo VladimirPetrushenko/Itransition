@@ -20,14 +20,16 @@ namespace ProjectForItransition.ViewModels.Items
     {
         public static ContentItem CreateContentItem(this UpdateItemViewModel model)
         {
-            ContentItem item = new ContentItem();
-            item.Name = model.Name;
-            item.Tags = Tag.CreateTagsListFromArrayString(model.Tags);
-            item.CheckboxElements = CheckboxElement.CreateListCheckboxElementFromIntArray(model.Checkboxes);
-            item.DateTimeElements = DateTimeOffsetElement.CreateListDateTimeOffsetElementWithValue(model.Datetimes);
-            item.StringElements = StringElement.CreateListStringElementWithValue(model.Strings);
-            item.MarkdownElements = MarkdownElement.CreateListMarkdownElementWithValue(model.Markdowns);
-            item.IntegerElements = IntegerElement.CreateListIntegerElementWithValue(model.Integers);
+            ContentItem item = new()
+            {
+                Name = model.Name,
+                Tags = Tag.CreateTagsListFromArrayString(model.Tags),
+                CheckboxElements = CheckboxElement.CreateListCheckboxElementFromIntArray(model.Checkboxes),
+                DateTimeElements = DateTimeOffsetElement.CreateListDateTimeOffsetElementWithValue(model.Datetimes),
+                StringElements = StringElement.CreateListStringElementWithValue(model.Strings),
+                MarkdownElements = MarkdownElement.CreateListMarkdownElementWithValue(model.Markdowns),
+                IntegerElements = IntegerElement.CreateListIntegerElementWithValue(model.Integers)
+            };
             return item;
         }
         public static void CopyTo(this ContentItem source, ContentItem destination)

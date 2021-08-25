@@ -14,9 +14,9 @@ namespace ProjectForItransition.Models.Collection
 
         public static List<NameField> CreateListNameFieldWithNamesAndTypes(string[] names, TypeField[] types)
         {
-            if (names.Count() != types.Count())
+            if (names.Length != types.Length)
                 throw new ArgumentException("The number of species and names does not match");
-            List<NameField> nameFields = new List<NameField>();
+            List<NameField> nameFields = new();
             for (int i = 0; i < names.Length; i++)
             {
                 nameFields.Add(new NameField { Name = names[i], Type = types[i] });

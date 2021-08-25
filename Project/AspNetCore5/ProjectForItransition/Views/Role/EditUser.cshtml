@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model ProjectForItransition.ViewModels.Roles.ChangeRoleViewModel
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="row">
+    <h2 class="col-12 text-center mb-4">@Localizer["EditRole"]</h2>
+    <h4 class="col-12 mb-2">@Localizer["UserName"] @Model.UserEmail</h4>
+    <div class="col-12 m-3">
+        <form asp-action="Edit" class="row" method="post">
+            <input type="hidden" name="userId" value="@Model.UserId" />
+            @foreach (IdentityRole role in Model.AllRoles)
+            {
+                <div class="form-check col-3">
+                    <input class="form-check-input custom-switch " type="checkbox" name="roles" value="@role.Name"
+                           @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />
+                    <label class="form-check-label">@role.Name</label>
+                </div>
+            }
+            <div class="col-6 text-left mt-3">
+                <a asp-action="UserList" class="btn btn-primary">@Localizer["Back"]</a>
+            </div>
+            <div class="col-6 text-right mt-3">
+                <input type="submit" class="btn btn-success" value="@Localizer["Update"]" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,5 +1,19 @@
 ﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/css/site.css" />
+@if (Context.Request.Cookies["theme"] == null)
+{
+    <link href="~/css/site-dark.css" rel="stylesheet" type="text/css" />
+}
+else
+{
+    if (Context.Request.Cookies["theme"] == "dark")
+    {
+        <link href="~/css/site-dark.css" rel="stylesheet" type="text/css" />
+    }
+    if (Context.Request.Cookies["theme"] == "light")
+    {
+        <link href="~/css/site-light.css" rel="stylesheet" type="text/css" />
+    }
+}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="~/lib/magicsuggest/magicsuggest-min.css" rel="stylesheet">
 <link rel="stylesheet" href="~/jQCloud2/dist/jqcloud.min.css">

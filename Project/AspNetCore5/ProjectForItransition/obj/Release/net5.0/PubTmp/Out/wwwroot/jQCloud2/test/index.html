@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QUnit Test Suite</title>
+  <meta charset="utf-8">
+  
+  <link rel="stylesheet" href="../dist/jqcloud.min.css">
+  
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../dist/jqcloud.min.js"></script>
+  
+  <style>
+    .container {
+      width: 400px;
+      height: 300px;
+      border: 1px solid #ccc;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container2" class="container"></div>
+
+<script type="text/javascript">
+	var some_other_words = [
+  { text: "Lorem", weight: 13, link: 'http://github.com/mistic100/jQCloud' },
+  { text: "Ipsum", weight: 10.5, link: 'http://www.strangeplanet.fr' },
+  { text: "Dolor", weight: 9.4, link: 'http://piwigo.org' },
+];
+
+$(function() {
+
+  $("#container2").jQCloud(some_other_words);
+});
+
+</script>
+</body>
+</html>

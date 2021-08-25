@@ -10,7 +10,7 @@ namespace ProjectForItransition.Models.Item
         public ContentItem Item { get; set; }
         public static List<IntegerElement> CreateListIntegerElementWithValue(int[] values)
         {
-            List<IntegerElement> integers = new List<IntegerElement>();
+            List<IntegerElement> integers = new();
             if (values == null)
                 return integers;
             foreach (var item in values)
@@ -22,8 +22,7 @@ namespace ProjectForItransition.Models.Item
 
         public int CompareTo(object obj)
         {
-            IntegerElement integer = obj as IntegerElement;
-            if (integer == null)
+            if (obj is not IntegerElement integer)
                 throw new Exception("Can't compare two objects");
             return this.Value.CompareTo(integer.Value);
         }

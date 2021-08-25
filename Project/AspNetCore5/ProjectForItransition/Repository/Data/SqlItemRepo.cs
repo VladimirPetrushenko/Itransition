@@ -18,8 +18,6 @@ namespace ProjectForItransition.Repository.Data
         public void CreateItem(ContentItem item, int collectionId)
         {
             var collection = _context.Collections.Where(col => col.Id == collectionId).FirstOrDefault();
-            if(collection==null)
-                throw new ArgumentException();
             collection.Items.Add(item);
         }
 
@@ -30,26 +28,26 @@ namespace ProjectForItransition.Repository.Data
 
         public IEnumerable<ContentItem> FreeTextOnComment(string search)
         {
-            _context.Tags.ToList();
+            LoadTags();
             var comments = _context.Comment
-                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Where(x => EF.Functions.FreeText(x.Value, search) && x.Item != null)
                 .Include(x => x.Item)
                 .Include(x => x.Item.Collection)
                 .ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             comments.ForEach(x => items.Add(x.Item));
             return items;
         }
 
         public IEnumerable<ContentItem> FreeTextOnMarkdown(string search)
         {
-            _context.Tags.ToList();
+            LoadTags();
             var markdowns = _context.MarkdownElements
-                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Where(x => EF.Functions.FreeText(x.Value, search) && x.Item != null)
                 .Include(x => x.Item)
                 .Include(x => x.Item.Collection)
                 .ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             markdowns.ForEach(x => items.Add(x.Item));
             return items;
         }
@@ -66,15 +64,20 @@ namespace ProjectForItransition.Repository.Data
 
         public IEnumerable<ContentItem> FreeTextOnString(string search)
         {
-            _context.Tags.ToList();
+            LoadTags();
             var strings = _context.StringElements
-                .Where(x => EF.Functions.FreeText(x.Value, search))
+                .Where(x => EF.Functions.FreeText(x.Value, search) && x.Item != null)
                 .Include(x => x.Item)
                 .Include(x => x.Item.Collection)
                 .ToList();
-            List<ContentItem> items = new List<ContentItem>();
+            List<ContentItem> items = new();
             strings.ForEach(x => items.Add(x.Item));
             return items;
+        }
+
+        private void LoadTags()
+        {
+            _ = _context.Tags.ToList();
         }
 
         public List<ContentItem> GetAllItem()

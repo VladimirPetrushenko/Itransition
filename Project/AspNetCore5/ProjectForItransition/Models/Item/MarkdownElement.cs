@@ -12,7 +12,7 @@ namespace ProjectForItransition.Models.Item
         public ContentItem Item { get; set; }
         public static List<MarkdownElement> CreateListMarkdownElementWithValue(string[] values)
         {
-            List<MarkdownElement> markdowns = new List<MarkdownElement>();
+            List<MarkdownElement> markdowns = new();
             if (values == null)
                 return markdowns;
             foreach (var item in values)
@@ -23,8 +23,7 @@ namespace ProjectForItransition.Models.Item
         }
         public int CompareTo(object obj)
         {
-            MarkdownElement mrkd = obj as MarkdownElement;
-            if (mrkd == null)
+            if (obj is not MarkdownElement mrkd)
                 throw new Exception("Can't compare two objects");
             return this.Value.CompareTo(mrkd.Value);
         }

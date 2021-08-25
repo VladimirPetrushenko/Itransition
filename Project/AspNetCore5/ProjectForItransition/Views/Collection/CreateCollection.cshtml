@@ -1,29 +1,37 @@
-﻿@inject IViewLocalizer Localizer
+﻿@model ProjectForItransition.ViewModels.Collection.CreateCollectionViewModel
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = Localizer["Title"];
+    var userName = Model.UserName != null ? Model.UserName : User.Identity.Name;
 }
 <div class="row col-12">
-    <form method="post" asp-action="CreateCollection" asp-controller="Collection" enctype="multipart/form-data">
+    <form method="post" asp-action="CreateCollection" asp-controller="Collection" asp-antiforgery="true" enctype="multipart/form-data">
+        <input type="hidden" asp-for="UserName" value="@userName" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row mt-4">
             <div class="col-md-9 mb-3">
                 <div class="row">
                     <h1 class="text-center col-12 mb-4">@Localizer["CreateCollection"]</h1>
                     <div class="form-group col-12 row">
-                        <label class="col-5 col-sm-4 mt-1">@Localizer["NameCollection"]: </label>
-                        <input type="text" name="Name" class="form-control col-7 col-sm-8" />
+                        <label asp-for="Name" class="col-5 col-sm-4 col-form-label">@Localizer["NameCollection"]: </label>
+                        <input type="text" asp-for="Name" class="form-control col-7 col-sm-8" autocomplete="off" />
+                        <span class="col-5 col-sm-4"></span>
+                        <span asp-validation-for="Name" class="text-danger col-7 col-sm-8"></span>
                     </div>
                     <br />
                 </div>
                 <div class="row">
-                    <label class="col-5 col-sm-4">@Localizer["Topic"]: </label>
-                    <div class="col-5 col-sm-3">
-                        <select name="Topic" class="custom-select">
-                            @foreach (var item in Enum.GetValues(typeof(Topic)))
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
+                    <div class="form-group col-12 row">
+                        <label class="col-form-label col-5 col-sm-4">@Localizer["Topic"]: </label>
+                        <div class="col-7 col-sm-8 pl-0 pr-0">
+                            <select asp-for="Topic" class="select custom-select">
+                                @foreach (var item in Enum.GetValues(typeof(Topic)))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,14 +45,14 @@
             </div>
         </div>
         <label>@Localizer["Description"]</label>
-        <textarea name="Description" class="form-control" rows="10"></textarea>
+        <textarea asp-for="Description" class="form-control" rows="10"></textarea>
         <div id="NameElements"></div>
         <br />
         <div class="row">
             <div class="col-5 text-left">
                 <input type="button" class="btn btn-primary" onclick="appendElement(NameElements)" value="@Localizer["Element"]" />
             </div>
-            <div class="col-7 text-right">
+            <div class="col-7 text-right right">
                 <input type="submit" class="btn btn-success" value="@Localizer["Create"]" />
             </div>
         </div>
@@ -53,20 +61,24 @@
 <script>
     function appendElement(element) {
         element.innerHTML += "<div class=\"row mt-2\"><label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
-            "<div class=\"col-6 col-md-3 pl-0\"><input type=\"text\" name=\"names\" class=\"form-control col-12\" /></div> " +
+            "<input type=\"text\" name=\"NameFields\" class=\"form-control col-6 col-md-3\" autocomplete=\"off\"/> " +
             getInputFieldForNameElement();
     }
 
     function getInputFieldForNameElement() {
-        var html = "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldType"]: </label>" +
-            "<div class=\"col-6 col-md-3 pr-0\">" +
-            "<select name =\"Types\" class=\"custom-select\" style=\"margin-left: -15px\">" +
-            "<option value=\"@TypeField.Integer\">@TypeField.Integer</option>" +
-            "<option value=\"@TypeField.Checkbox\">@TypeField.Checkbox</option>" +
-            "<option value=\"@TypeField.String\">@TypeField.String</option>" +
-            "<option value=\"@TypeField.DateTime\">@TypeField.DateTime</option>" +
-            "<option value=\"@TypeField.Markdown\">@TypeField.Markdown</option>" +
-            "</select></div></div>";
+        let option = "";
+        @foreach (var item in Enum.GetValues(typeof(TypeField)))
+        {
+            @:option += "<option value = \"@item\" >@item</option>"
+        }
+        let html = "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldType"]: </label>" +
+            "<div class=\"col-5 col-md-2 pr-0\">" +
+            "<select name =\"Types\" class=\"select custom-select\" style=\"margin-left: -15px\">" +
+            option + "</select></div><div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div></div>";
         return html;
+    }
+
+    function deleteElement(e) {
+        (((e.target).parentElement).parentElement).remove();
     }
 </script>

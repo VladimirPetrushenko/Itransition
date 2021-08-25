@@ -13,7 +13,7 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\_ViewImports.cshtml"
-using WebApplication1;
+using ProjectForItransition;
 
 #line default
 #line hidden
@@ -75,7 +75,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"09a090b62cbcae9e61955eef8a5a792cd4a7d70a", @"/Views/Roles/RoleList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"12c5e679cfc7b8bd71c160ab083035edd5b3dbee", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e877d87c05e6a72ab198887dab741ca4e6e676f4", @"/Views/_ViewImports.cshtml")]
     public class Views_Roles_RoleList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Delete", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -161,7 +161,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("</th>\r\n                    <td class=\"text-center\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a8808", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a8814", async() => {
                 WriteLiteral("\r\n                            <button type=\"submit\" class=\"btn btn-sm btn-danger\">\r\n                                ");
 #nullable restore
 #line 30 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Roles\RoleList.cshtml"
@@ -212,7 +212,7 @@ using Microsoft.AspNetCore.Mvc;
 #line hidden
 #nullable disable
             WriteLiteral("        </tbody>\r\n    </table>\r\n    <div class=\"col-6 text-left mt-3\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a12291", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a12297", async() => {
 #nullable restore
 #line 38 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Roles\RoleList.cshtml"
                                                                                   Write(Localizer["ListUser"]);
@@ -235,7 +235,7 @@ using Microsoft.AspNetCore.Mvc;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</div>\r\n    <div class=\"col-6 text-right mt-3\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a13835", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a090b62cbcae9e61955eef8a5a792cd4a7d70a13841", async() => {
 #nullable restore
 #line 39 "D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\Views\Roles\RoleList.cshtml"
                                                                                  Write(Localizer["AddRole"]);

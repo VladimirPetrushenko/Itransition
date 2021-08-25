@@ -1,0 +1,84 @@
+﻿@model ProjectForItransition.ViewModels.Roles.ShowUserViewModel
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="row">
+    <h2 class="col-12 text-center mb-4 mt-4">@Localizer["UserData"]</h2>
+    <div class="col-sm-9">
+        <ul>
+            <li>@Localizer["ID"] - @Model.UserId</li>
+            <li>@Localizer["Email"] - @Model.UserEmail</li>
+            <li>@Localizer["UserName"] - @Model.UserName</li>
+            <li>@Localizer["Role"] - @(Model.UserRoles.Contains("admin") ? "Admin" : "User")</li>
+        </ul>
+    </div>
+    <div class="col-sm-3 p-2 align-self-center">
+        <form method="get" class="text-center" asp-action="CreateCollection" asp-controller="Collection">
+        <input type="hidden" name="userName" value="@Model.UserName" />
+            <h5 class="card-title">
+                <button class="btn btn-success">@Localizer["CreateCollection"]</button>
+            </h5>
+        </form>
+    </div>
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th scope="col" class="col-4">@Localizer["Photo"]</th>
+                <th scope="col" class="col-2">@Localizer["NameCollection"]</th>
+                <th scope="col">@Localizer["Description"]</th>
+                <th scope="col" class="col-2">@Localizer["Management"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var collection in Model.Collections)
+            {
+                <tr>
+                    <th scope="row">
+                        @{
+                            @if (collection.Image != null)
+                            {
+                                var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                            .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north"));
+                                @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
+                            }
+                            else
+                            {
+                                var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                               .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north").Effect("sepia").Chain());
+                                @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
+                            }
+                        }
+                    </th>
+                    <td class="text-center">
+                        @collection.Topic
+                    </td>
+                    <td>
+                        @collection.Description
+                    </td>
+                    <td>
+                        <form method="get" asp-action="ShowCollection" asp-controller="Collection">
+                            <input type="hidden" name="CollectionId" value="@collection.Id" />
+                            <button class="btn btn-primary rounded-pill col-12 mb-2"
+                                    formmethod="get" asp-action="UpdateCollection" asp-controller="Collection">
+                                @Localizer["Edit"]
+                            </button>
+                            <button class="btn btn-danger rounded-pill col-12"
+                                    formmethod="post" asp-action="DeleteCollection" asp-controller="Collection">
+                                @Localizer["Delete"]
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-12 text-right m-3">
+        <form asp-action="Admin" asp-controller="User" method="post">
+            <input type="submit" class="btn btn-primary" value="@Localizer["Back"]">
+        </form>
+    </div>
+</div>

@@ -14,7 +14,7 @@ namespace ProjectForItransition.Models.Item
 
         public static List<Tag> CreateTagsListFromString(string values)
         {
-            List<Tag> tags = new List<Tag>();
+            List<Tag> tags = new();
             if (string.IsNullOrEmpty(values))
                 return tags;
             foreach (var tag in values.Split(" ").Select(x => x.Trim()))
@@ -25,7 +25,7 @@ namespace ProjectForItransition.Models.Item
         }
         public static List<Tag> CreateTagsListFromArrayString(string[] values)
         {
-            List<Tag> tags = new List<Tag>();
+            List<Tag> tags = new();
             if (values == null)
                 return tags;
             foreach (var tag in values.Select(x => x.Trim()))
@@ -36,8 +36,7 @@ namespace ProjectForItransition.Models.Item
         }
         public int CompareTo(object obj)
         {
-            Tag t = obj as Tag;
-            if (t == null)
+            if (obj is not Tag t)
                 throw new Exception("Can't compare two objects");
             return this.Name.CompareTo(t.Name);
         }
