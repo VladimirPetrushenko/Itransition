@@ -32,60 +32,59 @@ namespace ProjectForItransition
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var cloudName = Configuration["AccountSettings:CloudName"];
-            var apiKey = Configuration["AccountSettings:ApiKey"];
-            var apiSecret = Configuration["AccountSettings:ApiSecret"];
-            if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
-            {
-                throw new ArgumentException("Please specify Cloudinary account details!");
-            }
-            services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
-            services.AddAuthentication().AddFacebook(options =>
-            {
-                options.AppId = Configuration["Authentication:Facebook:AppId"];
-                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            }).AddGoogle(options =>
-            {
-                options.ClientId = Configuration["Authentication:Google:ClientId"];
-                options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            });
-
-            //SecretClientOptions options = new()
-            //{
-            //    Retry =
-            //    {
-            //        Delay= TimeSpan.FromSeconds(2),
-            //        MaxDelay = TimeSpan.FromSeconds(16),
-            //        MaxRetries = 5,
-            //        Mode = RetryMode.Exponential
-            //    }
-            //};
-            //var client = new SecretClient(new Uri("https://KeyForMyProject.vault.azure.net/"), new DefaultAzureCredential(), options);
-
-            //KeyVaultSecret AccountSettingsApiKey = client.GetSecret("AccountSettingsApiKey");
-            //KeyVaultSecret AccountSettingsApiSecret = client.GetSecret("AccountSettingsApiSecret");
-            //KeyVaultSecret AccountSettingsCloudName = client.GetSecret("AccountSettingsCloudName");
-            //KeyVaultSecret AuthenticationFacebookAppId = client.GetSecret("AuthenticationFacebookAppId");
-            //KeyVaultSecret AuthenticationFacebookAppSecret = client.GetSecret("AuthenticationFacebookAppSecret");
-            //KeyVaultSecret AuthenticationGoogleClientId = client.GetSecret("AuthenticationGoogleClientId");
-            //KeyVaultSecret AuthenticationGoogleClientSecret = client.GetSecret("AuthenticationGoogleClientSecret");
-
-            //services.AddAuthentication().AddFacebook(options =>
-            //{
-            //    options.AppId = AuthenticationFacebookAppId.Value;
-            //    options.AppSecret = AuthenticationFacebookAppSecret.Value;
-            //}).AddGoogle(options =>
-            //{
-            //    options.ClientId = AuthenticationGoogleClientId.Value;
-            //    options.ClientSecret = AuthenticationGoogleClientSecret.Value;
-            //});
-
-            //services.AddSingleton(new Cloudinary(new Account(AccountSettingsCloudName.Value, AccountSettingsApiKey.Value, AccountSettingsApiSecret.Value)));
-
-            //if (new[] { AccountSettingsCloudName.Value, AccountSettingsApiKey.Value, AccountSettingsApiSecret.Value }.Any(string.IsNullOrWhiteSpace))
+            // Локальньная загрузка
+            //var cloudName = Configuration["AccountSettings:CloudName"];
+            //var apiKey = Configuration["AccountSettings:ApiKey"];
+            //var apiSecret = Configuration["AccountSettings:ApiSecret"];
+            //if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
             //{
             //    throw new ArgumentException("Please specify Cloudinary account details!");
             //}
+            //services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
+            //services.AddAuthentication().AddFacebook(options =>
+            //{
+            //    options.AppId = Configuration["Authentication:Facebook:AppId"];
+            //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //}).AddGoogle(options =>
+            //{
+            //    options.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //});
+
+            // Деплой на azure
+            SecretClientOptions options = new()
+            {
+                Retry =
+                {
+                    Delay= TimeSpan.FromSeconds(2),
+                    MaxDelay = TimeSpan.FromSeconds(16),
+                    MaxRetries = 5,
+                    Mode = RetryMode.Exponential
+                }
+            };
+            var client = new SecretClient(new Uri("https://KeyForMyProject.vault.azure.net/"), new DefaultAzureCredential(), options);
+            KeyVaultSecret AccountSettingsApiKey = client.GetSecret("AccountSettingsApiKey");
+            KeyVaultSecret AccountSettingsApiSecret = client.GetSecret("AccountSettingsApiSecret");
+            KeyVaultSecret AccountSettingsCloudName = client.GetSecret("AccountSettingsCloudName");
+            KeyVaultSecret AuthenticationFacebookAppId = client.GetSecret("AuthenticationFacebookAppId");
+            KeyVaultSecret AuthenticationFacebookAppSecret = client.GetSecret("AuthenticationFacebookAppSecret");
+            KeyVaultSecret AuthenticationGoogleClientId = client.GetSecret("AuthenticationGoogleClientId");
+            KeyVaultSecret AuthenticationGoogleClientSecret = client.GetSecret("AuthenticationGoogleClientSecret");
+
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = AuthenticationFacebookAppId.Value;
+                options.AppSecret = AuthenticationFacebookAppSecret.Value;
+            }).AddGoogle(options =>
+            {
+                options.ClientId = AuthenticationGoogleClientId.Value;
+                options.ClientSecret = AuthenticationGoogleClientSecret.Value;
+            });
+            services.AddSingleton(new Cloudinary(new Account(AccountSettingsCloudName.Value, AccountSettingsApiKey.Value, AccountSettingsApiSecret.Value)));
+            if (new[] { AccountSettingsCloudName.Value, AccountSettingsApiKey.Value, AccountSettingsApiSecret.Value }.Any(string.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException("Please specify Cloudinary account details!");
+            }
 
             services.AddSignalR();
 

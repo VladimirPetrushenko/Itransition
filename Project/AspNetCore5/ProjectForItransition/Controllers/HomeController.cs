@@ -43,7 +43,7 @@ namespace ProjectForItransition.Controllers
         }
         
         [HttpPost]
-        public IActionResult SetLanguage(string culture, string returnUrl)
+        public IActionResult SetLanguage(string culture, string returnUrl, string queryStr)
         {
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
@@ -51,10 +51,10 @@ namespace ProjectForItransition.Controllers
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1), IsEssential = true }
             );
 
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(returnUrl + queryStr);
         }
 
-        public ActionResult ChangeTheme(string returnUrl)
+        public ActionResult ChangeTheme(string returnUrl, string queryStr)
         {
             if (Request.Cookies["theme"] == null)
             {
@@ -74,7 +74,7 @@ namespace ProjectForItransition.Controllers
                 }
             }
 
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(returnUrl+ queryStr);
         }
     }
 }

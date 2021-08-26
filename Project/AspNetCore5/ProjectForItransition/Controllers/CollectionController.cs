@@ -56,7 +56,7 @@ namespace ProjectForItransition.Controllers
         {
             var tags = _tagRepo.GetAllDistinctTags();
             var collection = _repository.GetCollectionById((int)collectionId);
-            return View(new ShowCollectionViewModel(collection, tags));
+            return View(new ShowCollectionViewModel(collection, tags, false));
         }
         
         [AllowAnonymous]
@@ -67,7 +67,7 @@ namespace ProjectForItransition.Controllers
             var collection = _repository.GetCollectionById((int)model.CollectionId);
             model.FilterByNameAndTags(collection);
             SotrItemsAndChangeSortParm(model.Sort, collection);
-            return View(new ShowCollectionViewModel(collection, tags, model.NameForFilter, model.TagsForFilter));
+            return View(new ShowCollectionViewModel(collection, tags, model.NameForFilter, model.TagsForFilter, true));
         }
 
         [HttpGet]

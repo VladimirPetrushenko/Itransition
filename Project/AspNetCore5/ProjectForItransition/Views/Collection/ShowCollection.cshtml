@@ -50,14 +50,14 @@
     </div>
     <div class="col-12 row">
         <form method="post" class="col-12 row mt-3">
-            @if (countItem > 0)
+            @if (countItem > 0 || Model.Filtration)
             {
                 <div id="filterTag" class="form-control col-12" name="TagsForFilter"></div>
             }
             <div class="col-12 row mt-2 ml-0 p-0">
                 <div class="form-inline col-md-8 p-0 mb-2">
                     <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
-                    @if(countItem > 0)
+                    @if(countItem > 0 || Model.Filtration)
                     {
                         <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" placeholder="@Localizer["NameFilter"]" class="form-control col-9" />
                         <div class="col-3">
@@ -67,7 +67,7 @@
                 </div>
                 @if (User.Identity.IsAuthenticated && (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name))
                 {
-                    @if (countItem > 0)
+                    @if (countItem > 0 || Model.Filtration)
                     {
                         <div class="col-md-4 text-md-right text-center p-0 mb-2" id="CreateItemButton">
                             <button class="btn btn-primary" asp-action="CreateItem" asp-controller="Item" formmethod="get">@Localizer["CreateItem"]</button>
@@ -85,7 +85,7 @@
                 }
                 else
                 {
-                    @if (countItem == 0)
+                    @if (countItem == 0 && !Model.Filtration)
                     {
                         <div class="col-12 text-center mb-2">
                             <div class="h4">@Localizer["NotFoundItem"]</div>
@@ -95,7 +95,7 @@
             </div>
             <input type="hidden" id="sortType" name="sort" />
             <input type="hidden" id="itemIdInput" name="itemId" />
-            @if (countItem > 0) 
+            @if (countItem > 0 || Model.Filtration)
             {
                 <table class="table table-bordered mt-3">
                     <thead class="thead-dark">

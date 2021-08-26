@@ -12,19 +12,22 @@ namespace ProjectForItransition.ViewModels.Collection
         public string[] AllTags { get; set; }
         public string NameForFilter { get; set; }
         public string[] FilterTags { get; set; }
+        public bool Filtration { get; set; }
 
-        public ShowCollectionViewModel(ContentCollection collection, string[] allTags)
+        public ShowCollectionViewModel(ContentCollection collection, string[] allTags, bool filtration)
         {
             Collection = collection;
             AllTags = allTags;
+            Filtration = filtration;
         }
 
-        public ShowCollectionViewModel(ContentCollection collection, string[] allTags, string nameForFilter, string[] filterTags)
+        public ShowCollectionViewModel(ContentCollection collection, string[] allTags, string nameForFilter, string[] filterTags, bool filtration)
         {
             Collection = collection;
             AllTags = allTags;
             NameForFilter = nameForFilter;
             FilterTags = filterTags;
+            Filtration = filtration;
         }
     }
 }

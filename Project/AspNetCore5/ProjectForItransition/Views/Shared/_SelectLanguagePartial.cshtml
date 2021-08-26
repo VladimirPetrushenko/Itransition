@@ -12,7 +12,7 @@
                         .ToList();
 }
 
-<form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" 
+<form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" asp-route-queryStr="@Context.Request.QueryString" 
       method="post" class="nav-link form-horizontal p-1">
             <select name="culture" class="select custom-select custom-select-sm" onchange="this.form.submit();"
                 asp-for="@requestCulture.RequestCulture.UICulture.Name"
