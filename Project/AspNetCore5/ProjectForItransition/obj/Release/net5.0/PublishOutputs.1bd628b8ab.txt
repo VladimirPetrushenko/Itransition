@@ -1,6 +1,7 @@
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\ProjectForItransition.exe
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site-dark.css
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site-light.css
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\jQCloud2\.gitignore
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\wwwroot\jQCloud2\bower.json
@@ -72,6 +73,9 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\ProjectForItransition.pdb
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\en\ProjectForItransition.resources.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\ru\ProjectForItransition.resources.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Azure.Core.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Azure.Identity.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Azure.Security.KeyVault.Secrets.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\CloudinaryDotNet.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Markdig.dll
@@ -101,6 +105,7 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.WebEncoders.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
@@ -123,6 +128,7 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.Memory.Data.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.Runtime.Caching.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Release\net5.0\PubTmp\Out\cs\Microsoft.CodeAnalysis.resources.dll

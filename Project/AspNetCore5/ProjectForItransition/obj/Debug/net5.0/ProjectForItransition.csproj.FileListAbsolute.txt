@@ -236,7 +236,6 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.User.ShowUser.en.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Views.User.ShowUser.ru.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\Azure.Core.dll
-D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\Azure.Security.KeyVault.Secrets.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\System.Memory.Data.dll
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Areas.Identity.Pages.Account.Login.en.resources
@@ -262,3 +261,5 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Roles\RoleList.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Roles\UserList.cshtml.g.cs
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\Azure.Identity.dll
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\bin\Debug\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll

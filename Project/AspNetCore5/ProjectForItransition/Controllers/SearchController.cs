@@ -25,7 +25,7 @@ namespace ProjectForItransition.Controllers
         {
             if (string.IsNullOrEmpty(tag))
             {
-                return string.IsNullOrEmpty(searchText) ? View() : View(SearchItems(searchText));
+                return string.IsNullOrEmpty(searchText) ? View(new List<ContentItem>()) : View(SearchItems(searchText));
             }
             return View(_tagRepo.FreeTextOnNameTags(tag));
         }

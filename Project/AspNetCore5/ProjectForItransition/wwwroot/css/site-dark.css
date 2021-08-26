@@ -158,6 +158,11 @@ body {
     color: rgb( 201 209 211);
 }
 
+.ms-sel-ctn input {
+    background-color: rgb(1 4 9);
+    color: rgb( 0 0 0);
+}
+
 input {
     background-color: rgb(1 4 9);
     color: rgb(201 209 211);
@@ -166,3 +171,5 @@ input {
 .btn-like {
     color: rgb(201 209 211);
 }
+
+
