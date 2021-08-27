@@ -10,6 +10,7 @@
     var strings = Model.Collection.NameElements.Where(x => x.Type == TypeField.String).ToList();
     var markdowns = Model.Collection.NameElements.Where(x => x.Type == TypeField.Markdown).ToList();
     var checkboxes = Model.Collection.NameElements.Where(x => x.Type == TypeField.Checkbox).ToList();
+    var select = Model.Collection.SelectElements.ToList();
     var countItem = Model.Collection.Items.Count();
     var i = 0;
 }
@@ -136,11 +137,18 @@
                                     <button class="btn btn-link" onclick="changeInput(sortType, '@ViewBag.CheckboxSortParm')">@Localizer["Checkbox"]</button>
                                 </th>
                             }
-                            @if (User.Identity.IsAuthenticated) { 
+                            @if (select.Count() > 0)
+                            {
+                                <th scope="col">
+                                    <div class="text-white">@Localizer["Select"]</div>
+                                </th>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
                                 @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
                                 {
                                     <th scope="col" class="col-1">
-                                        <div class="btn text-white">@Localizer["Possibilities"]</div>
+                                        <div class="text-white">@Localizer["Possibilities"]</div>
                                     </th>
                                 }
                             }
@@ -151,7 +159,7 @@
                         {
                             <tr>
                                 <th scope="row">
-                                    <button class="btn btn-link" onclick="changeInput(itemIdInput,@item.Id)" asp-action="Index" asp-controller="Item" formmethod="get">@item.Name</button>
+                                    <button class="btn btn-link text-left" onclick="changeInput(itemIdInput, @item.Id)" asp-action="Index" asp-controller="Item" formmethod="get">@item.Name</button>
                                 </th>
                                 <td>
                                     @if (item.Tags != null)
@@ -274,8 +282,29 @@
                                         }
                                     </td>
                                 }
-                                @if (User.Identity.IsAuthenticated) 
-                                { 
+                                @if (select.Count() > 0)
+                                {
+                                    <td>
+                                        @{i = 0;}
+                                        @foreach (var name in select)
+                                        {
+                                            <div>
+                                                @name.Name -
+                                                @if (item.OptionElements.Count() > i)
+                                                {
+                                                    <span> @item.OptionElements[i].Value</span>
+                                                    i++;
+                                                }
+                                                else
+                                                {
+                                                    <span> @Localizer["NotFound"]</span>
+                                                }
+                                            </div>
+                                        }
+                                    </td>
+                                }
+                                @if (User.Identity.IsAuthenticated)
+                                {
                                     @if (User.IsInRole("admin") || Model.Collection.UserName == User.Identity.Name)
                                     {
                                         <td>
@@ -289,7 +318,7 @@
                                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" class="svg-inline--fa fa-ban fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z">
                                                     </path>
-                                                </svg> 
+                                                </svg>
                                             </button>
                                         </td>
                                     }

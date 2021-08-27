@@ -1,4 +1,4 @@
-﻿@model ProjectForItransition.ViewModels.Items.ShowItemModel
+﻿@model ProjectForItransition.ViewModels.Items.UpdateItemViewModel
 
 @inject IViewLocalizer Localizer
 
@@ -43,7 +43,7 @@
                             <div class="col-sm-4 text-center text-sm-left mt-1 mb-2">
                                 @NameField.Name -
                             </div>
-                            <div class="col-sm-8  mb-2">
+                            <div class="col-sm-8 mb-2">
                                 @switch (NameField.Type)
                                 {
                                     case TypeField.Integer:
@@ -112,6 +112,25 @@
                                 }
                             </div>
                         }
+                    }
+                    @for (int i = 0; i < Model.Collection.SelectElements.Count; i++)
+                    {
+                        <div class="col-sm-4 text-sm-left text-center mt-1 mb-2">
+                            @Model.Collection.SelectElements[i].Name :
+                        </div>
+                        <div class="col-sm-8 mb-2">
+                            <select name="Options" class="custom-select form-control">
+                                @foreach (var option in Model.Collection.SelectElements[i].OptionElements)
+                                {
+                                    if (option.Value == Model.Item.OptionElements[i].Value) { 
+                                        <option value="@option.Id" selected>@option.Value</option>
+                                    }
+                                    else { 
+                                        <option value="@option.Id">@option.Value</option>
+                                    }
+                                }
+                            </select>
+                        </div>
                     }
                 </div>
                 <div class="row">

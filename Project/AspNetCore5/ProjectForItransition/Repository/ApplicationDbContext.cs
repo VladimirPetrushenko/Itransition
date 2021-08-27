@@ -24,5 +24,7 @@ namespace ProjectForItransition.Repository
         public DbSet<ImageField> Images { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<OptionElement> OptionElements { get; set; }
+        public DbSet<SelectElement> SelectElements { get; set; }
     }
 }

@@ -8,10 +8,6 @@ namespace ProjectForItransition
 {
     public class NameFieldsAttribute : ValidationAttribute
     {
-        public NameFieldsAttribute()
-        {
-            ErrorMessage = "Имя и пароль не должны совпадать!";
-        }
         public override bool IsValid(object value)
         {
             if (value is string[] n)

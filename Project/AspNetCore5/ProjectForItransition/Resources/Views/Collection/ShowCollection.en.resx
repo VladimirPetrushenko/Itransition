@@ -162,6 +162,9 @@
   <data name="Possibilities" xml:space="preserve">
     <value>Possibilities</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Selection fields</value>
+  </data>
   <data name="String" xml:space="preserve">
     <value>String fields</value>
   </data>

@@ -17,12 +17,14 @@ namespace ProjectForItransition.Controllers
         private readonly ICollectionRepo _collectionRepo;
         private readonly IItemRepo _itemRepo;
         private readonly ITagRepo _tagRepo;
+        private readonly IOptionRepo _optionRepo;
 
-        public ItemController(ICollectionRepo collectionRepo, IItemRepo itemRepo, ITagRepo tagRepo)
+        public ItemController(ICollectionRepo collectionRepo, IItemRepo itemRepo, ITagRepo tagRepo, IOptionRepo optionRepo)
         {
             _collectionRepo = collectionRepo;
             _itemRepo = itemRepo;
             _tagRepo = tagRepo;
+            _optionRepo = optionRepo;
         }
         
         [AllowAnonymous]
@@ -30,7 +32,13 @@ namespace ProjectForItransition.Controllers
         {
             var collection = _collectionRepo.GetCollectionById(collectionId);
             var item = _itemRepo.GetItemById(itemId);
-            ShowItemModel model = new() { Item = item, Fields = collection.NameElements, CollectionId = collection.Id };
+            ShowItemModel model = new() { 
+                Item = item,
+                Fields = collection.NameElements,
+                CollectionId = collection.Id,
+                OptionElements = item.OptionElements,
+                NameSelect = collection.SelectElements.Select(x => x.Name).ToArray(),
+            };
             return View(model);
         }
 
@@ -45,9 +53,21 @@ namespace ProjectForItransition.Controllers
         [HttpPost]
         public IActionResult CreateItem(CreateItemViewModel model)
         {
-            _itemRepo.CreateItem(model.CreateContentItem(), model.CollectionId);
+            var item = model.CreateContentItem();
+            item.OptionElements = ListOptionElements(model.Options);
+            _itemRepo.CreateItem(item, model.CollectionId);
             _itemRepo.SaveChange();
             return RedirectToAction("ShowCollection", "Collection", new { model.CollectionId });
+        }
+
+        private List<OptionElement> ListOptionElements(int[] optionId)
+        {
+            var Options = new List<OptionElement>();
+            foreach (var id in optionId)
+            {
+                Options.Add(_optionRepo.GetOptionElementById(id));
+            }
+            return Options;
         }
 
         [HttpGet]
@@ -65,7 +85,11 @@ namespace ProjectForItransition.Controllers
             var tags = _tagRepo.GetAllDistinctTags();
             var collection = _collectionRepo.GetCollectionById(collectionId);
             var item = _itemRepo.GetItemById(itemId);
-            return View(new ShowItemModel { Item = item, Fields = collection.NameElements, CollectionId = collection.Id, AllTags = tags });
+            return View(new UpdateItemViewModel { Item = item, 
+                Fields = collection.NameElements, 
+                CollectionId = collection.Id, 
+                AllTags = tags, 
+                Collection = collection });
         }
 
         [HttpPost]
@@ -73,6 +97,7 @@ namespace ProjectForItransition.Controllers
         {
             var updateItem = _itemRepo.GetItemById((int)model.ItemId);
             model.CreateContentItem().CopyTo(updateItem);
+            updateItem.OptionElements = ListOptionElements(model.Options);
             _itemRepo.UpdateItem(updateItem);
             if (_itemRepo.SaveChange())
             {

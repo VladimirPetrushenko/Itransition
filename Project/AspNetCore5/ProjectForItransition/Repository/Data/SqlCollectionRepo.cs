@@ -32,6 +32,7 @@ namespace ProjectForItransition.Repository.Data
                     .Include(x => x.NameElements)
                     .Include(x=>x.Image)
                     .Include(x=> x.Items)
+                    .Include(x => x.SelectElements)
                     .ToList();
         }
 
@@ -43,6 +44,7 @@ namespace ProjectForItransition.Repository.Data
                 .Include(x => x.NameElements)
                 .Include(x => x.Items)
                 .Include(x => x.Image)
+                .Include(x => x.SelectElements)
                 .FirstOrDefault(x => x.Id == id);
         }
 
@@ -53,6 +55,7 @@ namespace ProjectForItransition.Repository.Data
             _ = _context.MarkdownElements.ToList();
             _ = _context.CheckboxElements.ToList();
             _ = _context.DateTimeOffsetElements.ToList();
+            _ = _context.OptionElements.ToList();
         }
 
         public bool SaveChange()

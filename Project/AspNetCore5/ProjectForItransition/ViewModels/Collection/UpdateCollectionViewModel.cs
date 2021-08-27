@@ -17,6 +17,9 @@ namespace ProjectForItransition.ViewModels.Collection
         public string[] NameFields { get; set; }
         public TypeField[] Types { get; set; }
         public IFormFile ImageInput { get; set; }
+        public string[] SelectField { get; set; }
+        public string[] Options { get; set; }
+        public int[] CountSelect { get; set; }
         public ContentCollection Collection { get; set; }
     }
 }

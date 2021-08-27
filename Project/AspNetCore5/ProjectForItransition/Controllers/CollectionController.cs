@@ -85,10 +85,7 @@ namespace ProjectForItransition.Controllers
                 _repository.SaveChange();
                 return RedirectToAction("ShowOwnCollections", "Collection");
             }
-            else
-            {
-                return View(model);
-            }
+            return View(model);
         }
 
         [HttpGet]
@@ -134,6 +131,8 @@ namespace ProjectForItransition.Controllers
             collection.NameElements = model.NameFields == null ?  new List<NameField>()
                     : NameField.CreateListNameFieldWithNamesAndTypes(model.NameFields, model.Types);
             collection.Items = new List<ContentItem>();
+            collection.SelectElements = model.SelectField.Length == 0 ? new List<SelectElement>() 
+                    : SelectElement.CreateListSelectElementWithNameAndOption(model.SelectField, model.Options, model.CountSelect) ;
             return collection;
         }
         
@@ -146,6 +145,8 @@ namespace ProjectForItransition.Controllers
             collection.Topic = source.Topic;
             collection.NameElements = source.NameFields == null ? new List<NameField>()
                     : NameField.CreateListNameFieldWithNamesAndTypes(source.NameFields, source.Types);
+            collection.SelectElements = source.SelectField.Length == 0 ? new List<SelectElement>()
+                    : SelectElement.CreateListSelectElementWithNameAndOption(source.SelectField, source.Options, source.CountSelect);
         }
 
         private void SotrItemsAndChangeSortParm(SortState sort, ContentCollection collection)

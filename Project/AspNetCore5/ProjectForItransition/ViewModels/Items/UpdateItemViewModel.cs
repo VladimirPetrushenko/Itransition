@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using ProjectForItransition.Models.Collection;
 using ProjectForItransition.Models.Item;
 
 namespace ProjectForItransition.ViewModels.Items
 {
     public class UpdateItemViewModel
     {
-        public int? CollectionId { get; set; }
+        public ContentCollection Collection { get; set; }
+        public ContentItem Item { get; set; }
+        public List<NameField> Fields { get; set; }
         public int? ItemId { get; set; }
+        public int CollectionId { get; set; }
+        public string[] AllTags { get; set; }
         public string Name { get; set; }
         public string[] Tags { get; set; }
         public int[] Checkboxes { get; set; }
@@ -14,6 +20,7 @@ namespace ProjectForItransition.ViewModels.Items
         public int[] Integers { get; set; }
         public string[] Markdowns { get; set; }
         public string[] Strings { get; set; }
+        public int[] Options { get; set; }
     }
 
     public static class UpdateItemViewModelExtinsion

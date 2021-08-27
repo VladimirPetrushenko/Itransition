@@ -7,7 +7,7 @@
 }
 
 <div class="row col-12">
-    <div class="card col-12">
+    <div class="card">
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="card-header text-center">
@@ -99,6 +99,13 @@
                                     }
                                 </div>
                             }
+                        }
+                        @for (int i = 0; i < Model.OptionElements.Count; i++)
+                        {
+                            <div class="col-12 m-1">
+                                @Model.NameSelect[i] -
+                                <span> @Model.OptionElements[i].Value </span>
+                            </div>
                         }
                     </div>
                     <input type="hidden" name="collectionId" id="collectionId" value="@Model.CollectionId" />

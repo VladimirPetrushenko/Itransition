@@ -17,7 +17,7 @@ namespace ProjectForItransition.Models.Collection
         public ImageField Image { get; set; }
         public Topic Topic { get; set; }
         public List<ContentItem> Items { get; set; } = new List<ContentItem>();
-
         public List<NameField> NameElements { get; set; } = new List<NameField>();
+        public List<SelectElement> SelectElements { get; set; } = new List<SelectElement>();
     }
 }

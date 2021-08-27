@@ -57,6 +57,20 @@
                                 }
                             </div>
                         }
+                        @foreach (var select in Model.Collection.SelectElements)
+                        {
+                            <div class="col-sm-4 text-sm-left text-center mt-1 mb-2">
+                                @select.Name :
+                            </div>
+                            <div class="col-sm-8 mb-2">
+                                <select name="Options" class="custom-select form-control">
+                                    @foreach (var option in select.OptionElements)
+                                    {
+                                        <option value="@option.Id">@option.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        }
                     }
                 </div>
                 <div class="row">

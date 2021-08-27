@@ -18,6 +18,7 @@ namespace ProjectForItransition.ViewModels.Items
         public int[] Integers { get; set; }
         public string[] Markdowns { get; set; }
         public string[] Strings { get; set; }
+        public int[] Options { get; set; }
     }
 
     public static class CreateItemViewModelExtinsion

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectForItransition.Repository;
 
 namespace ProjectForItransition.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210827194015_ChangeOptionTable")]
+    partial class ChangeOptionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -464,7 +466,7 @@ namespace ProjectForItransition.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ItemId")
+                    b.Property<int?>("ContentItemId")
                         .HasColumnType("int");
 
                     b.Property<int?>("SelectElementId")
@@ -475,7 +477,7 @@ namespace ProjectForItransition.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ContentItemId");
 
                     b.HasIndex("SelectElementId");
 
@@ -663,15 +665,13 @@ namespace ProjectForItransition.Repository.Migrations
 
             modelBuilder.Entity("ProjectForItransition.Models.Item.OptionElement", b =>
                 {
-                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", "Item")
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
                         .WithMany("OptionElements")
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("ContentItemId");
 
                     b.HasOne("ProjectForItransition.Models.Collection.SelectElement", null)
                         .WithMany("OptionElements")
                         .HasForeignKey("SelectElementId");
-
-                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("ProjectForItransition.Models.Item.StringElement", b =>

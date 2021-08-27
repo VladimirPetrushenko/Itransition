@@ -65,27 +65,94 @@
         <label>@Localizer["Description"]</label>
         <textarea name="Description" class="form-control" rows="10">@Model.Collection.Description</textarea>
         <div id="NameElements"></div>
+        <div id="SelectElements"></div>
         <br />
         <div class="row">
-            <div class="col-7 text-left">
+            <div class="col-4 text-left">
                 <input type="button" class="btn btn-primary" onclick="appendElement('NameElements', '')" value="@Localizer["Element"]" />
             </div>
-            <div class="col-5 text-right">
+            <div class="col-4 text-left">
+                <input type="button" class="btn btn-primary" onclick="appendSelect(SelectElements,'')" value="@Localizer["Select"]" />
+            </div>
+            <div class="col-4 text-right right">
                 <input type="submit" class="btn btn-success" value="@Localizer["Update"]" />
             </div>
         </div>
     </form>
 </div>
 <script>
+    function appendSelect(element, name, options) {
+        let div = document.createElement("div");
+        div.classList.add('row');
+        div.classList.add('mt-2');
+        div.innerHTML = "<input type=\"hidden\" name=\"CountSelect\" value=\"1\" /> " +
+            "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
+            "<input type=\"text\" name=\"SelectField\" class=\"form-control col-6 col-md-3\" autocomplete=\"off\" value=\"" + name + "\"/> " +
+            "<label class=\"col-6 col-md-3 mt-2\">@Localizer["SelectElement"]: </label>" +
+            "<input type=\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/> " +
+            "<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>" +
+            "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"col-6 col-md-9\"></div>" +
+            "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
+        document.getElementById(element).appendChild(div);
+    }
+
+    let html = "";
+    @for (int i = 0; i < Model.Collection.SelectElements.Count(); i++)
+    {
+        @:html = "<input type=\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" value=\"@Model.Collection.SelectElements[i].OptionElements[0].Value\" autocomplete=\"off\"/> " +
+        @:"<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
+        @:html += "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"row col-12 p-0\">";
+        @for (int j = 1; j < Model.Collection.SelectElements[i].OptionElements.Count(); j++)
+        {
+            string option = Model.Collection.SelectElements[i].OptionElements[j].Value;
+            @:html += "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\" value=\"@option\"/>" +
+            @:"<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
+
+        }
+        @:html += "</div></div></div><div class=\"col-12 p-0\"><div class=\"row\"><div class=\"col-6 col-md-9\"></div>" +
+        @: "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
+
+        @: initSelect("SelectElements", "@Model.Collection.SelectElements[i].Name", html, @Model.Collection.SelectElements[i].OptionElements.Count());
+    }
+
+    function initSelect(element, name, select, count) {
+        let div = document.createElement("div");
+        div.classList.add('row');
+        div.classList.add('mt-2');
+        div.innerHTML = "<input type=\"hidden\" name=\"CountSelect\" value=\"" + count + "\" /> " +
+            "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
+            "<input type=\"text\" name=\"SelectField\" class=\"form-control col-6 col-md-3\" autocomplete=\"off\" value=\"" + name + "\"/> " +
+            "<label class=\"col-6 col-md-3 mt-2\">@Localizer["SelectElement"]: </label>" + select;
+        document.getElementById(element).appendChild(div);
+    }
+
+    function addInput(e) {
+        let div = document.createElement("div");
+        div.classList.add('row');
+        div.classList.add('col-12');
+        div.classList.add('p-0');
+        div.innerHTML = "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/>" +
+            "<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
+        let parentDiv = ((e.target).parentElement).parentElement;
+        (parentDiv).insertBefore(div, (parentDiv).firstChild);
+        let inputSelect = (((parentDiv).parentElement).parentElement).firstChild;
+        inputSelect.value = parseInt(inputSelect.value) + 1;
+    }
+
+
     @for (int i = 0; i < Model.Collection.NameElements.Count(); i++)
     {
         @: appendElement("NameElements", "@Model.Collection.NameElements[i].Name", "@Model.Collection.NameElements[i].Type");
     }
 
     function appendElement(element, name, type) {
-        document.getElementById(element).innerHTML += "<div class=\"row mt-2\"><label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
+        let div = document.createElement("div");
+        div.classList.add('row');
+        div.classList.add('mt-2');
+        div.innerHTML = "<label class=\"col-6 col-md-3 mt-2\">@Localizer["FieldName"]: </label>" +
             "<input type=\"text\" name=\"NameFields\" class=\"form-control col-6 col-md-3\" value=\"" +
             name + "\" autocomplete=\"off\"/>" + getInputFieldForNameElement(type);
+        document.getElementById(element).appendChild(div);
     }
 
     function getInputFieldForNameElement(type) {
@@ -104,7 +171,7 @@
                 html += "selected"
             html += " >" + elements[i] + "</option>";
         }
-        html += "</select></div><div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div></div>";
+        html += "</select></div><div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
         return html;
     }
 

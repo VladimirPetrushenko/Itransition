@@ -101,6 +101,7 @@ namespace ProjectForItransition.Repository.Data
                 .Include(x => x.Collection)
                 .Include(x => x.Likes)
                 .Include(x => x.Comments)
+                .Include(x => x.OptionElements)
                 .FirstOrDefault();
         }
 
