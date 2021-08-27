@@ -7,6 +7,10 @@ namespace ProjectForItransition.Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(
+                sql: "CREATE FULLTEXT CATALOG ftCatalog AS DEFAULT;",
+                suppressTransaction: true);
+
+            migrationBuilder.Sql(
                 sql: "CREATE FULLTEXT INDEX ON Collections(Description) KEY INDEX PK_Collections;",
                 suppressTransaction: true);
 

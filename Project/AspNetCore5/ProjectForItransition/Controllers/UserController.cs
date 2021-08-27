@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectForItransition.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
