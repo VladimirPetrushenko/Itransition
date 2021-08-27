@@ -11,7 +11,7 @@
     <h2 class="col-12 text-center mb-4">@Localizer["EditRole"]</h2>
     <h4 class="col-12 mb-2">@Localizer["UserName"] @Model.UserEmail</h4>
     <div class="col-12 m-3">
-        <form asp-action="Edit" class="row" method="post">
+        <form asp-action="EditUser" class="row" method="post">
             <input type="hidden" name="userId" value="@Model.UserId" />
             @foreach (IdentityRole role in Model.AllRoles)
             {

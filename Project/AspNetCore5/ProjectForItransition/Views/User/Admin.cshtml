@@ -48,14 +48,8 @@
                     </td>
                     <td>
                         <form method="post">
-                            @if (user.UserRoles.Contains("admin"))
-                            {
-                                <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeUser"]</button>
-                            }
-                            else
-                            {
-                                <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeAdmin"]</button>
-                            }
+                            <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeUser"]</button>
+                            <button class="btn btn-block btn-primary" asp-action="ChangeRole" asp-route-id="@user.UserId">@Localizer["ChangeAdmin"]</button>
                         </form>
                     </td>
                 </tr>

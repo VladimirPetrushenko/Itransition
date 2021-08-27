@@ -74,7 +74,7 @@
             "<input type=\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/> " +
             "<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>" +
             "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"col-6 col-md-9\"></div>" +
-            "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
+            "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info mt-1 col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
         element.appendChild(div);
     }
 
@@ -83,7 +83,7 @@
         div.classList.add('row');
         div.classList.add('col-12');
         div.classList.add('p-0');
-        div.innerHTML = "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/>" +
+        div.innerHTML = "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control col-5 mt-1 col-md-2\" autocomplete=\"off\"/>" +
             "<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
         let parentDiv = ((e.target).parentElement).parentElement;
         (parentDiv).insertBefore(div, (parentDiv).firstChild);
