@@ -131,7 +131,7 @@ namespace ProjectForItransition.Controllers
             collection.NameElements = model.NameFields == null ?  new List<NameField>()
                     : NameField.CreateListNameFieldWithNamesAndTypes(model.NameFields, model.Types);
             collection.Items = new List<ContentItem>();
-            collection.SelectElements = model.SelectField.Length == 0 ? new List<SelectElement>() 
+            collection.SelectElements = model.SelectField == null ? new List<SelectElement>() 
                     : SelectElement.CreateListSelectElementWithNameAndOption(model.SelectField, model.Options, model.CountSelect) ;
             return collection;
         }

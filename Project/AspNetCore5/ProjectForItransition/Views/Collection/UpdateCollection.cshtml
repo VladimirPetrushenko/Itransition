@@ -68,14 +68,14 @@
         <div id="SelectElements"></div>
         <br />
         <div class="row">
-            <div class="col-4 text-left">
-                <input type="button" class="btn btn-primary" onclick="appendElement('NameElements', '')" value="@Localizer["Element"]" />
+            <div class="col-md-4 mt-1">
+                <input type="button" class="btn btn-primary col-12" onclick="appendElement('NameElements', '')" value="@Localizer["Element"]" />
             </div>
-            <div class="col-4 text-left">
-                <input type="button" class="btn btn-primary" onclick="appendSelect(SelectElements,'')" value="@Localizer["Select"]" />
+            <div class="col-md-4 mt-1">
+                <input type="button" class="btn btn-primary col-12" onclick="appendSelect('SelectElements','')" value="@Localizer["Select"]" />
             </div>
-            <div class="col-4 text-right right">
-                <input type="submit" class="btn btn-success" value="@Localizer["Update"]" />
+            <div class="col-md-4 mt-1">
+                <input type="submit" class="btn btn-success col-12" value="@Localizer["Update"]" />
             </div>
         </div>
     </form>
@@ -90,9 +90,9 @@
             "<input type=\"text\" name=\"SelectField\" class=\"form-control col-6 col-md-3\" autocomplete=\"off\" value=\"" + name + "\"/> " +
             "<label class=\"col-6 col-md-3 mt-2\">@Localizer["SelectElement"]: </label>" +
             "<input type=\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/> " +
-            "<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>" +
-            "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"col-6 col-md-9\"></div>" +
-            "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info mt-1 col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
+            "<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 text-danger\" onclick='deleteElement(event)'>X</button></div>" +
+            "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"row col-12 p-0\"><div class=\"col-6 col-md-9\"></div>" +
+            "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info mt-1 col-4\" onclick='addInput(event)' value=\"+\" /></div></div></div></div>";
         document.getElementById(element).appendChild(div);
     }
 
@@ -100,17 +100,19 @@
     @for (int i = 0; i < Model.Collection.SelectElements.Count(); i++)
     {
         @:html = "<input type=\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" value=\"@Model.Collection.SelectElements[i].OptionElements[0].Value\" autocomplete=\"off\"/> " +
-        @:"<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
-        @:html += "<div class=\"col-12 p-0\"><div class=\"row\"><div class=\"row col-12 p-0\">";
+        @:"<div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 text-danger\" onclick='deleteElement(event)'>X</button></div>";
+        @:html += "<div class=\"col-12 p-0\"><div class=\"row\">";
         @for (int j = 1; j < Model.Collection.SelectElements[i].OptionElements.Count(); j++)
         {
             string option = Model.Collection.SelectElements[i].OptionElements[j].Value;
-            @:html += "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control mt-1 col-5 col-md-2\" autocomplete=\"off\" value=\"@option\"/>" +
-            @:"<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
+            @:html += "<div class=\"row col-12 p-0\"><div class=\"col-6 col-md-9\"></div>" +
+            @:"<input type =\"text\" name=\"Options\" class=\"form-control mt-1 col-5 col-md-2\" autocomplete=\"off\" value=\"@option\"/>" +
+            @:"<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 text-danger\" onclick='deleteElement(event)'>x</button></div></div>";
 
         }
-        @:html += "</div></div></div><div class=\"col-12 p-0\"><div class=\"row\"><div class=\"col-6 col-md-9\"></div>" +
-        @: "<div class=\"col-6 col-md-2 p-0 text-md-center\"><input type=\"button\" class=\"btn btn-info mt-1 col-12\" onclick='addInput(event)' value=\"Add\" /></div></div></div>";
+        @:html += "</div></div></div><div class=\"col-12 p-0\"><div class=\"row\"><div class=\"row col-12 p-0\"><div class=\"col-6 col-md-9\">" +
+        @:"</div><div class=\"col-6 col-md-2 p-0 text-md-center\">" +
+        @:"<input type=\"button\" class=\"btn btn-info mt-1 col-4\" onclick='addInput(event)' value=\"+\" /></div></div></div></div>";
 
         @: initSelect("SelectElements", "@Model.Collection.SelectElements[i].Name", html, @Model.Collection.SelectElements[i].OptionElements.Count());
     }
@@ -132,8 +134,8 @@
         div.classList.add('col-12');
         div.classList.add('p-0');
         div.innerHTML = "<div class=\"col-6 col-md-9\"></div><input type =\"text\" name=\"Options\" class=\"form-control col-5 col-md-2\" autocomplete=\"off\"/>" +
-            "<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
-        let parentDiv = ((e.target).parentElement).parentElement;
+            "<div class=\"col-1 col-md-1 text-center\"><button class=\"btn pl-0 text-danger\" onclick='deleteElement(event)'>x</button></div>";
+        let parentDiv = (((e.target).parentElement).parentElement).parentElement;
         (parentDiv).insertBefore(div, (parentDiv).firstChild);
         let inputSelect = (((parentDiv).parentElement).parentElement).firstChild;
         inputSelect.value = parseInt(inputSelect.value) + 1;
@@ -171,7 +173,7 @@
                 html += "selected"
             html += " >" + elements[i] + "</option>";
         }
-        html += "</select></div><div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 \" onclick='deleteElement(event)'>X</button></div>";
+        html += "</select></div><div class=\"col-1 col-md-1 text-md-right\"><button class=\"btn pl-0 text-danger\" onclick='deleteElement(event)'>X</button></div>";
         return html;
     }
 
