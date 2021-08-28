@@ -32,7 +32,7 @@ namespace ProjectForItransition
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Локальньная версия 
+            //Локальньная версия
             var cloudName = Configuration["AccountSettings:CloudName"];
             var apiKey = Configuration["AccountSettings:ApiKey"];
             var apiSecret = Configuration["AccountSettings:ApiSecret"];
@@ -86,6 +86,7 @@ namespace ProjectForItransition
             //    throw new ArgumentException("Please specify Cloudinary account details!");
             //}
 
+            // Общая часть
             services.AddSignalR();
 
             services.AddDbContext<ApplicationDbContext>(options =>

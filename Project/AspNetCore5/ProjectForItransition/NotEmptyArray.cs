@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectForItransition
 {
-    public class NameFieldsAttribute : ValidationAttribute
+    public class NotEmptyArray : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
