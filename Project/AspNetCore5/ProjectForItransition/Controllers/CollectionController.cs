@@ -13,6 +13,7 @@ using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectForItransition.Models.Item;
+using ProjectForItransition.Models.Builder;
 
 namespace ProjectForItransition.Controllers
 {
@@ -98,7 +99,8 @@ namespace ProjectForItransition.Controllers
         public async Task<IActionResult> UpdateCollection(UpdateCollectionViewModel model)
         {
             var updateCollection = _repository.GetCollectionById(model.CollectionId);
-            await CopyToWithoutUser(model, updateCollection);
+            var tempCollection = await CreateCollectionFromViemModel(model);
+            tempCollection.CopyToWithoutUser(updateCollection);
             _repository.UpdateCollection(updateCollection);
             if (_repository.SaveChange())
             {
@@ -117,38 +119,17 @@ namespace ProjectForItransition.Controllers
             return RedirectToAction("ShowOwnCollections", "Collection");
         }
         
-        private async Task<ContentCollection> CreateCollectionFromViemModel(CreateCollectionViewModel model)
+        private async Task<ContentCollection> CreateCollectionFromViemModel<T>(T model) where T : CollectionViewModel 
         {
-            var collection = new ContentCollection();
             var user = await _userManager.FindByNameAsync(model.UserName);
-            collection.Name = model.Name;
-            collection.UserId = user.Id;
-            collection.UserName = user.UserName;
-            collection.Description = model.Description;
-            if (model.ImageInput != null)
-                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) };
-            collection.Topic = model.Topic;
-            collection.NameElements = model.NameFields == null ?  new List<NameField>()
-                    : NameField.CreateListNameFieldWithNamesAndTypes(model.NameFields, model.Types);
-            collection.Items = new List<ContentItem>();
-            collection.SelectElements = model.SelectField == null ? new List<SelectElement>() 
-                    : SelectElement.CreateListSelectElementWithNameAndOption(model.SelectField, model.Options, model.CountSelect) ;
+            var collection = new ContentCollectionBuilder().SetName(model.Name).SetUserId(user.Id).SetUserName(user.UserName)
+                .SetDescription(model.Description).SetTopic(model.Topic).SetNameElements(model.NameFields, model.Types)
+                .SetItems(new List<ContentItem>()).SetSelectElements(model.SelectField, model.Options, model.CountSelect)
+                .SetImage(model.ImageInput != null ? new ImageField { PublicId = await UploadImageOnCloud(model.ImageInput) } : new ImageField() )
+                .Build();
             return collection;
         }
         
-        private async Task CopyToWithoutUser(UpdateCollectionViewModel source, ContentCollection collection)
-        {
-            collection.Name = source.Name;
-            collection.Description = source.Description;
-            if (source.ImageInput != null)
-                collection.Image = new ImageField { PublicId = await UploadImageOnCloud(source.ImageInput) };
-            collection.Topic = source.Topic;
-            collection.NameElements = source.NameFields == null ? new List<NameField>()
-                    : NameField.CreateListNameFieldWithNamesAndTypes(source.NameFields, source.Types);
-            collection.SelectElements = source.SelectField.Length == 0 ? new List<SelectElement>()
-                    : SelectElement.CreateListSelectElementWithNameAndOption(source.SelectField, source.Options, source.CountSelect);
-        }
-
         private void SotrItemsAndChangeSortParm(SortState sort, ContentCollection collection)
         {
             SortItems(sort, collection);
@@ -193,6 +174,5 @@ namespace ProjectForItransition.Controllers
 
             return result.PublicId;
         }
-
     }
 }

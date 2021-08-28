@@ -26,5 +26,6 @@ namespace ProjectForItransition.Repository
         public DbSet<Comment> Comment { get; set; }
         public DbSet<OptionElement> OptionElements { get; set; }
         public DbSet<SelectElement> SelectElements { get; set; }
+        public DbSet<ItemOption> ItemOptions { get; set; }
     }
 }

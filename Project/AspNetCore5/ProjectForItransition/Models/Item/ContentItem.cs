@@ -21,4 +21,19 @@ namespace ProjectForItransition.Models.Item
         public virtual List<Like> Likes { get; set; } = new List<Like>();
         public virtual ContentCollection Collection { get; set; }
     }
+
+    public static class ContentItemExtinsion
+    {
+        public static void CopyTo(this ContentItem source, ContentItem destination)
+        {
+            destination.Name = source.Name;
+            destination.Tags = source.Tags;
+            destination.CheckboxElements = source.CheckboxElements;
+            destination.DateTimeElements = source.DateTimeElements;
+            destination.StringElements = source.StringElements;
+            destination.MarkdownElements = source.MarkdownElements;
+            destination.IntegerElements = source.IntegerElements;
+            destination.OptionElements = source.OptionElements;
+        }
+    }
 }

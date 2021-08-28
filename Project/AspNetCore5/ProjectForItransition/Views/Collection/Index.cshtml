@@ -12,7 +12,7 @@
         <div class="col-sm-6 col-md-6 col-lg-4 card-group mb-3">
             <div class="card">
                 @{
-                    @if (collection.Image != null)
+                    @if (collection.Image?.PublicId != null)
                     {
                         var url = Cloudinary.Api.UrlImgUp.Format("png")
                                     .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north"));

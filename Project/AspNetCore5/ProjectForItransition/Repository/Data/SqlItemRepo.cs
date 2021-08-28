@@ -90,6 +90,7 @@ namespace ProjectForItransition.Repository.Data
 
         public ContentItem GetItemById(int itemId)
         {
+            _ = _context.ItemOptions.ToList();
             return _context.Items
                 .Where(x => x.Id == itemId)
                 .Include(x => x.IntegerElements)

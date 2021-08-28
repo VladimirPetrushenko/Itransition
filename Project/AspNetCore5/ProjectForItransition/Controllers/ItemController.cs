@@ -8,6 +8,7 @@ using ProjectForItransition.ViewModels.Items;
 using ProjectForItransition.ViewModels.Collection;
 using ProjectForItransition.Models.Item;
 using System.Collections.Generic;
+using ProjectForItransition.Models.Builder;
 
 namespace ProjectForItransition.Controllers
 {
@@ -53,21 +54,10 @@ namespace ProjectForItransition.Controllers
         [HttpPost]
         public IActionResult CreateItem(CreateItemViewModel model)
         {
-            var item = model.CreateContentItem();
-            item.OptionElements = ListOptionElements(model.Options);
+            var item = CreateItemFromViemModel(model);
             _itemRepo.CreateItem(item, model.CollectionId);
             _itemRepo.SaveChange();
             return RedirectToAction("ShowCollection", "Collection", new { model.CollectionId });
-        }
-
-        private List<OptionElement> ListOptionElements(int[] optionId)
-        {
-            var Options = new List<OptionElement>();
-            foreach (var id in optionId)
-            {
-                Options.Add(_optionRepo.GetOptionElementById(id));
-            }
-            return Options;
         }
 
         [HttpGet]
@@ -96,14 +86,32 @@ namespace ProjectForItransition.Controllers
         public IActionResult UpdateItem(UpdateItemViewModel model)
         {
             var updateItem = _itemRepo.GetItemById((int)model.ItemId);
-            model.CreateContentItem().CopyTo(updateItem);
-            updateItem.OptionElements = ListOptionElements(model.Options);
+            CreateItemFromViemModel(model).CopyTo(updateItem);
             _itemRepo.UpdateItem(updateItem);
             if (_itemRepo.SaveChange())
             {
                 return RedirectToAction("Index", "Item", new { collectionId = model.CollectionId, itemId = model.ItemId });
             }
             return View();
+        }
+
+        private ContentItem CreateItemFromViemModel<T>(T model) where T: ItemViewModel
+        {
+            var item = new ContentItemBuilder().SetName(model.Name).SetTags(model.Tags).SetCheckboxElements(model.Checkboxes)
+                .SetDateTimeElements(model.Datetimes).SetStringElements(model.Strings).SetMarkdownElements(model.Markdowns)
+                .SetIntegerElements(model.Integers).SetOptionElements(ListOptionElements(model.Options))
+                .Build();
+            return item;
+        }
+
+        private List<OptionElement> ListOptionElements(int[] optionId)
+        {
+            var Options = new List<OptionElement>();
+            foreach (var id in optionId)
+            {
+                Options.Add(_optionRepo.GetOptionElementById(id));
+            }
+            return Options;
         }
     }
 }

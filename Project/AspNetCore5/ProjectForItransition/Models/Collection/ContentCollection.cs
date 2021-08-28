@@ -20,4 +20,29 @@ namespace ProjectForItransition.Models.Collection
         public List<NameField> NameElements { get; set; } = new List<NameField>();
         public List<SelectElement> SelectElements { get; set; } = new List<SelectElement>();
     }
+
+    public static class ContentCollectionExtinsion
+    {
+        public static void CopyToWithoutUser(this ContentCollection source, ContentCollection destination)
+        {
+            destination.Name = source.Name;
+            destination.Description = source.Description;
+            if(source.Image.PublicId != null)
+                destination.Image = source.Image;
+            destination.Topic = source.Topic;
+            destination.NameElements = source.NameElements;
+            destination.SelectElements = source.SelectElements;
+        }
+        public static void CopyTo(this ContentCollection source, ContentCollection destination)
+        {
+            destination.Name = source.Name;
+            destination.UserId = source.UserId;
+            destination.UserName = source.UserName;
+            destination.Description = source.Description;
+            destination.Image = source.Image;
+            destination.Topic = source.Topic;
+            destination.NameElements = source.NameElements;
+            destination.SelectElements = source.SelectElements;
+        }
+    }
 }
