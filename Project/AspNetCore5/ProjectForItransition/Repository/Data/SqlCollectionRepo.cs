@@ -56,6 +56,7 @@ namespace ProjectForItransition.Repository.Data
             _ = _context.CheckboxElements.ToList();
             _ = _context.DateTimeOffsetElements.ToList();
             _ = _context.OptionElements.ToList();
+            _ = _context.ItemOptions.ToList();
         }
 
         public bool SaveChange()

@@ -290,9 +290,9 @@
                                         {
                                             <div>
                                                 @name.Name -
-                                                @if (item.OptionElements.Count() > i)
+                                                @if (item.ItemOptions.Count > i)
                                                 {
-                                                    <span> @item.OptionElements[i].Value</span>
+                                                    <span> @item.ItemOptions[i].Option.Value</span>
                                                     i++;
                                                 }
                                                 else

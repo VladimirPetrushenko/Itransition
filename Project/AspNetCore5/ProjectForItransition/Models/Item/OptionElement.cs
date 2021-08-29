@@ -9,7 +9,6 @@ namespace ProjectForItransition.Models.Item
     {
         public int Id { get; set; }
         public string Value { get; set; }
-        public ContentItem Item { get; set; }
         public static List<OptionElement> CreateListSelectElementWithValue(string[] values)
         {
             List<OptionElement> strings = new();

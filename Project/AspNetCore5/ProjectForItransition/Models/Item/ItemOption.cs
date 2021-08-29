@@ -9,6 +9,6 @@ namespace ProjectForItransition.Models.Item
     {
         public int Id { get; set; }
         public ContentItem Item {get;set;}
-        public List<OptionElement> Option { get; set; }
+        public OptionElement Option { get; set; }
     }
 }

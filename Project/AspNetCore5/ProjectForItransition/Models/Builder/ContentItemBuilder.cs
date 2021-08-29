@@ -74,9 +74,9 @@ namespace ProjectForItransition.Models.Builder
             return this;
         }
 
-        public IContentItemBuilder SetOptionElements(List<OptionElement> optionElements)
+        public IContentItemBuilder SetOptionElements(List<ItemOption> itemOptions)
         {
-            _item.OptionElements = optionElements;
+            _item.ItemOptions = itemOptions;
             return this;
         }
 

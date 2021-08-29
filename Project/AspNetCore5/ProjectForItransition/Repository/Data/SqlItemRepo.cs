@@ -90,7 +90,7 @@ namespace ProjectForItransition.Repository.Data
 
         public ContentItem GetItemById(int itemId)
         {
-            _ = _context.ItemOptions.ToList();
+            _ = _context.OptionElements.ToList();
             return _context.Items
                 .Where(x => x.Id == itemId)
                 .Include(x => x.IntegerElements)
@@ -102,7 +102,7 @@ namespace ProjectForItransition.Repository.Data
                 .Include(x => x.Collection)
                 .Include(x => x.Likes)
                 .Include(x => x.Comments)
-                .Include(x => x.OptionElements)
+                .Include(x => x.ItemOptions)
                 .FirstOrDefault();
         }
 

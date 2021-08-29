@@ -10,7 +10,7 @@ namespace ProjectForItransition.ViewModels.Items
         public List<NameField> Fields { get; set; }
         public int CollectionId { get; set; }
         public string[] AllTags { get; set; }
-        public List<OptionElement> OptionElements { get; set; }
+        public List<ItemOption> ItemOptions { get; set; }
         public string[] NameSelect { get; set; }
     }
 }

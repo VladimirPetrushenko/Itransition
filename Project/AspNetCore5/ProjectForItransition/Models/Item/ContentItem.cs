@@ -15,7 +15,7 @@ namespace ProjectForItransition.Models.Item
         public List<MarkdownElement> MarkdownElements { get; set; } = new List<MarkdownElement>();
         public List<DateTimeOffsetElement> DateTimeElements { get; set; } = new List<DateTimeOffsetElement>();
         public List<CheckboxElement> CheckboxElements { get; set; } = new List<CheckboxElement>(); 
-        public List<OptionElement> OptionElements { get; set; } = new List<OptionElement>(); 
+        public List<ItemOption> ItemOptions { get; set; } = new List<ItemOption>(); 
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
         public virtual List<Like> Likes { get; set; } = new List<Like>();
@@ -33,7 +33,7 @@ namespace ProjectForItransition.Models.Item
             destination.StringElements = source.StringElements;
             destination.MarkdownElements = source.MarkdownElements;
             destination.IntegerElements = source.IntegerElements;
-            destination.OptionElements = source.OptionElements;
+            destination.ItemOptions = source.ItemOptions;
         }
     }
 }

@@ -3,21 +3,38 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectForItransition.Repository;
 
 namespace ProjectForItransition.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210828183609_createManyToManyItemOption")]
+    partial class createManyToManyItemOption
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ContentItemOptionElement", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OptionElementsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId", "OptionElementsId");
+
+                    b.HasIndex("OptionElementsId");
+
+                    b.ToTable("ContentItemOptionElement");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -416,28 +433,6 @@ namespace ProjectForItransition.Repository.Migrations
                     b.ToTable("IntegerElements");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Item.ItemOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OptionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("OptionId");
-
-                    b.ToTable("ItemOptions");
-                });
-
             modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
                 {
                     b.Property<int>("Id")
@@ -539,6 +534,21 @@ namespace ProjectForItransition.Repository.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("ContentItemOptionElement", b =>
+                {
+                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", null)
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectForItransition.Models.Item.OptionElement", null)
+                        .WithMany()
+                        .HasForeignKey("OptionElementsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -660,21 +670,6 @@ namespace ProjectForItransition.Repository.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("ProjectForItransition.Models.Item.ItemOption", b =>
-                {
-                    b.HasOne("ProjectForItransition.Models.Item.ContentItem", "Item")
-                        .WithMany("ItemOptions")
-                        .HasForeignKey("ItemId");
-
-                    b.HasOne("ProjectForItransition.Models.Item.OptionElement", "Option")
-                        .WithMany()
-                        .HasForeignKey("OptionId");
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Option");
-                });
-
             modelBuilder.Entity("ProjectForItransition.Models.Item.Like", b =>
                 {
                     b.HasOne("ProjectForItransition.Models.Item.ContentItem", "Item")
@@ -741,8 +736,6 @@ namespace ProjectForItransition.Repository.Migrations
                     b.Navigation("DateTimeElements");
 
                     b.Navigation("IntegerElements");
-
-                    b.Navigation("ItemOptions");
 
                     b.Navigation("Likes");
 

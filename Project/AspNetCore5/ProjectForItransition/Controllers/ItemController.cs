@@ -37,7 +37,7 @@ namespace ProjectForItransition.Controllers
                 Item = item,
                 Fields = collection.NameElements,
                 CollectionId = collection.Id,
-                OptionElements = item.OptionElements,
+                ItemOptions = item.ItemOptions,
                 NameSelect = collection.SelectElements.Select(x => x.Name).ToArray(),
             };
             return View(model);
@@ -104,12 +104,12 @@ namespace ProjectForItransition.Controllers
             return item;
         }
 
-        private List<OptionElement> ListOptionElements(int[] optionId)
+        private List<ItemOption> ListOptionElements(int[] optionId)
         {
-            var Options = new List<OptionElement>();
+            var Options = new List<ItemOption>();
             foreach (var id in optionId)
             {
-                Options.Add(_optionRepo.GetOptionElementById(id));
+                Options.Add(new ItemOption { Option = _optionRepo.GetOptionElementById(id) });
             }
             return Options;
         }

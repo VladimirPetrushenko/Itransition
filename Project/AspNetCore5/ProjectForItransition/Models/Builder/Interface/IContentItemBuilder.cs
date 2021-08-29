@@ -17,7 +17,7 @@ namespace ProjectForItransition.Models.Builder.Interface
         IContentItemBuilder SetMarkdownElements(string[] markdowns);
         IContentItemBuilder SetDateTimeElements(DateTimeOffset[] datetimes);
         IContentItemBuilder SetCheckboxElements(int[] checkboxes);
-        IContentItemBuilder SetOptionElements(List<OptionElement> optionElements);
+        IContentItemBuilder SetOptionElements(List<ItemOption> itemOptions);
         IContentItemBuilder SetComments(List<Comment> comments);
         IContentItemBuilder SetLikes(List<Like> likes);
         IContentItemBuilder SetCollection(ContentCollection collection);
