@@ -24,9 +24,12 @@ namespace ProjectForItransition.ViewModels.Collection
                 foreach (var tag in source.TagsForFilter.Select(x=>x.ToLower().Trim()))
                 {
                     collection.Items = collection.Items
-                        .Where(x => x.Tags
-                            .Select(t => t.Name.ToLower().Contains(tag))
-                            .Contains(true))
+                        .Where(x => { 
+                            if (x.Tags != null) {
+                                return x.Tags.Select(t => t.Name.ToLower().Contains(tag)).Contains(true);
+                            }
+                            return false;
+                        })
                         .ToList();
                 }
             }

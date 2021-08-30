@@ -58,7 +58,7 @@
             <div class="col-12 row mt-2 ml-0 p-0">
                 <div class="form-inline col-md-8 p-0 mb-2">
                     <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
-                    @if(countItem > 0 || Model.Filtration)
+                    @if (countItem > 0 || Model.Filtration)
                     {
                         <input id="filterName" name="NameForFilter" value="@Model.NameForFilter" placeholder="@Localizer["NameFilter"]" class="form-control col-9" />
                         <div class="col-3">
@@ -328,6 +328,14 @@
                     </tbody>
                 </table>
             }
+            
+        </form>
+        <form asp-controller="CSV" asp-action="createCSVFile" asp-route-returnUrl="@Context.Request.Path" asp-route-queryStr="@Context.Request.QueryString"
+              method="post" class="col-12">
+            <input type="hidden" value="@Model.Collection.Id" name="CollectionId" />
+            <div class="col-12 text-center">
+                <input type="submit" class="btn btn-success" value = "Export CSVFile" />
+            </div>
         </form>
     </div>
 </div>

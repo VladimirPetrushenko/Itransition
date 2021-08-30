@@ -267,3 +267,4 @@ D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.Controllers.CollectionController.ru.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.ViewModels.Items.ItemViewModel.en.resources
 D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\ProjectForItransition.Resources.ViewModels.Items.ItemViewModel.ru.resources
+D:\RepositoryForGithub\Itransition\Project\AspNetCore5\ProjectForItransition\obj\Debug\net5.0\Razor\Views\CSV\Index.cshtml.g.cs
