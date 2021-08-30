@@ -10,8 +10,8 @@ using ProjectForItransition.Repository;
 namespace ProjectForItransition.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210828183609_createManyToManyItemOption")]
-    partial class createManyToManyItemOption
+    [Migration("20210828183609_CreateManyToManyItemOption")]
+    partial class CreateManyToManyItemOption
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

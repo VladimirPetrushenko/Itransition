@@ -124,7 +124,7 @@
     <value>Drop your image here</value>
   </data>
   <data name="Element" xml:space="preserve">
-    <value>Add custom field</value>
+    <value>Add a field to an element</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Enter field name</value>
@@ -136,7 +136,7 @@
     <value>Collection name</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>Add select field</value>
+    <value>Add select from list field</value>
   </data>
   <data name="SelectElement" xml:space="preserve">
     <value>Enter values ​​for the list</value>

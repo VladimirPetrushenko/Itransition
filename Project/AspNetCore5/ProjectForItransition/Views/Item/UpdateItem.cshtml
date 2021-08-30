@@ -122,10 +122,19 @@
                             <select name="Options" class="custom-select form-control">
                                 @foreach (var option in Model.Collection.SelectElements[i].OptionElements)
                                 {
-                                    if (option.Value == Model.Item.ItemOptions[i].Option.Value) { 
-                                        <option value="@option.Id" selected>@option.Value</option>
+                                    if (Model.Item.ItemOptions?.Count > i)
+                                    {
+                                        if (option.Value == Model.Item.ItemOptions[i].Option.Value)
+                                        {
+                                            <option value="@option.Id" selected>@option.Value</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@option.Id">@option.Value</option>
+                                        }
                                     }
-                                    else { 
+                                    else
+                                    {
                                         <option value="@option.Id">@option.Value</option>
                                     }
                                 }

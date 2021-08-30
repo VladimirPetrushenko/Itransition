@@ -130,7 +130,7 @@
     <value>Перетащите сюда свое изображение</value>
   </data>
   <data name="Element" xml:space="preserve">
-    <value>Добавить настраиваемое поле</value>
+    <value>Добавить поле у элемента</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Введите название поля</value>
@@ -142,7 +142,7 @@
     <value>Введите название коллекции</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>Добавить поле выбора</value>
+    <value>Добавить поле выбор из списка</value>
   </data>
   <data name="SelectElement" xml:space="preserve">
     <value>Введите значения для списка</value>

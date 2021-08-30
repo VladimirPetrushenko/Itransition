@@ -112,6 +112,74 @@ html, body {
     right: 0px;
 }
 
+body {
+    background-color: rgb(255 255 255);
+    color: rgb(36 41 47);
+}
+
+.card {
+    background-color: rgb(255 255 255);
+    border-color: rgb(208 215 222);
+}
+
+.bg-white {
+    background-color: rgb(22 27 34) !important;
+}
+
+.bg-light {
+    background-color: rgb(246 248 250) !important;
+}
+
+.nav-link {
+    color: rgb(240 246 238) !important;
+}
+
+    .nav-link:hover {
+        color: #bbbbbb !important;
+    }
+
+.navbar-brand {
+    color: #ffffff !important;
+}
+
+    .navbar-brand:hover {
+        color: #808080 !important;
+    }
+
+.table {
+    color: rgb(36 41 47);
+}
+
+.form-control {
+    color: rgb(36 41 47);
+}
+
+.btn-primary {
+    background-color: rgb(9 105 218) !important;
+}
+
+.ms-sel-ctn {
+    background-color: rgb(255 255 255);
+}
+
+    .ms-sel-ctn input {
+        background-color: rgb(255 255 255);
+        color: rgb(36 41 47);
+    }
+
+input {
+    background-color: rgb(246 248 250);
+    color: rgb(36 41 47);
+}
+
+.btn-like {
+    color: rgb(201 209 211);
+}
+
+.navbar-toggler {
+    background-color: #FFFFFFFF;
+}
+
 .modeswitcher {
     display: inline-flex;
     z-index: 9999;

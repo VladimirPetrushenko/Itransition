@@ -120,8 +120,17 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount of items</value>
   </data>
+  <data name="CreateCollection" xml:space="preserve">
+    <value>Create a collection</value>
+  </data>
+  <data name="LastCollection" xml:space="preserve">
+    <value>The last collections you added</value>
+  </data>
   <data name="LastItems" xml:space="preserve">
     <value>Recently added items</value>
+  </data>
+  <data name="MaxCollection" xml:space="preserve">
+    <value>Collections with the maximum number of items</value>
   </data>
   <data name="NoItems" xml:space="preserve">
     <value>Items not found</value>

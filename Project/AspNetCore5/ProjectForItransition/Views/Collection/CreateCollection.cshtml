@@ -1,4 +1,5 @@
 ﻿@model ProjectForItransition.ViewModels.Collection.CreateCollectionViewModel
+
 @inject IViewLocalizer Localizer
 
 @{
@@ -6,8 +7,12 @@
     var userName = Model.UserName != null ? Model.UserName : User.Identity.Name;
 }
 <div class="row col-12">
-    <form method="post" asp-action="CreateCollection" asp-controller="Collection" asp-antiforgery="true" enctype="multipart/form-data">
+    <form method="post" class="col-12" asp-action="CreateCollection" asp-controller="Collection" asp-antiforgery="true" enctype="multipart/form-data">
         <input type="hidden" asp-for="UserName" value="@userName" />
+        @if(!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="text-danger">@Model.ErrorMessage</div>
+        }
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row mt-4">
             <div class="col-md-9 mb-3">
@@ -28,7 +33,7 @@
                             <select asp-for="Topic" class="select custom-select">
                                 @foreach (var item in Enum.GetValues(typeof(Topic)))
                                 {
-                                    <option value="@item">@item</option>
+                                <option value="@item">@item</option>
                                 }
                             </select>
                         </div>
@@ -36,12 +41,12 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <div id="dropZone" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+                <div id="dropZone" onclick="fileUpload.click()" ondrop="dropHandler(event, fileUpload)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
                     <div id="drop" class="text-center">
                         @Localizer["Drop"]
                     </div>
                 </div>
-                <input id="fileUpload" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
+                <input id="fileUpload" style="display:none;" onchange="handleFilesClick(event)" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png" />
             </div>
         </div>
         <label>@Localizer["Description"]</label>
@@ -117,5 +122,33 @@
 
     function deleteElement(e) {
         (((e.target).parentElement).parentElement).remove();
+    }
+
+    function handleFilesClick(e) {
+        let files = e.target.files;
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i]
+
+            var img = document.createElement("img");
+            img.classList.add("img-thumbnail");
+            img.file = file;
+
+            let div = document.createElement("div");
+            div.innerHTML = "<div id = \"dropZone\" onclick = \"fileUpload.click()\" ondrop = \"dropHandler(event, fileUpload)\" ondragover = \"dragOverHandler(event)\" ondragleave = \"dragLeaveHandler(event)\" ></div >";
+
+            div.firstChild.appendChild(img);
+
+            let parent = e.target.parentElement;
+            for (let i = 0; i < parent.children.length; i++) {
+                if (parent.children[i].tagName === "DIV") {
+                    parent.removeChild(parent.children[i]);
+                }
+            }
+            parent.appendChild(div);
+
+            let reader = new FileReader();
+            reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+        }
     }
 </script>

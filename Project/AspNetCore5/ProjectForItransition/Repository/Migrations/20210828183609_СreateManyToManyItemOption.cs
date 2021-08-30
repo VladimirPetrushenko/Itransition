@@ -2,7 +2,7 @@
 
 namespace ProjectForItransition.Repository.Migrations
 {
-    public partial class createManyToManyItemOption : Migration
+    public partial class CreateManyToManyItemOption : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

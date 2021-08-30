@@ -107,10 +107,11 @@ namespace ProjectForItransition.Controllers
         private List<ItemOption> ListOptionElements(int[] optionId)
         {
             var Options = new List<ItemOption>();
-            foreach (var id in optionId)
-            {
-                Options.Add(new ItemOption { Option = _optionRepo.GetOptionElementById(id) });
-            }
+            if(optionId != null)
+                foreach (var id in optionId)
+                {
+                    Options.Add(new ItemOption { Option = _optionRepo.GetOptionElementById(id) });
+                }
             return Options;
         }
     }

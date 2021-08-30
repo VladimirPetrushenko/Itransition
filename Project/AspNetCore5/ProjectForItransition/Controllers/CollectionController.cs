@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ProjectForItransition.Models.Item;
 using ProjectForItransition.Models.Builder;
+using Microsoft.Extensions.Localization;
 
 namespace ProjectForItransition.Controllers
 {
@@ -24,16 +25,18 @@ namespace ProjectForItransition.Controllers
         private readonly ICollectionRepo _repository;
         private readonly ITagRepo _tagRepo;
         private readonly Cloudinary _cloudinary;
-
+        private readonly IStringLocalizer<CollectionController> _localizer;
         public CollectionController(ICollectionRepo repository, 
             UserManager<IdentityUser> userManager, 
             ITagRepo tagRepo,
-            Cloudinary cloudinary)
+            Cloudinary cloudinary,
+            IStringLocalizer<CollectionController> localizer)
         {
             _userManager = userManager;
             _repository = repository;
             _tagRepo = tagRepo;
             _cloudinary = cloudinary;
+            _localizer = localizer;
         }
         
         [AllowAnonymous]
@@ -86,6 +89,7 @@ namespace ProjectForItransition.Controllers
                 _repository.SaveChange();
                 return RedirectToAction("ShowOwnCollections", "Collection");
             }
+            model.ErrorMessage = _localizer["ErrorMessage"];
             return View(model);
         }
 
@@ -98,15 +102,18 @@ namespace ProjectForItransition.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCollection(UpdateCollectionViewModel model)
         {
-            var updateCollection = _repository.GetCollectionById(model.CollectionId);
-            var tempCollection = await CreateCollectionFromViemModel(model);
-            tempCollection.CopyToWithoutUser(updateCollection);
-            _repository.UpdateCollection(updateCollection);
-            if (_repository.SaveChange())
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("ShowOwnCollections", "Collection");
+                var updateCollection = _repository.GetCollectionById(model.CollectionId);
+                var tempCollection = await CreateCollectionFromViemModel(model);
+                tempCollection.CopyToWithoutUser(updateCollection);
+                _repository.UpdateCollection(updateCollection);
+                if (_repository.SaveChange())
+                {
+                    return RedirectToAction("ShowOwnCollections", "Collection");
+                }
             }
-            return View(model);
+            return View(new UpdateCollectionViewModel { Collection = _repository.GetCollectionById(model.CollectionId), ErrorMessage = _localizer["ErrorMessage"] });
         }
 
         [HttpPost]
@@ -148,8 +155,8 @@ namespace ProjectForItransition.Controllers
             {
                 SortState.ItemName => collection.Items.OrderBy(x => x.Name).ToList(),
                 SortState.ItemName_desc => collection.Items.OrderByDescending(x => x.Name).ToList(),
-                SortState.Tags => collection.Items.OrderBy(x => x.Tags.FirstOrDefault()).ToList(),
-                SortState.Tags_desc => collection.Items.OrderByDescending(x => x.Tags.FirstOrDefault()).ToList(),
+                SortState.Tags => collection.Items.OrderBy(x => x.Tags?.FirstOrDefault()).ToList(),
+                SortState.Tags_desc => collection.Items.OrderByDescending(x => x.Tags?.FirstOrDefault()).ToList(),
                 SortState.Date => collection.Items.OrderBy(x => x.DateTimeElements.FirstOrDefault()).ToList(),
                 SortState.Date_desc => collection.Items.OrderByDescending(x => x.DateTimeElements.FirstOrDefault()).ToList(),
                 SortState.Integer => collection.Items.OrderBy(x => x.IntegerElements.FirstOrDefault()).ToList(),

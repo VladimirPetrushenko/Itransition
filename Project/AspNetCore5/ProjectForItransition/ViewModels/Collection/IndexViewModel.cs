@@ -8,6 +8,7 @@ namespace ProjectForItransition.ViewModels.Collection
     {
         public IEnumerable<ContentItem> Items { get; set; }
         public IEnumerable<ContentCollection> Collections { get; set; }
+        public IEnumerable<ContentCollection> MyColletions { get; set; }
         public List<TagCloudViewModel> Tags { get; set; }
     }
 

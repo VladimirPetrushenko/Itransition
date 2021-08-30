@@ -223,8 +223,8 @@ namespace ProjectForItransition.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
+                        .HasMaxLength(1600)
+                        .HasColumnType("nvarchar(1600)");
 
                     b.Property<int?>("ImageId")
                         .HasColumnType("int");
@@ -469,8 +469,8 @@ namespace ProjectForItransition.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
+                        .HasMaxLength(1600)
+                        .HasColumnType("nvarchar(1600)");
 
                     b.HasKey("Id");
 

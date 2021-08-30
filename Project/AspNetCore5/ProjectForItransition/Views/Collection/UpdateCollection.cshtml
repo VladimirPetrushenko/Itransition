@@ -1,12 +1,17 @@
 ﻿@model ProjectForItransition.ViewModels.Collection.UpdateCollectionViewModel
+
 @inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = Localizer["Title"];
 }
 <div class="row col-12">
-    <form method="post" asp-action="UpdateCollection" asp-controller="Collection" enctype="multipart/form-data">
+    <form method="post" class="col-12" asp-action="UpdateCollection" asp-controller="Collection" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="text-danger">@Model.ErrorMessage</div>
+        }
         <input type="hidden" asp-for="UserName" value="@Model.Collection.UserName" />
         <input type="hidden" name="CollectionId" value="@Model.Collection.Id" />
         <div class="row mt-4">
@@ -42,25 +47,25 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <div id="dropZoneUpdate" ondrop="dropHandler(event, fileUploadUpdate)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+                <div id="dropZoneUpdate" onclick="fileUpload.click()" ondrop="dropHandler(event, fileUploadUpdate)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
                     <div id="dropUpdate" class="text-center">
                         @{
                             @if (Model.Collection.Image != null)
                             {
                                 var url = Cloudinary.Api.UrlImgUp.Format("png")
                                            .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north"));
-                            @Html.Raw(url.BuildImageTag(Model.Collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                @Html.Raw(url.BuildImageTag(Model.Collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
                             }
                             else
                             {
                                 var url = Cloudinary.Api.UrlImgUp.Format("png")
                                               .Transform(new Transformation().Width(300).Height(200).Crop("fill").Gravity("north").Effect("sepia").Chain());
-                            @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
                             }
                         }
                     </div>
                 </div>
-                <input id="fileUploadUpdate" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
+                <input id="fileUploadUpdate" onclick="fileUpload.click()" style="display:none" type="file" name="ImageInput" multiple accept="image/gif, image/jpeg, image/png">
             </div>
         </div>
         <label>@Localizer["Description"]</label>
@@ -180,5 +185,33 @@
 
     function deleteElement(e) {
         (((e.target).parentElement).parentElement).remove();
+    }
+
+    function handleFilesClick(e) {
+        let files = e.target.files;
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i]
+
+            var img = document.createElement("img");
+            img.classList.add("img-thumbnail");
+            img.file = file;
+
+            let div = document.createElement("div");
+            div.innerHTML = "<div id = \"dropZone\" onclick = \"fileUpload.click()\" ondrop = \"dropHandler(event, fileUpload)\" ondragover = \"dragOverHandler(event)\" ondragleave = \"dragLeaveHandler(event)\" ></div >";
+
+            div.firstChild.appendChild(img);
+
+            let parent = e.target.parentElement;
+            for (let i = 0; i < parent.children.length; i++) {
+                if (parent.children[i].tagName === "DIV") {
+                    parent.removeChild(parent.children[i]);
+                }
+            }
+            parent.appendChild(div);
+
+            let reader = new FileReader();
+            reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+        }
     }
 </script>

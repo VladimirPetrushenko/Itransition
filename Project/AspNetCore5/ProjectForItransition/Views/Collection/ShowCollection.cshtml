@@ -337,12 +337,15 @@
         element.value = str;
     }
 
+    let htmlItem = document.createElement('div');
+
     let allTagsForShowCollection = new Array();
     @if (Model.AllTags != null)
     {
         foreach (var item in Model.AllTags)
         {
-            @:allTagsForShowCollection.push('@item');
+            @:htmlItem.innerHTML = "@item";
+            @:allTagsForShowCollection.push(htmlItem.innerHTML);
         }
     }
 

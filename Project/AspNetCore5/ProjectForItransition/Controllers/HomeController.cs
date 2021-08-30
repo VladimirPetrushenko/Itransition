@@ -12,6 +12,7 @@ using ProjectForItransition.ViewModels.Roles;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using ProjectForItransition.Models.Collection;
 
 namespace ProjectForItransition.Controllers
 {
@@ -30,10 +31,13 @@ namespace ProjectForItransition.Controllers
 
         public IActionResult Index()
         {
-            var items = _itemRepo.GetAllItem().OrderByDescending(x => x.Id).TakeLast(10);
-            var collections = _collectionRepo.GetAllCollections().OrderByDescending(x => x.Items.Count).Take(4);
-            var tagCloun = _tagRepo.GetAllTags().GroupBy(x => x).Select(x => new TagCloudViewModel{ Name = x.Key, Count = x.Count() }).ToList();
-            return View(new IndexViewModel { Items = items, Collections = collections, Tags = tagCloun });
+            var items = _itemRepo.GetAllItem().OrderByDescending(x => x.Id).Take(15);
+            var collections = User.Identity.IsAuthenticated ? _collectionRepo.GetAllCollections().OrderByDescending(x => x.Items.Count).Take(4) 
+                : _collectionRepo.GetAllCollections().OrderByDescending(x => x.Items.Count).Take(8);
+            var myCollections = User.Identity.IsAuthenticated ? _collectionRepo.GetAllCollections().Where(x=>x.UserName == User.Identity.Name)
+                .OrderByDescending(x=>x.Id).Take(4) : new List<ContentCollection>();
+            var tagCloun = _tagRepo.GetAllTags().GroupBy(x => x).Select(x => new TagCloudViewModel { Name = x.Key, Count = x.Count() }).OrderBy(x=>x.Count).ToList();
+            return View(new IndexViewModel { Items = items, Collections = collections, Tags = tagCloun, MyColletions = myCollections });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

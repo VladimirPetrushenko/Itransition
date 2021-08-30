@@ -120,8 +120,17 @@
   <data name="Amount" xml:space="preserve">
     <value>Количество элементов</value>
   </data>
+  <data name="CreateCollection" xml:space="preserve">
+    <value>Создать коллекцию</value>
+  </data>
+  <data name="LastCollection" xml:space="preserve">
+    <value>Последние ваши коллекции</value>
+  </data>
   <data name="LastItems" xml:space="preserve">
     <value>Последние добавленные элементы</value>
+  </data>
+  <data name="MaxCollection" xml:space="preserve">
+    <value>Коллекции с максимальным количеством элементов</value>
   </data>
   <data name="NoItems" xml:space="preserve">
     <value>Элементы не найдены</value>

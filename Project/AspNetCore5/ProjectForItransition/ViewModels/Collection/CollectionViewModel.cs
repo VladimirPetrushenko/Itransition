@@ -13,7 +13,7 @@ namespace ProjectForItransition.ViewModels.Collection
         [Required]
         public string Name { get; set; }
         public Topic Topic { get; set; }
-        [MaxLength(800)]
+        [MaxLength(1600)]
         public string Description { get; set; }
         public string UserName { get; set; }
         [NotEmptyArray]
@@ -25,5 +25,6 @@ namespace ProjectForItransition.ViewModels.Collection
         [NotEmptyArray]
         public string[] Options { get; set; }
         public int[] CountSelect { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

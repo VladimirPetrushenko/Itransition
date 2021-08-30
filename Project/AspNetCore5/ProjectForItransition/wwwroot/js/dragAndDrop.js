@@ -4,7 +4,10 @@
     event.preventDefault();
 
     const dT = new DataTransfer();
-    dT.items.add(event.dataTransfer.files[0]);
+    for (let i = 0; i < event.dataTransfer.files.length; i++) {
+        let file = event.dataTransfer.files[i]
+        dT.items.add(file);
+    }
 
     fileInput.files = dT.files;
 
@@ -12,23 +15,26 @@
 }
 
 function handleFiles(files, element) {
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i]
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i]
         if (!file.type.startsWith('image/')) { continue }
-
-        var img = document.createElement("img");
+        let div = document.createElement("div")
+        let div2 = document.createElement("div")
+        let img = document.createElement("img");
         img.classList.add("img-thumbnail");
         img.file = file;
-        element.parentElement.classList.remove('active-drop');
 
-        var parent = element.parentElement;
-
+        let parent = element.parentElement;
         parent.removeChild(parent.firstElementChild);
-        parent.appendChild(img);
 
-        var reader = new FileReader();
+        div2.appendChild(img);
+        div.appendChild(div2);
+        parent.appendChild(div);
+
+        let reader = new FileReader();
         reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);
         reader.readAsDataURL(file);
+        
     }
 }
 
@@ -41,3 +47,4 @@ function dragLeaveHandler(ev) {
     event.target.parentElement.classList.remove('active-drop');
     ev.preventDefault();
 }
+

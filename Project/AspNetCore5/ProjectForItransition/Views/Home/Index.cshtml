@@ -10,7 +10,7 @@
     <div class="col-lg-4 card border mt-1 pb-2">
         <div class="row mt-2 mt-1">
             <div class="col-2"></div>
-            <div id="container2" class="col-9"></div> 
+            <div id="container2" class="col-9"></div>
             <div class="col-1"></div>
         </div>
         <div class="row">
@@ -21,52 +21,64 @@
             {
                 foreach (var item in Model.Items)
                 {
-                    <div class="col-12 left">
-                        <form asp-action="Index" asp-controller="Item" class="float-left" method="get">
-                            <input type="hidden" name="collectionId" value="@item.Collection.Id" />
-                            <input type="hidden" name="itemId" value="@item.Id" />
-                            <button class="btn btn-link"><div class="h4 text-left m-0">@item.Name</div></button>
-                        </form>
-                    </div>
-                    <div class="col-12 mb-4">
-                        @Localizer["Tags"] - 
-                        @if (item.Tags != null)
+            <div class="col-12 left">
+                <form asp-action="Index" asp-controller="Item" class="float-left" method="get">
+                    <input type="hidden" name="collectionId" value="@item.Collection.Id" />
+                    <input type="hidden" name="itemId" value="@item.Id" />
+                    <button class="btn btn-link"><div class="h4 text-left m-0">@item.Name</div></button>
+                </form>
+            </div>
+            <div class="col-12 mb-4">
+                @Localizer["Tags"] -
+                @if (item.Tags != null)
                         {
                             foreach (var tag in item.Tags.Select(x => x.Name))
                             {
-                                <span>@tag </span>
+                <span>@tag </span>
                             }
                         }
-                    </div>
+            </div>
                 }
             }
             else
             {
-                <div class="col-12">@Localizer["NoItems"]</div>
+            <div class="col-12">@Localizer["NoItems"]</div>
             }
         </div>
     </div>
-    <div class="col-lg-8">
+    @{
+        var colum = "";
+        colum = User.Identity.IsAuthenticated ? "col-lg-4 card border mt-1 pb-2" : "col-lg-8";
+    }
+    <div class="@colum">
+        @if(User.Identity.IsAuthenticated)
+        {
+            <div style="height: 130px;">
+                <div class="h3 text-center">@Localizer["MaxCollection"]</div>
+            </div>
+        }
         <div class="row">
             @foreach (var collection in Model.Collections)
             {
-                <div class="col-sm-6 mt-1 pl-1 pr-1 card-group">
+                var card = "";
+                card = User.Identity.IsAuthenticated ? "col-sm-12" : "col-sm-6";
+                <div class="@card mt-1 pl-1 pr-1 card-group">
                     <div class="card">
                         @{
                             @if (collection.Image != null)
-                            {
-                                var url = Cloudinary.Api.UrlImgUp.Format("png")
-                                               .Transform(new Transformation().Width(300).Height(250));
+                                {
+                                    var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                                   .Transform(new Transformation().Width(300).Height(250));
 
-                                @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
-                            }
-                            else
-                            {
-                                var url = Cloudinary.Api.UrlImgUp.Format("png")
-                                            .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north").Effect("sepia").Chain());
+                            @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                }
+                                else
+                                {
+                                    var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                                .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north").Effect("sepia").Chain());
 
-                                @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
-                            }
+                            @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                }
                         }
                         <div class="card-body pb-5">
                             <h5 class="card-title">@collection.Name</h5>
@@ -85,6 +97,60 @@
             }
         </div>
     </div>
+    @if(User.Identity.IsAuthenticated)
+    {
+        <div class="@colum">
+            <div class="row" style="height: 130px;">
+                <div class="h3 text-center col-12">@Localizer["LastCollection"]</div>
+                <div class="col-12">
+                    <form method="get" class="text-center col-12" asp-action="CreateCollection" asp-controller="Collection">
+                        <h5 class="card-title">
+                            <button class="btn btn-success col-12">@Localizer["CreateCollection"]</button>
+                        </h5>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var collection in Model.MyColletions)
+                    {
+                        var card = "";
+                        card = User.Identity.IsAuthenticated ? "col-sm-12" : "col-sm-6";
+                        <div class="@card mt-1 pl-1 pr-1 card-group">
+                            <div class="card">
+                                @{
+                                    @if (collection.Image != null)
+                                            {
+                                                var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                                               .Transform(new Transformation().Width(300).Height(250));
+
+                                    @Html.Raw(url.BuildImageTag(collection.Image.PublicId, new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                            }
+                                            else
+                                            {
+                                                var url = Cloudinary.Api.UrlImgUp.Format("png")
+                                                            .Transform(new Transformation().Width(300).Height(250).Crop("fill").Gravity("north").Effect("sepia").Chain());
+
+                                    @Html.Raw(url.BuildImageTag("olbzel1gbnvmqbyjgnyj", new StringDictionary("alt=Image collection", "class= card-img-top")))
+                                            }
+                                }
+                                <div class="card-body pb-5">
+                                    <h5 class="card-title">@collection.Name</h5>
+                                    <div class="card-subtitle">@Localizer["Topic"] - @collection.Topic</div>
+                                    <div class="card-text">@collection.Description</div>
+                                    <div class="card-text">@Localizer["Amount"] - @collection.Items.Count()</div>
+                                    <div class="card-text card-bottom btn-group mr-1">
+                                        <form method="get" asp-action="ShowCollection" asp-controller="Collection">
+                                            <input type="hidden" name="collectionId" value="@collection.Id" />
+                                            <button class="btn btn-primary">@Localizer["ShowCollection"]</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+            </div>
+        </div>
+    }
 </div>
 <script charset="utf-8">
     let items = new Array();

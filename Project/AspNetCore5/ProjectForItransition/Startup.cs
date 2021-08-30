@@ -50,7 +50,7 @@ namespace ProjectForItransition
                 options.ClientId = Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
-
+            
             //// Деплой на azure
             //SecretClientOptions options = new()
             //{
@@ -94,8 +94,11 @@ namespace ProjectForItransition
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => { 
+                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
             services.AddScoped<ICollectionRepo, SqlCollectionRepo>();
             services.AddScoped<IItemRepo, SqlItemRepo>();
@@ -104,7 +107,6 @@ namespace ProjectForItransition
             services.AddScoped<IOptionRepo, SqlOptionRepo>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
             services.AddMvc().AddDataAnnotationsLocalization().AddViewLocalization();
 
             services.Configure<RequestLocalizationOptions>(optints =>
