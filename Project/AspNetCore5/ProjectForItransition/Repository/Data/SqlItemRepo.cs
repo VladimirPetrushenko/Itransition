@@ -85,6 +85,7 @@ namespace ProjectForItransition.Repository.Data
             return _context.Items
                 .Include(x => x.Collection)
                 .Include(x => x.Tags)
+                .Where(x => x.Collection != null)
                 .ToList();
         }
 

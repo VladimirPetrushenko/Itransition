@@ -21,23 +21,23 @@
             {
                 foreach (var item in Model.Items)
                 {
-            <div class="col-12 left">
-                <form asp-action="Index" asp-controller="Item" class="float-left" method="get">
-                    <input type="hidden" name="collectionId" value="@item.Collection.Id" />
-                    <input type="hidden" name="itemId" value="@item.Id" />
-                    <button class="btn btn-link"><div class="h4 text-left m-0">@item.Name</div></button>
-                </form>
-            </div>
-            <div class="col-12 mb-4">
-                @Localizer["Tags"] -
-                @if (item.Tags != null)
+                    <div class="col-12 left">
+                        <form asp-action="Index" asp-controller="Item" class="float-left" method="get">
+                            <input type="hidden" name="collectionId" value="@item.Collection.Id" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button class="btn btn-link"><div class="h4 text-left m-0">@item.Name</div></button>
+                        </form>
+                    </div>
+                    <div class="col-12 mb-4">
+                        @Localizer["Tags"] -
+                        @if (item.Tags != null)
                         {
                             foreach (var tag in item.Tags.Select(x => x.Name))
                             {
-                <span>@tag </span>
+                                <span>@tag </span>
                             }
                         }
-            </div>
+                    </div>
                 }
             }
             else
